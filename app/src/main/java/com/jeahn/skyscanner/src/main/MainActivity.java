@@ -1,8 +1,10 @@
-package com.jeahn.skyscanner;
+package com.jeahn.skyscanner.src.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.jeahn.skyscanner.R;
 
 public class MainActivity extends AppCompatActivity {
 

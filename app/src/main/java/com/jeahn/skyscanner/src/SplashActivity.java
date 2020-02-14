@@ -1,12 +1,12 @@
-package com.jeahn.skyscanner;
+package com.jeahn.skyscanner.src;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.jeahn.skyscanner.src.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     @Override
