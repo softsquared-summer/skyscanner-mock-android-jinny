@@ -10,5 +10,8 @@
     <!--splash-->
     <color name="splashBackground">#CDDFF8</color>
 
+    <!--search-->
+    <color name="searchBtnForeground">#00a698</color>
+    <color name="searchBtnBackground">#d0eeec</color>
 
 </resources>

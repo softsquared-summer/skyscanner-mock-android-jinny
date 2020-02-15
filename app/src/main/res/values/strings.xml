@@ -7,4 +7,10 @@
     <string name="menu_look">둘러보기</string>
     <string name="menu_plan">여행 일정</string>
     <string name="menu_profile">프로필</string>
+
+    <!--search-->
+    <string name="search_title">여행 계획</string>
+    <string name="search_flight">항공권</string>
+    <string name="search_hotel">호텔</string>
+    <string name="search_car_rental">렌터카</string>
 </resources>
