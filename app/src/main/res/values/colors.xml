@@ -3,5 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!--아이콘-->
+    <color name="ic_skyscanner_background">#006EE8</color>
+
+    <!--splash-->
     <color name="splashBackground">#CDDFF8</color>
+
+
 </resources>

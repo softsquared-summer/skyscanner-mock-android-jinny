@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Skyscanner</string>
+    <string name="loading">로딩중입니다...</string>
+
+    <!--bottom navigation-->
+    <string name="menu_search">검색하기</string>
+    <string name="menu_look">둘러보기</string>
+    <string name="menu_plan">여행 일정</string>
+    <string name="menu_profile">프로필</string>
 </resources>
