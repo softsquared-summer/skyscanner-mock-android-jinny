@@ -14,4 +14,6 @@
     <color name="searchBtnForeground">#00a698</color>
     <color name="searchBtnBackground">#d0eeec</color>
 
+    <!--look-->
+    <color name="lookTitleColor">#ff9400</color>
 </resources>

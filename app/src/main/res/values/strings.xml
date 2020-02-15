@@ -13,4 +13,7 @@
     <string name="search_flight">항공권</string>
     <string name="search_hotel">호텔</string>
     <string name="search_car_rental">렌터카</string>
+
+    <!--look-->
+    <string name="look_title">둘러보기</string>
 </resources>

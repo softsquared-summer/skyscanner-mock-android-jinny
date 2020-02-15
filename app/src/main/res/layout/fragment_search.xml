@@ -24,109 +24,123 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/search_title"
-                android:textSize="28sp"
+                android:textSize="32sp"
                 android:textColor="@android:color/black"
                 app:layout_collapseMode="parallax"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="30dp"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_collapseMode="parallax">
-                <ImageButton
-                    android:id="@+id/search_ibtn_flight"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_flight"
-                    android:scaleType="centerCrop"
-                    android:tint="@color/searchBtnForeground"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@color/searchBtnBackground"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/search_ibtn_hotel"
-                    app:layout_constraintHorizontal_chainStyle="spread"/>
-                <ImageButton
-                    android:id="@+id/search_ibtn_hotel"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_bed"
-                    android:scaleType="centerCrop"
-                    android:tint="@color/searchBtnForeground"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@color/searchBtnBackground"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/search_ibtn_flight"
-                    app:layout_constraintRight_toLeftOf="@id/search_ibtn_car_rental"/>
-                <ImageButton
-                    android:id="@+id/search_ibtn_car_rental"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_car"
-                    android:scaleType="centerCrop"
-                    android:tint="@color/searchBtnForeground"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@color/searchBtnBackground"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/search_ibtn_hotel"
-                    app:layout_constraintRight_toRightOf="parent"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageButton
+                        android:id="@+id/search_ibtn_flight"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_flight"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/searchBtnForeground"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@color/searchBtnBackground" />
+                </RelativeLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageButton
+                        android:id="@+id/search_ibtn_hotel"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_bed"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/searchBtnForeground"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@color/searchBtnBackground"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageButton
+                        android:id="@+id/search_ibtn_car_rental"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_car"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/searchBtnForeground"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@color/searchBtnBackground"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="bottom"
                 android:orientation="horizontal"
                 app:layout_collapseMode="parallax">
-                <TextView
-                    android:id="@+id/search_tv_flight"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/search_tv_hotel"
-                    android:text="@string/search_flight"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintHorizontal_chainStyle="spread"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/search_tv_flight"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_flight"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="5dp" />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/search_tv_hotel"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/search_tv_flight"
-                    app:layout_constraintRight_toLeftOf="@id/search_tv_car_rental"
-                    android:text="@string/search_hotel"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/search_tv_hotel"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_hotel"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="5dp"/>
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/search_tv_car_rental"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/search_tv_hotel"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:text="@string/search_car_rental"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/search_tv_car_rental"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_car_rental"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="5dp"/>
+                </RelativeLayout>
+            </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -150,8 +164,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:gravity="center"
-                android:text="TEST"
+                android:gravity="start"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="스마트하게 여행하세요."
                 android:textColor="@color/colorPrimary"/>
             <TextView
                 android:layout_width="match_parent"

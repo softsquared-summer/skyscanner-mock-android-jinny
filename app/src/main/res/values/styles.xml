@@ -8,9 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Splash-->
     <style name="SplashTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+    
+    <!--look fragment-->
+    <style name="CollapsingToolbar.TitleText"
+        parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">@color/lookTitleColor</item>
     </style>
 
 </resources>
