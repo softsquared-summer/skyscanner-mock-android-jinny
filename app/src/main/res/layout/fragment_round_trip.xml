@@ -42,7 +42,6 @@
                 android:background="@drawable/search_flights_tv"
                 app:layout_constraintTop_toBottomOf="@id/round_trip_tv_origin"
                 android:clickable="true"
-                android:enabled="false"
                 android:drawableStart="@drawable/ic_landing"
                 android:paddingStart="15dp"
                 android:drawablePadding="15dp"
