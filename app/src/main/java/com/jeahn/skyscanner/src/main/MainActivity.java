@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
+import com.jeahn.skyscanner.src.flights.SearchFlightsResultActivity;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigation;
@@ -60,5 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void iBtnFlightOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, SearchFlightsResultActivity.class);
+        startActivity(intent);
     }
 }

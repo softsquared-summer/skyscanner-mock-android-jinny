@@ -1,6 +1,7 @@
 package com.jeahn.skyscanner.src.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,16 +67,16 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
         //버튼 크기 조절
         int resize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50 + ratio * 10, getResources().getDisplayMetrics());
 
-        mIbtnFlight.getLayoutParams().height = resize;
-        mIbtnFlight.getLayoutParams().width = resize ;
-        mIbtnFlight.requestLayout();
-
-        mIbtnHotel.getLayoutParams().height = resize;
-        mIbtnHotel.getLayoutParams().width = resize;
-        mIbtnHotel.requestLayout();
-
-        mIbtnCarRental.getLayoutParams().height = resize;
-        mIbtnCarRental.getLayoutParams().width = resize;
-        mIbtnCarRental.requestLayout();
+//        mIbtnFlight.getLayoutParams().height = resize;
+//        mIbtnFlight.getLayoutParams().width = resize ;
+//        mIbtnFlight.requestLayout();
+//
+//        mIbtnHotel.getLayoutParams().height = resize;
+//        mIbtnHotel.getLayoutParams().width = resize;
+//        mIbtnHotel.requestLayout();
+//
+//        mIbtnCarRental.getLayoutParams().height = resize;
+//        mIbtnCarRental.getLayoutParams().width = resize;
+//        mIbtnCarRental.requestLayout();
     }
 }

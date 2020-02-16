@@ -16,4 +16,9 @@
 
     <!--look-->
     <color name="lookTitleColor">#ff9400</color>
+
+    <!--flights-->
+    <color name="flightsMainColor">#111236</color>
+    <color name="flightsIconColor">#68697f</color>
+    <color name="flightsAccentColor">#00a698</color>
 </resources>
