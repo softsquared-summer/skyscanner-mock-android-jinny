@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#111236">
+        android:background="@color/flightsMainColor">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/search_flights_toolbar"
@@ -19,7 +19,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
             android:theme="@style/ToolbarTheme"
             app:titleTextColor="@android:color/white"
-            app:title="항공권 검색">
+            app:title="@string/search_flights_title">
 
         </androidx.appcompat.widget.Toolbar>
 

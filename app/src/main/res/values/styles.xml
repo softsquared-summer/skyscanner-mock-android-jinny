@@ -33,4 +33,13 @@
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="colorControlNormal">@android:color/white</item>
     </style>
+
+    <style name="FullWidth.Dialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:windowAnimationStyle">@style/DialogAnimation</item>-->
+    </style>
 </resources>

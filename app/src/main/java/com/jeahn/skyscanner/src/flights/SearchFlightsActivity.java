@@ -1,8 +1,12 @@
 package com.jeahn.skyscanner.src.flights;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 
 import androidx.annotation.Nullable;
@@ -29,9 +33,9 @@ public class SearchFlightsActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
 
         mTabLayout = findViewById(R.id.search_flights_tab);
-        mTabLayout.addTab(mTabLayout.newTab().setText("왕복"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("편도"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("다구간"));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_round_trip)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_one_way)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_multi_city)));
         mTabLayout.setTabRippleColor(null);
 
         mViewPager = findViewById(R.id.search_flights_pager);
@@ -67,5 +71,28 @@ public class SearchFlightsActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void originOnClick(View view){
+        showInputCityDialog(true);
+    }
+
+    public void destinationOnClick(View view){
+        showInputCityDialog(false);
+    }
+
+    private void showInputCityDialog(boolean isOrigin){
+        InputCityDialog dialog = new InputCityDialog(isOrigin);
+        dialog.show(getSupportFragmentManager(), "TAG");
+        getSupportFragmentManager().executePendingTransactions();
+        dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener(){
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+
+        int color = getResources().getColor(R.color.flightsMainColor);
+        mToolbar.getNavigationIcon().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
     }
 }

@@ -20,8 +20,8 @@ public class SearchFlightsPagerAdapter extends FragmentStatePagerAdapter {
                 return roundTripFragment;
 
             case 1:
-                 roundTripFragment = new RoundTripFragment();
-                return roundTripFragment;
+                 OneWayFragment oneWayFragment = new OneWayFragment();
+                return oneWayFragment;
 
             case 2:
                 roundTripFragment = new RoundTripFragment();

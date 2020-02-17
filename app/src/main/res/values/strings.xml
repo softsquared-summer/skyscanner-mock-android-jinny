@@ -17,6 +17,14 @@
     <!--look-->
     <string name="look_title">둘러보기</string>
 
+    <!--seach flights-->
+    <string name="search_flights_title">항공권 검색</string>
+    <string name="input_city_origin">출발지</string>
+    <string name="input_city_destination">도착지</string>
+    <string name="search_flights_round_trip">왕복</string>
+    <string name="search_flights_one_way">편도</string>
+    <string name="search_flights_multi_city">다구간</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
