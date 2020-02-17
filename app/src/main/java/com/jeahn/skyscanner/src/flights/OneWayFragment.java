@@ -15,7 +15,7 @@ import com.jeahn.skyscanner.R;
  * A simple {@link Fragment} subclass.
  */
 public class OneWayFragment extends Fragment {
-
+    private static int START_SEARCH_FLIGHTS_ONE_WAY = 200;
 
     public OneWayFragment() {
         // Required empty public constructor

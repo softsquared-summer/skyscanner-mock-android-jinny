@@ -145,7 +145,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating"
+        android:id="@+id/one_way_floating_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
@@ -153,7 +153,9 @@
         app:layout_anchorGravity="bottom|end"
         android:src="@drawable/ic_searching"
         android:tint="@android:color/white"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:onClick="startSearchFlightsOnClick"
+        tools:ignore="OnClick"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -2,9 +2,13 @@ package com.jeahn.skyscanner.src.flights;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
@@ -12,10 +16,15 @@ import com.jeahn.skyscanner.src.BaseActivity;
 public class SearchFlightsResultActivity extends BaseActivity {
     private static int SEARCH_FLIGHTS = 1;
 
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_flights_result);
+
+        mToolbar = findViewById(R.id.search_flights_result_toolbar);
+        mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
         Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
         startActivityForResult(intent, SEARCH_FLIGHTS);
@@ -28,5 +37,10 @@ public class SearchFlightsResultActivity extends BaseActivity {
                 finish();
             }
         }
+    }
+
+    public void searchOnClick(View view){
+        Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
+        startActivityForResult(intent, SEARCH_FLIGHTS);
     }
 }

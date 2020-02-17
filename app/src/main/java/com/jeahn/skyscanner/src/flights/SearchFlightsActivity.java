@@ -18,6 +18,8 @@ import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 
 public class SearchFlightsActivity extends BaseActivity {
+    private static int START_SEARCH_FLIGHTS_ONE_WAY = 200;
+
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
 
@@ -94,5 +96,15 @@ public class SearchFlightsActivity extends BaseActivity {
 
         int color = getResources().getColor(R.color.flightsMainColor);
         mToolbar.getNavigationIcon().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+    }
+
+    public void startSearchFlightsOnClick(View view){
+        switch (view.getId())
+        {
+            case R.id.one_way_floating_search:
+                setResult(START_SEARCH_FLIGHTS_ONE_WAY);
+                finish();
+                break;
+        }
     }
 }
