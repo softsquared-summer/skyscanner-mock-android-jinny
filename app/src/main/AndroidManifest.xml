@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".src.main.MainActivity"/>
+        <activity android:name=".src.flights.SearchFlightsResultActivity"/>
+        <activity android:name=".src.flights.SearchFlightsActivity"
+            android:theme="@style/Theme.Transparent"/>
     </application>
 
 </manifest>
