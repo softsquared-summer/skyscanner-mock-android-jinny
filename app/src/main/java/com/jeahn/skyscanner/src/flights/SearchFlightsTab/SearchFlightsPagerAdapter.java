@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights;
+package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
