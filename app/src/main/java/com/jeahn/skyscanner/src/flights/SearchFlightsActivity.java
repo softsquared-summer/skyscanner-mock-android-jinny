@@ -110,4 +110,13 @@ public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnT
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if(isFirstSearch){ //첫 검색이면 검색결과 화면도 닫도록 result 보내기
+            setResult(Activity.RESULT_FIRST_USER);
+        }
+        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
+        super.onBackPressed();
+    }
 }
