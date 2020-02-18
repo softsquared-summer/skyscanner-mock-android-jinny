@@ -54,6 +54,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             case R.id.one_way_floating_search: //검색 시작
                 getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY);
                 getActivity().finish();
+                getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
                 break;
             case R.id.one_way_tv_origin: //출발지 검색
                 showInputCityDialog(true);

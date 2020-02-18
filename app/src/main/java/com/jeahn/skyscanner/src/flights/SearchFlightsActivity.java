@@ -41,6 +41,9 @@ public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnT
         //첫 검색이면 뒤로가기 버튼, 아니면 닫기 버튼
         Intent intent = getIntent();
         isFirstSearch = intent.getBooleanExtra("isFirstSearch", false);
+        if(!isFirstSearch){
+            overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
+        }
 
         mToolbar = findViewById(R.id.search_flights_toolbar);
         setSupportActionBar(mToolbar);
@@ -77,6 +80,7 @@ public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnT
                     setResult(Activity.RESULT_FIRST_USER);
                 }
                 finish();
+                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
                 return true;
         }
 
