@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_skyscanner_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".src.SplashActivity"
+        <activity android:name=".src.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

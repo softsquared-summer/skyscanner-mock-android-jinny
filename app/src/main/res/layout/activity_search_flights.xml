@@ -36,7 +36,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.jeahn.skyscanner.src.NonSwipeViewPager
+    <com.jeahn.skyscanner.src.flights.SearchFlightsTab.NonSwipeViewPager
         android:id="@+id/search_flights_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

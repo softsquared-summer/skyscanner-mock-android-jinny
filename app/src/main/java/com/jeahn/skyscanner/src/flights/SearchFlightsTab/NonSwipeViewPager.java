@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src;
+package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
 
 import android.content.Context;
 import android.util.AttributeSet;

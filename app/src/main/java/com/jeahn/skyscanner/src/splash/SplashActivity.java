@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src;
+package com.jeahn.skyscanner.src.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
