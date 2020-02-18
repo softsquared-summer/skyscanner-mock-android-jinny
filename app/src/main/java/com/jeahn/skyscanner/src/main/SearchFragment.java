@@ -18,11 +18,12 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
+import com.jeahn.skyscanner.src.flights.SearchFlightsResultActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetChangedListener{
+public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
 
     private AppBarLayout mAppBar;
     private TextView mTvTitle, mTvFlight, mTvHotel, mTvCarRental;
@@ -48,6 +49,8 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
         mIbtnFlight = view.findViewById(R.id.search_ibtn_flight);
         mIbtnHotel = view.findViewById(R.id.search_ibtn_hotel);
         mIbtnCarRental = view.findViewById(R.id.search_ibtn_car_rental);
+
+        mIbtnFlight.setOnClickListener(this);
 
         mAppBar.addOnOffsetChangedListener(this);
 
@@ -78,5 +81,15 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
 //        mIbtnCarRental.getLayoutParams().height = resize;
 //        mIbtnCarRental.getLayoutParams().width = resize;
 //        mIbtnCarRental.requestLayout();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.search_ibtn_flight:
+                Intent intent = new Intent(getContext(), SearchFlightsResultActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

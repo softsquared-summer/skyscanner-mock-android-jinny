@@ -121,8 +121,7 @@
                             android:src="@drawable/ic_flight"
                             android:scaleType="centerCrop"
                             android:tint="@color/searchBtnForeground"
-                            android:background="@drawable/seach_ripple"
-                            android:onClick="iBtnFlightOnClick"/>
+                            android:background="@drawable/search_ripple"/>
                     </RelativeLayout>
 
                     <RelativeLayout

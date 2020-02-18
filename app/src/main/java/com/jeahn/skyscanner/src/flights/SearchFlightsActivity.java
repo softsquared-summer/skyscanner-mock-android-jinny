@@ -77,36 +77,12 @@ public class SearchFlightsActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void originOnClick(View view){
-        showInputCityDialog(true);
-    }
-
-    public void destinationOnClick(View view){
-        showInputCityDialog(false);
-    }
-
-    private void showInputCityDialog(boolean isOrigin){
-        InputCityDialog dialog = new InputCityDialog(isOrigin);
-        dialog.show(getSupportFragmentManager(), "TAG");
-        getSupportFragmentManager().executePendingTransactions();
-        dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener(){
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-            }
-        });
-
-        int color = getResources().getColor(R.color.flightsMainColor);
-        mToolbar.getNavigationIcon().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-    }
-
-    public void startSearchFlightsOnClick(View view){
-        switch (view.getId())
-        {
-            case R.id.one_way_floating_search:
-                setResult(START_SEARCH_FLIGHTS_ONE_WAY);
-                finish();
-                break;
+    //뒤로가기 버튼 가시성 (도시 검색 창이 반투명이어서 뒤에 비치기 때문에 가시성 설정 필요)
+    public void setNavigationIconVisibility(boolean visible){
+        if(visible){
+            mToolbar.setVisibility(View.VISIBLE);
+        }else{
+            mToolbar.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -65,9 +65,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void iBtnFlightOnClick(View view) {
-        Intent intent = new Intent(MainActivity.this, SearchFlightsResultActivity.class);
-        startActivity(intent);
-    }
 }

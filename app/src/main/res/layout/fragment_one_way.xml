@@ -32,9 +32,7 @@
                 android:hint="@string/input_city_origin"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
-                android:gravity="center_vertical"
-                android:onClick="originOnClick"
-                tools:ignore="OnClick" />
+                android:gravity="center_vertical" />
 
             <TextView
                 android:id="@+id/one_way_tv_destination"
@@ -50,9 +48,7 @@
                 android:hint="@string/input_city_destination"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
-                android:gravity="center_vertical"
-                android:onClick="destinationOnClick"
-                tools:ignore="OnClick"/>
+                android:gravity="center_vertical" />
 
             <TextView
                 android:id="@+id/one_way_tv_date_departure"
@@ -153,9 +149,7 @@
         app:layout_anchorGravity="bottom|end"
         android:src="@drawable/ic_searching"
         android:tint="@android:color/white"
-        android:clickable="true"
-        android:onClick="startSearchFlightsOnClick"
-        tools:ignore="OnClick"/>
+        android:clickable="true"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
