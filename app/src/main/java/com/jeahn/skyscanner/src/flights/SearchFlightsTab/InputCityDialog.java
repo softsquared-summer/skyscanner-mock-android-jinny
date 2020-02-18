@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,12 +19,18 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.flights.FlightsService;
+import com.jeahn.skyscanner.src.flights.interfaces.FligthsActivityView;
+import com.jeahn.skyscanner.src.flights.models.City;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class InputCityDialog extends DialogFragment {
+public class InputCityDialog extends DialogFragment implements FligthsActivityView {
 
     boolean mIsOrigin;
+
+    ArrayList<String> mCityList;
 
     AutoCompleteTextView mAutoCompleteTextView;
 
@@ -53,15 +60,7 @@ public class InputCityDialog extends DialogFragment {
             }
         });
 
-        ArrayList<String> list = new ArrayList<>();
-        list.add("서울");
-        list.add("서울2");
-        list.add("서울3");
-        list.add("울산");
-        list.add("부산");
-        list.add("제주");
-
-        mAutoCompleteTextView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list));
+        tryGetCityList();
 
         dialog.setContentView(view);
         int width = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -89,5 +88,25 @@ public class InputCityDialog extends DialogFragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //도시 리스트 조회 api 통신
+    private void tryGetCityList() {
+        final FlightsService flightsService = new FlightsService(this);
+        flightsService.getCityList();
+    }
+
+    @Override
+    public void validateSuccess(List<City> cityList) {
+        mCityList = new ArrayList<>();
+        for(int i =0; i < cityList.size(); i++){
+            mCityList.add(cityList.get(i).getCityNameKr());
+        }
+        mAutoCompleteTextView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, mCityList));
+    }
+
+    @Override
+    public void validateFailure(String message) {
+        Toast.makeText(getContext(), "조회 실패", Toast.LENGTH_SHORT).show();
     }
 }
