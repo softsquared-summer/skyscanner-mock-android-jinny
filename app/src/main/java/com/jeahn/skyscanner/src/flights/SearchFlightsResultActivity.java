@@ -10,14 +10,20 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 
+import java.util.ArrayList;
+
 public class SearchFlightsResultActivity extends BaseActivity {
     private static int SEARCH_FLIGHTS = 1;
 
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
+    private RecyclerView mRecyclerView;
+    private SearchFlightsResultAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,8 +31,29 @@ public class SearchFlightsResultActivity extends BaseActivity {
         setContentView(R.layout.activity_search_flights_result);
 
         mToolbar = findViewById(R.id.search_flights_result_toolbar);
+        mRecyclerView = findViewById(R.id.search_flights_result_recycler);
+
         setSupportActionBar(mToolbar);
         mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ArrayList<String> items = new ArrayList<>();
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+
+        mAdapter = new SearchFlightsResultAdapter(items);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setFocusable(false);
 
         Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
         startActivityForResult(intent, SEARCH_FLIGHTS);

@@ -21,4 +21,5 @@
     <color name="flightsMainColor">#111236</color>
     <color name="flightsIconColor">#68697f</color>
     <color name="flightsAccentColor">#00a698</color>
+    <color name="searchFlightsResultBackground">#F1F2F8</color>
 </resources>
