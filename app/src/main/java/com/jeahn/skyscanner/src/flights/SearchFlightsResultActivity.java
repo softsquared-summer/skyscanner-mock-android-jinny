@@ -56,6 +56,7 @@ public class SearchFlightsResultActivity extends BaseActivity {
         mRecyclerView.setFocusable(false);
 
         Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
+        intent.putExtra("isFirstSearch", true);
         startActivityForResult(intent, SEARCH_FLIGHTS);
     }
 
@@ -63,7 +64,7 @@ public class SearchFlightsResultActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == SEARCH_FLIGHTS){
             //검색창에서 <- 누르면 결과창도 함께 꺼짐
-            if(resultCode == Activity.RESULT_CANCELED){
+            if(resultCode == Activity.RESULT_FIRST_USER){
                 finish();
             }
         }
@@ -72,6 +73,7 @@ public class SearchFlightsResultActivity extends BaseActivity {
     public void searchOnClick(View view){
         //검색창 열기
         Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
+        intent.putExtra("isFirstSearch", false);
         startActivityForResult(intent, SEARCH_FLIGHTS);
     }
 

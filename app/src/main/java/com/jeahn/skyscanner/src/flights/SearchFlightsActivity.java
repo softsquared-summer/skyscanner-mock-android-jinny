@@ -2,11 +2,14 @@ package com.jeahn.skyscanner.src.flights;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableLayout;
 
 
 import androidx.annotation.Nullable;
@@ -19,8 +22,10 @@ import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.flights.SearchFlightsTab.InputCityDialog;
 import com.jeahn.skyscanner.src.flights.SearchFlightsTab.SearchFlightsPagerAdapter;
 
-public class SearchFlightsActivity extends BaseActivity {
+public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 200;
+
+    boolean isFirstSearch;
 
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
@@ -33,43 +38,44 @@ public class SearchFlightsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_flights);
 
+        //첫 검색이면 뒤로가기 버튼, 아니면 닫기 버튼
+        Intent intent = getIntent();
+        isFirstSearch = intent.getBooleanExtra("isFirstSearch", false);
+
         mToolbar = findViewById(R.id.search_flights_toolbar);
         setSupportActionBar(mToolbar);
+        if(!isFirstSearch){
+            mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_close_white));
+        }
 
         mTabLayout = findViewById(R.id.search_flights_tab);
+        mViewPager = findViewById(R.id.search_flights_pager);
+        setTabLayout();
+
+    }
+
+    //탭 설정
+    private void setTabLayout() {
+        //탭 추가
         mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_round_trip)));
         mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_one_way)));
         mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_multi_city)));
-        mTabLayout.setTabRippleColor(null);
 
-        mViewPager = findViewById(R.id.search_flights_pager);
-        mSearchFlightsPagerAdapter = new SearchFlightsPagerAdapter(
-                getSupportFragmentManager(), mTabLayout.getTabCount());
+        //어댑터 세팅
+        mSearchFlightsPagerAdapter = new SearchFlightsPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(mSearchFlightsPagerAdapter);
 
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        //탭 선택 이벤트
+        mTabLayout.addOnTabSelectedListener(this);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                setResult(Activity.RESULT_CANCELED);
+                if(isFirstSearch){ //첫 검색이면 검색결과 화면도 닫도록 result 보내기
+                    setResult(Activity.RESULT_FIRST_USER);
+                }
                 finish();
                 return true;
         }
@@ -84,5 +90,20 @@ public class SearchFlightsActivity extends BaseActivity {
         }else{
             mToolbar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        mViewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }
