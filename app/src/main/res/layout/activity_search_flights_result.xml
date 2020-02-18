@@ -47,7 +47,8 @@
                         android:layout_below="@id/search_flights_result_tv_city"
                         android:text="4월 18일"
                         android:textSize="14sp"
-                        android:textColor="@android:color/darker_gray" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textStyle="bold"/>
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
@@ -68,9 +69,32 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
 
-
         </androidx.appcompat.widget.Toolbar>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="100개의 결과"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:text="정렬 및 필터(조건)"
+                android:textColor="@color/flightsAccentColor"
+                android:textStyle="bold"/>
+        </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
