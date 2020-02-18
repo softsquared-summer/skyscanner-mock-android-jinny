@@ -4,7 +4,7 @@
 
     <!--bottom navigation-->
     <string name="menu_search">검색하기</string>
-    <string name="menu_look">둘러보기</string>
+    <string name="menu_explore">둘러보기</string>
     <string name="menu_plan">여행 일정</string>
     <string name="menu_profile">프로필</string>
 
@@ -13,9 +13,15 @@
     <string name="search_flight">항공권</string>
     <string name="search_hotel">호텔</string>
     <string name="search_car_rental">렌터카</string>
+    <string name="search_prediction_title">스마트하게 여행하세요.</string>
+    <string name="search_prediction_content_1">가격 예측 받기</string>
+    <string name="search_prediction_content_2">똑똑한 가격 예측 기능으로 다음 항공편 가격을 절약하세요</string>
+    <string name="search_prediction_beta">베타</string>
+    <string name="search_title_explore">둘러보기</string>
+    <string name="search_go_explore">모두 탐색</string>
 
-    <!--look-->
-    <string name="look_title">둘러보기</string>
+    <!--explore-->
+    <string name="explore_title">둘러보기</string>
 
     <!--seach flights-->
     <string name="search_flights_title">항공권 검색</string>
@@ -24,9 +30,6 @@
     <string name="search_flights_round_trip">왕복</string>
     <string name="search_flights_one_way">편도</string>
     <string name="search_flights_multi_city">다구간</string>
-    <string name="search_prediction_title">스마트하게 여행하세요.</string>
-    <string name="search_prediction_content_1">가격 예측 받기</string>
-    <string name="search_prediction_content_2">똑똑한 가격 예측 기능으로 다음 항공편 가격을 절약하세요</string>
-    <string name="search_prediction_beta">베타</string>
+    <string name="search_flights_sort_filter">정렬 및 필터(조건)</string>
 
 </resources>

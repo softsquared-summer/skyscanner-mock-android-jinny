@@ -243,7 +243,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:layout_marginLeft="20dp"
-                    android:text="둘러보기"
+                    android:text="@string/search_title_explore"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
@@ -255,7 +255,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="?attr/selectableItemBackground"
-                    android:text="모두 탐색"
+                    android:text="@string/search_go_explore"
                     android:textColor="@color/ic_skyscanner_background"
                     android:clickable="true"/>
             </RelativeLayout>

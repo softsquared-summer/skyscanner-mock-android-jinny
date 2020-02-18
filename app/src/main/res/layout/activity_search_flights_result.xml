@@ -90,7 +90,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
-                android:text="정렬 및 필터(조건)"
+                android:text="@string/search_flights_sort_filter"
                 android:textColor="@color/flightsAccentColor"
                 android:textStyle="bold"/>
         </RelativeLayout>

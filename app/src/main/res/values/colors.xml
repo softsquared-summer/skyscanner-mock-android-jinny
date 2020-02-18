@@ -14,8 +14,8 @@
     <color name="searchBtnForeground">#00a698</color>
     <color name="searchBtnBackground">#d0eeec</color>
 
-    <!--look-->
-    <color name="lookTitleColor">#ff9400</color>
+    <!--explore-->
+    <color name="exploreTitleColor">#ff9400</color>
 
     <!--flights-->
     <color name="flightsMainColor">#111236</color>

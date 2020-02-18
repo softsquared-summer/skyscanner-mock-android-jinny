@@ -14,10 +14,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
     
-    <!--look fragment-->
+    <!--explore fragment-->
     <style name="CollapsingToolbar.TitleText"
         parent="TextAppearance.Design.CollapsingToolbar.Expanded">
-        <item name="android:textColor">@color/lookTitleColor</item>
+        <item name="android:textColor">@color/exploreTitleColor</item>
     </style>
 
     <!--search flights-->

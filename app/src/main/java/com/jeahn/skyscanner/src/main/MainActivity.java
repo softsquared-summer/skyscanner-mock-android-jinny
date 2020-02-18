@@ -5,15 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
-import com.jeahn.skyscanner.src.flights.SearchFlightsResultActivity;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigation;
@@ -21,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction mFragmentTransaction;
 
     private SearchFragment mSearchFragment;
-    private LookFragment mLookFragment;
+    private ExploreFragment mExploreFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
 
         mSearchFragment = new SearchFragment();
-        mLookFragment = new LookFragment();
+        mExploreFragment = new ExploreFragment();
 
         mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
 
@@ -52,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_search:
                         mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
                         break;
-                    case R.id.action_look:
-                        mFragmentTransaction.replace(R.id.main_frame, mLookFragment).commitAllowingStateLoss();
+                    case R.id.action_explore:
+                        mFragmentTransaction.replace(R.id.main_frame, mExploreFragment).commitAllowingStateLoss();
                         break;
                     case R.id.action_plan:
                         break;
@@ -67,6 +63,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goExplore(){
-        mBottomNavigation.setSelectedItemId(R.id.action_look);
+        mBottomNavigation.setSelectedItemId(R.id.action_explore);
     }
 }
