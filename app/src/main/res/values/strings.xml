@@ -24,5 +24,9 @@
     <string name="search_flights_round_trip">왕복</string>
     <string name="search_flights_one_way">편도</string>
     <string name="search_flights_multi_city">다구간</string>
+    <string name="search_prediction_title">스마트하게 여행하세요.</string>
+    <string name="search_prediction_content_1">가격 예측 받기</string>
+    <string name="search_prediction_content_2">똑똑한 가격 예측 기능으로 다음 항공편 가격을 절약하세요</string>
+    <string name="search_prediction_beta">베타</string>
 
 </resources>

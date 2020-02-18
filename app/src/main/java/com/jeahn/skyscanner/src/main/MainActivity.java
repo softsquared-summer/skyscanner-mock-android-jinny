@@ -65,4 +65,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void goExplore(){
+        mBottomNavigation.setSelectedItemId(R.id.action_look);
+    }
 }

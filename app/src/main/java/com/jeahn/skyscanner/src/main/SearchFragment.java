@@ -26,7 +26,7 @@ import com.jeahn.skyscanner.src.flights.SearchFlightsResultActivity;
 public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
 
     private AppBarLayout mAppBar;
-    private TextView mTvTitle, mTvFlight, mTvHotel, mTvCarRental;
+    private TextView mTvTitle, mTvFlight, mTvHotel, mTvCarRental, mTvExplore;
     private ImageButton mIbtnFlight, mIbtnHotel, mIbtnCarRental;
 
     public SearchFragment() {
@@ -38,7 +38,6 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         mAppBar = view.findViewById(R.id.search_appbar);
@@ -49,10 +48,11 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
         mIbtnFlight = view.findViewById(R.id.search_ibtn_flight);
         mIbtnHotel = view.findViewById(R.id.search_ibtn_hotel);
         mIbtnCarRental = view.findViewById(R.id.search_ibtn_car_rental);
+        mTvExplore = view.findViewById(R.id.search_tv_explore);
 
         mIbtnFlight.setOnClickListener(this);
-
         mAppBar.addOnOffsetChangedListener(this);
+        mTvExplore.setOnClickListener(this);
 
         return view;
     }
@@ -89,6 +89,10 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
             case R.id.search_ibtn_flight:
                 Intent intent = new Intent(getContext(), SearchFlightsResultActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.search_tv_explore:
+                MainActivity activity = (MainActivity)getActivity();
+                activity.goExplore();
                 break;
         }
     }
