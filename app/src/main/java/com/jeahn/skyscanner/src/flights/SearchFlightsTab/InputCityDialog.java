@@ -20,13 +20,14 @@ import androidx.fragment.app.FragmentManager;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.FlightsService;
-import com.jeahn.skyscanner.src.flights.interfaces.FligthsActivityView;
+import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.City;
+import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputCityDialog extends DialogFragment implements FligthsActivityView {
+public class InputCityDialog extends DialogFragment implements FlightsActivityView {
 
     boolean mIsOrigin;
 
@@ -103,6 +104,11 @@ public class InputCityDialog extends DialogFragment implements FligthsActivityVi
             mCityList.add(cityList.get(i).getCityNameKr());
         }
         mAutoCompleteTextView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, mCityList));
+    }
+
+    @Override
+    public void validateSuccess(OneFligthResult result) {
+
     }
 
     @Override

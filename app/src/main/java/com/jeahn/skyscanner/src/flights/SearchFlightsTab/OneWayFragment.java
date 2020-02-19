@@ -21,7 +21,7 @@ import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
  * A simple {@link Fragment} subclass.
  */
 public class OneWayFragment extends Fragment implements View.OnClickListener {
-    private static int START_SEARCH_FLIGHTS_ONE_WAY = 200;
+    private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
     SearchFlightsActivity mActivity;
     FloatingActionButton mFabSearch;
     TextView mTvOrigin;
