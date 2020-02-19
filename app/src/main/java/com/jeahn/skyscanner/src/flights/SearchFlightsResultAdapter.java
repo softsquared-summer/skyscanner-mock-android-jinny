@@ -9,13 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.flights.models.Ticket;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Timer;
 
 public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFlightsResultAdapter.ViewHolder> {
-    ArrayList<String> items;
+    ArrayList<Ticket> items;
 
-    public SearchFlightsResultAdapter(ArrayList<String> items) {
+    public SearchFlightsResultAdapter(ArrayList<Ticket> items) {
         this.items = items;
     }
 
@@ -28,7 +34,25 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mTvAirLineKr.setText(items.get(position));
+        Ticket item = items.get(position);
+
+         try {
+             SimpleDateFormat stringToTimeFormat = new SimpleDateFormat("HH:mm");
+             SimpleDateFormat amPmFormat = new SimpleDateFormat("a h:mm", Locale.KOREA);
+             Date deTime = stringToTimeFormat.parse(item.getDeTime());
+             String deTimeAmPm = amPmFormat.format(deTime);
+             Date arTime = stringToTimeFormat.parse(item.getArTime());
+             String arTimeAmPm = amPmFormat.format(arTime);
+
+             holder.mTvTime.setText(deTimeAmPm + " - " + arTimeAmPm);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        holder.mTvAirLineKr.setText(item.getAirLineKr());
+        holder.mTvDuration.setText(item.getTimeGap());
+        holder.mTvPrice.setText(item.getPrice());
     }
 
     @Override
@@ -37,10 +61,13 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView mTvAirLineKr;
+        public TextView mTvTime, mTvAirLineKr, mTvDuration, mTvPrice;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_airLineKr);
+            mTvTime = itemView.findViewById(R.id.item_search_flights_time);
+            mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_airline);
+            mTvDuration = itemView.findViewById(R.id.item_search_flights_duration);
+            mTvPrice = itemView.findViewById(R.id.item_search_flights_price);
         }
     }
 }

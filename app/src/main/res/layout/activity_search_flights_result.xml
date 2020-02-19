@@ -75,6 +75,7 @@
             android:layout_height="?attr/actionBarSize"
             android:gravity="center_vertical">
             <TextView
+                android:id="@+id/search_flights_result_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

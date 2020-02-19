@@ -13,13 +13,52 @@
         android:layout_marginVertical="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="15dp">
             <TextView
-                android:id="@+id/item_search_flights_airLineKr"
+                android:id="@+id/item_search_flights_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="00:00 - 00:00"
+                android:textColor="@color/flightsMainColor"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/item_search_flights_airline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="test"/>
+                android:layout_below="@+id/item_search_flights_time"
+                android:text="항공"
+                android:textColor="@color/flightsMainColor"
+                android:textSize="12dp"/>
+            <TextView
+                android:id="@+id/item_search_flights_nonstop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="직항"
+                android:textColor="@color/flightsMainColor"
+                android:textSize="16dp"/>
+            <TextView
+                android:id="@+id/item_search_flights_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/item_search_flights_nonstop"
+                android:text="00분"
+                android:textColor="@color/flightsMainColor"
+                android:textSize="12dp"/>
+            <TextView
+                android:id="@+id/item_search_flights_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="0,000"
+                android:textColor="@color/flightsMainColor"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

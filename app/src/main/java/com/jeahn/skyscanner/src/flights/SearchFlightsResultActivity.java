@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -32,6 +32,8 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     private RecyclerView mRecyclerView;
     private SearchFlightsResultAdapter mAdapter;
 
+    private TextView mTvCount;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
 
         mToolbar = findViewById(R.id.search_flights_result_toolbar);
         mRecyclerView = findViewById(R.id.search_flights_result_recycler);
+        mTvCount = findViewById(R.id.search_flights_result_count);
 
         setSupportActionBar(mToolbar);
         mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
@@ -95,12 +98,8 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
 
     @Override
     public void validateSuccess(OneFligthResult result) {
-        ArrayList<String> items = new ArrayList<>();
-        for(int i = 0; i < result.getTicketList().size(); i++){
-            items.add(result.getTicketList().get(i).getAirLineKr());
-        }
-
-        mAdapter = new SearchFlightsResultAdapter(items);
+        mTvCount.setText(result.getTotalTicketCount() + "개의 결과");
+        mAdapter = new SearchFlightsResultAdapter(result.getTicketList());
         mRecyclerView.setAdapter(mAdapter);
     }
 
