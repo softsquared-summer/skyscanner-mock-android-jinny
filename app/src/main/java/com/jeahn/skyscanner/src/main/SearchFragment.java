@@ -33,7 +33,6 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
