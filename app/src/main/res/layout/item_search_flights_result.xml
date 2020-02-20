@@ -23,12 +23,20 @@
                 android:text="00:00 - 00:00"
                 android:textColor="@color/flightsMainColor"
                 android:textSize="16dp"/>
-
             <TextView
-                android:id="@+id/item_search_flights_airline"
-                android:layout_width="match_parent"
+                android:id="@+id/item_search_flights_from_to"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_search_flights_time"
+                android:text="ICN-CJU, "
+                android:textColor="@color/flightsMainColor"
+                android:textSize="12dp"/>
+            <TextView
+                android:id="@+id/item_search_flights_airline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_search_flights_time"
+                android:layout_toRightOf="@id/item_search_flights_from_to"
                 android:text="항공"
                 android:textColor="@color/flightsMainColor"
                 android:textSize="12dp"/>

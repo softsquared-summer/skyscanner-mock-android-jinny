@@ -19,7 +19,8 @@
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_close_white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
-            android:theme="@style/ToolbarTheme">
+            android:theme="@style/ToolbarTheme"
+            android:elevation="0dp">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -33,6 +34,7 @@
         android:hint="@string/input_city_origin"
         android:drawableStart="@drawable/ic_take_off"
         android:paddingStart="15dp"
-        android:drawablePadding="15dp"/>
+        android:drawablePadding="15dp"
+        android:singleLine="true"/>
 
 </LinearLayout>

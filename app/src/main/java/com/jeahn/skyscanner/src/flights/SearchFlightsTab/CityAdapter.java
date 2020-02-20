@@ -58,7 +58,7 @@ public class CityAdapter extends ArrayAdapter<City> {
             FilterResults results = new FilterResults();
             List<City> suggestions = new ArrayList<>();
 
-            if(charSequence != null || charSequence.length() > 0){
+            if(charSequence != null && charSequence.length() > 0){
                 String filterPattern = charSequence.toString().trim();
 
                 for(City item : mCityList){

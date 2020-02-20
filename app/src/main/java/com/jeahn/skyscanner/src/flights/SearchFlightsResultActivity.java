@@ -18,11 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
-import com.jeahn.skyscanner.src.flights.models.City;
 import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchFlightsResultActivity extends BaseActivity implements FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
@@ -32,7 +28,9 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     private RecyclerView mRecyclerView;
     private SearchFlightsResultAdapter mAdapter;
 
-    private TextView mTvCount;
+    private TextView mTvFromTo, mTvCount;
+
+    private String mStrDeAirPortCode, mStrArAirPortCode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +39,7 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
 
         mToolbar = findViewById(R.id.search_flights_result_toolbar);
         mRecyclerView = findViewById(R.id.search_flights_result_recycler);
+        mTvFromTo = findViewById(R.id.search_flights_result_tv_from_to);
         mTvCount = findViewById(R.id.search_flights_result_count);
 
         setSupportActionBar(mToolbar);
@@ -62,7 +61,10 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
                 finish();
             }
             else if(resultCode == START_SEARCH_FLIGHTS_ONE_WAY){ //편도 검색 시작
-                tryGetOneFlight("GMP", "CJU", "2020-02-12", 0, "price");
+                mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
+                mStrArAirPortCode = data.getStringExtra("arAirPortCode");
+                mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
+                tryGetOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", 0, "price");
             }
         }
     }
@@ -95,7 +97,7 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     public void validateSuccess(Object data) {
         OneFligthResult result = (OneFligthResult) data;
         mTvCount.setText(result.getTotalTicketCount() + "개의 결과");
-        mAdapter = new SearchFlightsResultAdapter(result.getTicketList());
+        mAdapter = new SearchFlightsResultAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
         mRecyclerView.setAdapter(mAdapter);
     }
 

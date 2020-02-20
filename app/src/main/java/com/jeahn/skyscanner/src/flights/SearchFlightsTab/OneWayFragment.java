@@ -2,6 +2,7 @@ package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -49,7 +50,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         switch (view.getId())
         {
             case R.id.one_way_floating_search: //검색 시작
-                getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY);
+                Intent intent = new Intent();
+                intent.putExtra("deAirPortCode", originCity.getAirPortCode());
+                intent.putExtra("arAirPortCode", destinationCity.getAirPortCode());
+                getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY, intent);
                 getActivity().finish();
                 getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
                 break;

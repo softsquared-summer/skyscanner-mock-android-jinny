@@ -16,13 +16,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Timer;
 
 public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFlightsResultAdapter.ViewHolder> {
-    ArrayList<Ticket> items;
+    ArrayList<Ticket> mTicketList;
+    private String mStrFrom, mStrTo;
 
-    public SearchFlightsResultAdapter(ArrayList<Ticket> items) {
-        this.items = items;
+    public SearchFlightsResultAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
+        this.mTicketList = mTicketList;
+        mStrFrom = from;
+        mStrTo = to;
     }
 
     @NonNull
@@ -34,7 +36,7 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Ticket item = items.get(position);
+        Ticket item = mTicketList.get(position);
 
          try {
              SimpleDateFormat stringToTimeFormat = new SimpleDateFormat("HH:mm");
@@ -45,26 +47,26 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
              String arTimeAmPm = amPmFormat.format(arTime);
 
              holder.mTvTime.setText(deTimeAmPm + " - " + arTimeAmPm);
-        } catch (ParseException e) {
+         } catch (ParseException e) {
             e.printStackTrace();
-        }
-
-
-        holder.mTvAirLineKr.setText(item.getAirLineKr());
-        holder.mTvDuration.setText(item.getTimeGap());
-        holder.mTvPrice.setText(item.getPrice());
+         }
+         holder.mTvFromTo.setText(mStrFrom + "-" + mStrTo + ", ");
+         holder.mTvAirLineKr.setText(item.getAirLineKr());
+         holder.mTvDuration.setText(item.getTimeGap());
+         holder.mTvPrice.setText(item.getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return this.items.size();
+        return this.mTicketList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView mTvTime, mTvAirLineKr, mTvDuration, mTvPrice;
+        public TextView mTvTime, mTvFromTo, mTvAirLineKr, mTvDuration, mTvPrice;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mTvTime = itemView.findViewById(R.id.item_search_flights_time);
+            mTvFromTo = itemView.findViewById(R.id.item_search_flights_from_to);
             mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_airline);
             mTvDuration = itemView.findViewById(R.id.item_search_flights_duration);
             mTvPrice = itemView.findViewById(R.id.item_search_flights_price);
