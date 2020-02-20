@@ -31,6 +31,7 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     private TextView mTvFromTo, mTvCount;
 
     private String mStrDeAirPortCode, mStrArAirPortCode;
+    private int mIntCabinClass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +64,9 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
             else if(resultCode == START_SEARCH_FLIGHTS_ONE_WAY){ //편도 검색 시작
                 mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
                 mStrArAirPortCode = data.getStringExtra("arAirPortCode");
+                mIntCabinClass = data.getIntExtra("cabinClass", 0);
                 mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
-                tryGetOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", 0, "price");
+                tryGetOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass, "price");
             }
         }
     }

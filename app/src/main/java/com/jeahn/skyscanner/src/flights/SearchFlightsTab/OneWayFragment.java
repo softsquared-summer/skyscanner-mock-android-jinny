@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +24,15 @@ import com.jeahn.skyscanner.src.flights.models.City;
  */
 public class OneWayFragment extends Fragment implements View.OnClickListener {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
+
     private SearchFlightsActivity mActivity;
+    private City mOriginCity, mDestinationCity;
+    private int mCabinClass = 0;
+
     private FloatingActionButton mFabSearch;
-    private TextView mTvOrigin, mTvDestination;
-    private City originCity, destinationCity;
+    private TextView mTvOrigin, mTvDestination, mTvCabinClass;
+    private LinearLayout mLinearSeat;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,10 +44,13 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         mFabSearch = view.findViewById(R.id.one_way_floating_search);
         mTvOrigin = view.findViewById(R.id.one_way_tv_origin);
         mTvDestination = view.findViewById(R.id.one_way_tv_destination);
+        mTvCabinClass = view.findViewById(R.id.one_way_tv_cabin_class);
+        mLinearSeat = view.findViewById(R.id.one_way_seat_setting);
 
         mFabSearch.setOnClickListener(this);
         mTvOrigin.setOnClickListener(this);
         mTvDestination.setOnClickListener(this);
+        mLinearSeat.setOnClickListener(this);
 
         return view;
     }
@@ -53,8 +62,9 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             case R.id.one_way_floating_search: //검색 시작
                 if(checkInputData()){
                     Intent intent = new Intent();
-                    intent.putExtra("deAirPortCode", originCity.getAirPortCode());
-                    intent.putExtra("arAirPortCode", destinationCity.getAirPortCode());
+                    intent.putExtra("deAirPortCode", mOriginCity.getAirPortCode());
+                    intent.putExtra("arAirPortCode", mDestinationCity.getAirPortCode());
+                    intent.putExtra("cabinClass", mCabinClass);
                     getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY, intent);
                     getActivity().finish();
                     getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
@@ -64,10 +74,20 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.one_way_tv_origin: //출발지 검색
-                showInputCityDialog(true, originCity);
+                showInputCityDialog(true, mOriginCity);
                 break;
             case R.id.one_way_tv_destination: //도착지 검색
-                showInputCityDialog(false, destinationCity);
+                showInputCityDialog(false, mDestinationCity);
+                break;
+            case R.id.one_way_seat_setting: //인원 및 좌석 등급 선택
+                SeatDialog seatDialog = new SeatDialog(getContext());
+                seatDialog.showDialog(mCabinClass, mTvCabinClass);
+                seatDialog.setDialogListener(new SeatDialog.SeatDialogListener() {
+                    @Override
+                    public void onApplyButtonClick(int cabinClass) {
+                        mCabinClass = cabinClass;
+                    }
+                });
                 break;
         }
     }
@@ -95,10 +115,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(City city) {
                 if (isOrigin) {
-                    originCity = city;
+                    mOriginCity = city;
                     mTvOrigin.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
                 }else{
-                    destinationCity = city;
+                    mDestinationCity = city;
                     mTvDestination.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
                 }
             }

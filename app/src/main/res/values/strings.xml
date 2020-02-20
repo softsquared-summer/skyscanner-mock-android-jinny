@@ -32,4 +32,13 @@
     <string name="search_flights_multi_city">다구간</string>
     <string name="search_flights_sort_filter">정렬 및 필터(조건)</string>
 
+    <!--seat dialog-->
+    <string name="seat_dialog_apply">적용</string>
+    <string name="seat_dialog_cancel">취소</string>
+    <string name="seat_dialog_cabin_class">좌석 등급</string>
+    <string name="seat_dialog_economy">일반석</string>
+    <string name="seat_dialog_premium_economy">프리미엄 일반석</string>
+    <string name="seat_dialog_business">비즈니스</string>
+    <string name="seat_dialog_first_class">일등석</string>
+
 </resources>
