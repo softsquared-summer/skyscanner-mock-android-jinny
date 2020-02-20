@@ -2,8 +2,6 @@ package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
 
 
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
+import com.jeahn.skyscanner.src.flights.models.City;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,6 +72,16 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 mActivity.setNavigationIconVisibility(true);
+            }
+        });
+        dialog.setDialogListener(new InputCityDialog.InputCityDialogListener() {
+            @Override
+            public void onItemSelected(City city) {
+                if (isOrigin) {
+                    mTvOrigin.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
+                }else{
+                    mTvDestination.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
+                }
             }
         });
 

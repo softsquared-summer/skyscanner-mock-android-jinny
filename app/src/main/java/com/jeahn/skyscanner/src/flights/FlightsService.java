@@ -61,7 +61,7 @@ public class FlightsService {
 
             @Override
             public void onFailure(Call<OneFlightResponse> call, Throwable t) {
-
+                mFlightsActivityView.validateFailure(null);
             }
         });
     }

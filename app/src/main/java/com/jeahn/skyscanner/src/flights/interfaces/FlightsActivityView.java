@@ -6,9 +6,7 @@ import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
 import java.util.List;
 
 public interface FlightsActivityView {
-    void validateSuccess(List<City> cityList);
-
-    void validateSuccess(OneFligthResult result);
+    void validateSuccess(Object data);
 
     void validateFailure(String message);
 }

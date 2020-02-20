@@ -92,12 +92,8 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     }
 
     @Override
-    public void validateSuccess(List<City> cityList) {
-
-    }
-
-    @Override
-    public void validateSuccess(OneFligthResult result) {
+    public void validateSuccess(Object data) {
+        OneFligthResult result = (OneFligthResult) data;
         mTvCount.setText(result.getTotalTicketCount() + "개의 결과");
         mAdapter = new SearchFlightsResultAdapter(result.getTicketList());
         mRecyclerView.setAdapter(mAdapter);
