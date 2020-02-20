@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
@@ -50,12 +51,17 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         switch (view.getId())
         {
             case R.id.one_way_floating_search: //검색 시작
-                Intent intent = new Intent();
-                intent.putExtra("deAirPortCode", originCity.getAirPortCode());
-                intent.putExtra("arAirPortCode", destinationCity.getAirPortCode());
-                getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY, intent);
-                getActivity().finish();
-                getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
+                if(checkInputData()){
+                    Intent intent = new Intent();
+                    intent.putExtra("deAirPortCode", originCity.getAirPortCode());
+                    intent.putExtra("arAirPortCode", destinationCity.getAirPortCode());
+                    getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY, intent);
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
+                }else{
+                    Toast.makeText(getContext(), "검색 조건을 모두 입력하세요.", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.one_way_tv_origin: //출발지 검색
                 showInputCityDialog(true, originCity);
@@ -64,6 +70,15 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                 showInputCityDialog(false, destinationCity);
                 break;
         }
+    }
+
+    //검색 조건 유효성 체크
+    private boolean checkInputData() {
+        if(mTvOrigin.getText().toString().matches("")
+            || mTvDestination.getText().toString().matches("")){
+            return false;
+        }
+        return true;
     }
 
     public void showInputCityDialog(boolean isOrigin, City curCity){
