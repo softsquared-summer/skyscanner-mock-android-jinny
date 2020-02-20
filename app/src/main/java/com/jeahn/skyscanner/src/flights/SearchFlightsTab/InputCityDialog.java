@@ -31,15 +31,17 @@ import java.util.List;
 
 public class InputCityDialog extends DialogFragment implements FlightsActivityView, AdapterView.OnItemClickListener {
 
-    boolean mIsOrigin;
+    private boolean mIsOrigin;
     private InputCityDialogListener mInputCityDialogListener;
 
-    List<City> mCityList;
+    private List<City> mCityList;
+    private City mCurCity;
 
-    AutoCompleteTextView mAutoCompleteTextView;
+    private AutoCompleteTextView mAutoCompleteTextView;
 
-    public InputCityDialog(boolean isOrigin) {
+    public InputCityDialog(boolean isOrigin, City curCity) {
         mIsOrigin = isOrigin;
+        mCurCity = curCity;
     }
 
     @NonNull
@@ -55,6 +57,10 @@ public class InputCityDialog extends DialogFragment implements FlightsActivityVi
             mAutoCompleteTextView.setHint("도착지");
             mAutoCompleteTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_landing, 0, 0, 0);
         }
+        if(mCurCity != null){
+            mAutoCompleteTextView.setText(mCurCity.getCityNameKr() + " (" + mCurCity.getAirPortCode() + ")");
+        }
+        mAutoCompleteTextView.setSelectAllOnFocus(true);
 
         Toolbar toolbar = view.findViewById(R.id.input_city_toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

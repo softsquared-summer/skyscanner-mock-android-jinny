@@ -21,12 +21,10 @@ import com.jeahn.skyscanner.src.flights.models.City;
  */
 public class OneWayFragment extends Fragment implements View.OnClickListener {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
-    SearchFlightsActivity mActivity;
-    FloatingActionButton mFabSearch;
-    TextView mTvOrigin;
-    TextView mTvDestination;
-
-
+    private SearchFlightsActivity mActivity;
+    private FloatingActionButton mFabSearch;
+    private TextView mTvOrigin, mTvDestination;
+    private City originCity, destinationCity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,16 +54,16 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                 getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
                 break;
             case R.id.one_way_tv_origin: //출발지 검색
-                showInputCityDialog(true);
+                showInputCityDialog(true, originCity);
                 break;
             case R.id.one_way_tv_destination: //도착지 검색
-                showInputCityDialog(false);
+                showInputCityDialog(false, destinationCity);
                 break;
         }
     }
 
-    public void showInputCityDialog(boolean isOrigin){
-        InputCityDialog dialog = new InputCityDialog(isOrigin);
+    public void showInputCityDialog(boolean isOrigin, City curCity){
+        InputCityDialog dialog = new InputCityDialog(isOrigin, curCity);
         dialog.show(mActivity.getSupportFragmentManager(), "TAG");
         mActivity.getSupportFragmentManager().executePendingTransactions();
         dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener(){
@@ -78,8 +76,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(City city) {
                 if (isOrigin) {
+                    originCity = city;
                     mTvOrigin.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
                 }else{
+                    destinationCity = city;
                     mTvDestination.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
                 }
             }
