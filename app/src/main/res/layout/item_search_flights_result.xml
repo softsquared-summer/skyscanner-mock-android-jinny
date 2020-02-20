@@ -15,33 +15,43 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp">
+            <ImageView
+                android:id="@+id/item_search_flights_iv_airline"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="7dp"
+                android:scaleType="centerCrop"/>
             <TextView
-                android:id="@+id/item_search_flights_time"
+                android:id="@+id/item_search_flights_tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/item_search_flights_iv_airline"
+                android:layout_marginLeft="10dp"
                 android:text="00:00 - 00:00"
                 android:textColor="@color/flightsMainColor"
                 android:textSize="16dp"/>
             <TextView
-                android:id="@+id/item_search_flights_from_to"
+                android:id="@+id/item_search_flights_tv_from_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_search_flights_time"
+                android:layout_below="@+id/item_search_flights_tv_time"
+                android:layout_toRightOf="@id/item_search_flights_iv_airline"
+                android:layout_marginLeft="10dp"
                 android:text="ICN-CJU, "
                 android:textColor="@color/flightsMainColor"
                 android:textSize="12dp"/>
             <TextView
-                android:id="@+id/item_search_flights_airline"
+                android:id="@+id/item_search_flights_tv_airline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_search_flights_time"
-                android:layout_toRightOf="@id/item_search_flights_from_to"
+                android:layout_below="@+id/item_search_flights_tv_time"
+                android:layout_toRightOf="@id/item_search_flights_tv_from_to"
                 android:text="항공"
                 android:textColor="@color/flightsMainColor"
                 android:textSize="12dp"/>
             <TextView
-                android:id="@+id/item_search_flights_nonstop"
+                android:id="@+id/item_search_flights_tv_nonstop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -49,16 +59,16 @@
                 android:textColor="@color/flightsMainColor"
                 android:textSize="16dp"/>
             <TextView
-                android:id="@+id/item_search_flights_duration"
+                android:id="@+id/item_search_flights_tv_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/item_search_flights_nonstop"
+                android:layout_below="@id/item_search_flights_tv_nonstop"
                 android:text="00분"
                 android:textColor="@color/flightsMainColor"
                 android:textSize="12dp"/>
             <TextView
-                android:id="@+id/item_search_flights_price"
+                android:id="@+id/item_search_flights_tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

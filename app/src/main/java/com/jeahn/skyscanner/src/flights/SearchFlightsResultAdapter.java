@@ -3,11 +3,13 @@ package com.jeahn.skyscanner.src.flights;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
 
@@ -38,6 +40,7 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Ticket item = mTicketList.get(position);
 
+        Glide.with(holder.mIvAirLine.getContext()).load(item.getAirLineImgUrl()).into(holder.mIvAirLine);
          try {
              SimpleDateFormat stringToTimeFormat = new SimpleDateFormat("HH:mm");
              SimpleDateFormat amPmFormat = new SimpleDateFormat("a h:mm", Locale.KOREA);
@@ -63,13 +66,15 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTvTime, mTvFromTo, mTvAirLineKr, mTvDuration, mTvPrice;
+        public ImageView mIvAirLine;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mTvTime = itemView.findViewById(R.id.item_search_flights_time);
-            mTvFromTo = itemView.findViewById(R.id.item_search_flights_from_to);
-            mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_airline);
-            mTvDuration = itemView.findViewById(R.id.item_search_flights_duration);
-            mTvPrice = itemView.findViewById(R.id.item_search_flights_price);
+            mTvTime = itemView.findViewById(R.id.item_search_flights_tv_time);
+            mTvFromTo = itemView.findViewById(R.id.item_search_flights_tv_from_to);
+            mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_tv_airline);
+            mTvDuration = itemView.findViewById(R.id.item_search_flights_tv_duration);
+            mTvPrice = itemView.findViewById(R.id.item_search_flights_tv_price);
+            mIvAirLine = itemView.findViewById(R.id.item_search_flights_iv_airline);
         }
     }
 }

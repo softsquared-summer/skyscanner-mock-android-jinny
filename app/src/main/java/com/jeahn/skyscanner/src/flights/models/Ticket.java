@@ -15,6 +15,9 @@ public class Ticket {
     @SerializedName("airLineEn")
     private String airLineEn;
 
+    @SerializedName("airLineImgUrl")
+    private String airLineImgUrl;
+
     @SerializedName("deTime")
     private String deTime;
 
@@ -41,6 +44,10 @@ public class Ticket {
 
     public String getAirLineEn() {
         return airLineEn;
+    }
+
+    public String getAirLineImgUrl() {
+        return airLineImgUrl;
     }
 
     public String getDeTime() {
