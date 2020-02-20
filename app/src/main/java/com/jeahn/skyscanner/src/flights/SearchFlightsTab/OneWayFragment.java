@@ -74,10 +74,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.one_way_tv_origin: //출발지 검색
-                showInputCityDialog(true, mOriginCity);
+                showCityDialog(true, mOriginCity);
                 break;
             case R.id.one_way_tv_destination: //도착지 검색
-                showInputCityDialog(false, mDestinationCity);
+                showCityDialog(false, mDestinationCity);
                 break;
             case R.id.one_way_seat_setting: //인원 및 좌석 등급 선택
                 SeatDialog seatDialog = new SeatDialog(getContext());
@@ -101,8 +101,8 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         return true;
     }
 
-    public void showInputCityDialog(boolean isOrigin, City curCity){
-        InputCityDialog dialog = new InputCityDialog(isOrigin, curCity);
+    public void showCityDialog(boolean isOrigin, City curCity){
+        CityDialog dialog = new CityDialog(isOrigin, curCity);
         dialog.show(mActivity.getSupportFragmentManager(), "TAG");
         mActivity.getSupportFragmentManager().executePendingTransactions();
         dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener(){
@@ -111,7 +111,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                 mActivity.setNavigationIconVisibility(true);
             }
         });
-        dialog.setDialogListener(new InputCityDialog.InputCityDialogListener() {
+        dialog.setDialogListener(new CityDialog.CityDialogListener() {
             @Override
             public void onItemSelected(City city) {
                 if (isOrigin) {

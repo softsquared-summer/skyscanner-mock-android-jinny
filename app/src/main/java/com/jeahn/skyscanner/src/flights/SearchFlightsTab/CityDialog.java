@@ -2,15 +2,12 @@ package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
@@ -18,28 +15,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.FlightsService;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.City;
-import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputCityDialog extends DialogFragment implements FlightsActivityView, AdapterView.OnItemClickListener {
+public class CityDialog extends DialogFragment implements FlightsActivityView, AdapterView.OnItemClickListener {
 
     private boolean mIsOrigin;
-    private InputCityDialogListener mInputCityDialogListener;
+    private CityDialogListener mCityDialogListener;
 
     private List<City> mCityList;
     private City mCurCity;
 
     private AutoCompleteTextView mAutoCompleteTextView;
 
-    public InputCityDialog(boolean isOrigin, City curCity) {
+    public CityDialog(boolean isOrigin, City curCity) {
         mIsOrigin = isOrigin;
         mCurCity = curCity;
     }
@@ -49,9 +44,9 @@ public class InputCityDialog extends DialogFragment implements FlightsActivityVi
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Dialog dialog = new Dialog(getActivity(), R.style.FullWidth_Dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_input_city, null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_city, null);
 
-        mAutoCompleteTextView = view.findViewById(R.id.input_city_autoCompleteTextView);
+        mAutoCompleteTextView = view.findViewById(R.id.city_autoCompleteTextView);
         mAutoCompleteTextView.setOnItemClickListener(this);
         if(!mIsOrigin){
             mAutoCompleteTextView.setHint("도착지");
@@ -62,7 +57,7 @@ public class InputCityDialog extends DialogFragment implements FlightsActivityVi
         }
         mAutoCompleteTextView.setSelectAllOnFocus(true);
 
-        Toolbar toolbar = view.findViewById(R.id.input_city_toolbar);
+        Toolbar toolbar = view.findViewById(R.id.city_toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,15 +104,15 @@ public class InputCityDialog extends DialogFragment implements FlightsActivityVi
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         City city = (City)adapterView.getItemAtPosition(i);
-        mInputCityDialogListener.onItemSelected(city);
+        mCityDialogListener.onItemSelected(city);
         dismiss();
     }
 
-    public void setDialogListener(InputCityDialogListener inputCityDialogListener){
-        mInputCityDialogListener = inputCityDialogListener;
+    public void setDialogListener(CityDialogListener cityDialogListener){
+        mCityDialogListener = cityDialogListener;
     }
 
-    interface InputCityDialogListener{
+    interface CityDialogListener {
         void onItemSelected(City city);
     }
 }

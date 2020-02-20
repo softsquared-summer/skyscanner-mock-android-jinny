@@ -1,15 +1,10 @@
 package com.jeahn.skyscanner.src.flights;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
 
 
 import androidx.annotation.Nullable;
@@ -19,7 +14,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
-import com.jeahn.skyscanner.src.flights.SearchFlightsTab.InputCityDialog;
 import com.jeahn.skyscanner.src.flights.SearchFlightsTab.SearchFlightsPagerAdapter;
 
 public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {

@@ -29,7 +29,7 @@
                 android:drawableStart="@drawable/ic_take_off"
                 android:paddingStart="15dp"
                 android:drawablePadding="15dp"
-                android:hint="@string/input_city_origin"
+                android:hint="@string/city_origin"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
                 android:gravity="center_vertical" />
@@ -45,7 +45,7 @@
                 android:drawableStart="@drawable/ic_landing"
                 android:paddingStart="15dp"
                 android:drawablePadding="15dp"
-                android:hint="@string/input_city_destination"
+                android:hint="@string/city_destination"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
                 android:gravity="center_vertical" />

@@ -14,7 +14,7 @@
         android:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/input_city_toolbar"
+            android:id="@+id/city_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_close_white"
@@ -26,12 +26,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <AutoCompleteTextView
-        android:id="@+id/input_city_autoCompleteTextView"
+        android:id="@+id/city_autoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white"
         android:completionThreshold="1"
-        android:hint="@string/input_city_origin"
+        android:hint="@string/city_origin"
         android:drawableStart="@drawable/ic_take_off"
         android:paddingStart="15dp"
         android:drawablePadding="15dp"
