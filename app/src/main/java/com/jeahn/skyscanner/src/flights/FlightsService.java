@@ -6,6 +6,7 @@ import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsRetrofitInterface;
 import com.jeahn.skyscanner.src.flights.models.CityResponse;
+import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 
 import retrofit2.Call;
@@ -42,9 +43,31 @@ public class FlightsService {
         });
     }
 
-    //직항 항공편 리스트 조회 api
+    //일일 편도 항공편 리스트 조회 api
+    public void getDailyOneFlight(String deAirPortCode, String arAirPortCode, String deDate, int seatCode) {
+        final FlightsRetrofitInterface flightsRetrofitInterface =
+                ApplicationClass.getRetrofit().create(FlightsRetrofitInterface.class);
+        flightsRetrofitInterface.getDailyOneFlight(deAirPortCode, arAirPortCode, deDate, seatCode).enqueue(new Callback<DailyOneFlightResponse>() {
+            @Override
+            public void onResponse(Call<DailyOneFlightResponse> call, Response<DailyOneFlightResponse> response) {
+                DailyOneFlightResponse oneDailyFlightResponse = response.body();
+                if(oneDailyFlightResponse == null){
+                    mFlightsActivityView.validateFailure(null);
+                    return;
+                }
+
+                mFlightsActivityView.validateSuccess(oneDailyFlightResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<DailyOneFlightResponse> call, Throwable t) {
+                mFlightsActivityView.validateFailure(null);
+            }
+        });
+    }
+
+    //편도 항공편 리스트 조회 api
     public void getOneFlight(String deAirPortCode, String arAirPortCode, String deDate, int seatCode, String sortBy) {
-        Log.d("JEAHN", "oneflight");
         final FlightsRetrofitInterface flightsRetrofitInterface =
                 ApplicationClass.getRetrofit().create(FlightsRetrofitInterface.class);
         flightsRetrofitInterface.getOneFlight(deAirPortCode, arAirPortCode, deDate, seatCode, sortBy).enqueue(new Callback<OneFlightResponse>() {

@@ -22,4 +22,5 @@
     <color name="flightsIconColor">#68697f</color>
     <color name="flightsAccentColor">#00a698</color>
     <color name="searchFlightsResultBackground">#F1F2F8</color>
+    <color name="flightsDividerColor">#E2E2E8</color>
 </resources>

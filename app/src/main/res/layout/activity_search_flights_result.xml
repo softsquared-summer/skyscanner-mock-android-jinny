@@ -102,12 +102,62 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:background="@color/searchFlightsResultBackground">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_flights_result_recycler"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="5dp"/>
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="4dp"
+                android:layout_marginHorizontal="7dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+                        <TextView
+                            android:id="@+id/search_flights_result_tv_daily_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="하루 0편의 직항 항공편 제공"
+                            android:textColor="@color/flightsMainColor"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:id="@+id/search_flights_result_tv_daily_avg_time_gap_avg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@id/search_flights_result_tv_daily_count"
+                            android:text="평균 소요 시간: 0시간 0분"
+                            android:textColor="@color/flightsMainColor"/>
+                    </RelativeLayout>
+                    <View
+                        android:id="@+id/search_flights_result_daily_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/search_flights_result_tv_daily_avg_time_gap_avg"
+                        android:background="@color/flightsDividerColor"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/search_flights_result_recycler_daily"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/search_flights_result_daily_divider"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_flights_result_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

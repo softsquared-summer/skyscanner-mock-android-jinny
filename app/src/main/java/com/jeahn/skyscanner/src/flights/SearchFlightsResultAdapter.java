@@ -43,7 +43,7 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Ticket item = mTicketList.get(position);
 
-        Glide.with(holder.mIvAirLine.getContext()).load(item.getAirLineImgUrl()).into(holder.mIvAirLine);
+        Glide.with(holder.ivAirLine.getContext()).load(item.getAirLineImgUrl()).into(holder.ivAirLine);
          try {
              SimpleDateFormat stringToTimeFormat = new SimpleDateFormat("HH:mm");
              SimpleDateFormat amPmFormat = new SimpleDateFormat("a h:mm", Locale.KOREA);
@@ -52,17 +52,17 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
              Date arTime = stringToTimeFormat.parse(item.getArTime());
              String arTimeAmPm = amPmFormat.format(arTime);
 
-             holder.mTvTime.setText(deTimeAmPm + " - " + arTimeAmPm);
+             holder.tvTime.setText(deTimeAmPm + " - " + arTimeAmPm);
          } catch (ParseException e) {
             e.printStackTrace();
          }
-         holder.mTvFromTo.setText(mStrFrom + "-" + mStrTo + ", ");
-         holder.mTvAirLineKr.setText(item.getAirLineKr());
-         holder.mTvDuration.setText(item.getTimeGap());
-         holder.mTvPrice.setText(item.getPrice());
+         holder.tvFromTo.setText(mStrFrom + "-" + mStrTo + ", ");
+         holder.tvAirLineKr.setText(item.getAirLineKr());
+         holder.tvDuration.setText(item.getTimeGap());
+         holder.tvPrice.setText(item.getPrice());
 
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), FlightDetailActivity.class);
@@ -78,18 +78,18 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public View mView;
-        public TextView mTvTime, mTvFromTo, mTvAirLineKr, mTvDuration, mTvPrice;
-        public ImageView mIvAirLine;
+        public View view;
+        public TextView tvTime, tvFromTo, tvAirLineKr, tvDuration, tvPrice;
+        public ImageView ivAirLine;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mView = itemView;
-            mTvTime = itemView.findViewById(R.id.item_search_flights_tv_time);
-            mTvFromTo = itemView.findViewById(R.id.item_search_flights_tv_from_to);
-            mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_tv_airline);
-            mTvDuration = itemView.findViewById(R.id.item_search_flights_tv_duration);
-            mTvPrice = itemView.findViewById(R.id.item_search_flights_tv_price);
-            mIvAirLine = itemView.findViewById(R.id.item_search_flights_iv_airline);
+            view = itemView;
+            tvTime = itemView.findViewById(R.id.item_search_flights_tv_time);
+            tvFromTo = itemView.findViewById(R.id.item_search_flights_tv_from_to);
+            tvAirLineKr = itemView.findViewById(R.id.item_search_flights_tv_airline);
+            tvDuration = itemView.findViewById(R.id.item_search_flights_tv_duration);
+            tvPrice = itemView.findViewById(R.id.item_search_flights_tv_price);
+            ivAirLine = itemView.findViewById(R.id.item_search_flights_iv_airline);
         }
     }
 }

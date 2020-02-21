@@ -1,6 +1,7 @@
 package com.jeahn.skyscanner.src.flights.interfaces;
 
 import com.jeahn.skyscanner.src.flights.models.CityResponse;
+import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 
 import retrofit2.Call;
@@ -17,4 +18,10 @@ public interface FlightsRetrofitInterface {
                                          @Query("deDate") String deDate,
                                          @Query("seatCode") int seatCode,
                                          @Query("sortBy") String sortBy);
+
+    @GET("/daily-one-flight")
+    Call<DailyOneFlightResponse> getDailyOneFlight(@Query("deAirPortCode") String deAirPortCode,
+                                                   @Query("arAirPortCode") String arAirPortCode,
+                                                   @Query("deDate") String deDate,
+                                                   @Query("seatCode") int seatCode);
 }
