@@ -39,7 +39,7 @@
                 android:layout_toRightOf="@id/item_search_flights_iv_airline"
                 android:layout_marginLeft="10dp"
                 android:text="ICN-CJU, "
-                android:textColor="@color/flightsMainColor"
+                android:textColor="@color/flightsIconColor"
                 android:textSize="12dp"/>
             <TextView
                 android:id="@+id/item_search_flights_tv_airline"
@@ -48,7 +48,7 @@
                 android:layout_below="@+id/item_search_flights_tv_time"
                 android:layout_toRightOf="@id/item_search_flights_tv_from_to"
                 android:text="항공"
-                android:textColor="@color/flightsMainColor"
+                android:textColor="@color/flightsIconColor"
                 android:textSize="12dp"/>
             <TextView
                 android:id="@+id/item_search_flights_tv_nonstop"
@@ -65,7 +65,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/item_search_flights_tv_nonstop"
                 android:text="00분"
-                android:textColor="@color/flightsMainColor"
+                android:textColor="@color/flightsIconColor"
                 android:textSize="12dp"/>
             <TextView
                 android:id="@+id/item_search_flights_tv_price"
