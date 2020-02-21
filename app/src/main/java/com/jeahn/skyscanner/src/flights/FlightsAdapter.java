@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,7 +60,8 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
          holder.tvFromTo.setText(mStrFrom + "-" + mStrTo + ", ");
          holder.tvAirLineKr.setText(item.getAirLineKr());
          holder.tvDuration.setText(item.getTimeGap());
-         holder.tvPrice.setText(item.getPrice());
+         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(item.getPrice());
+         holder.tvPrice.setText(strPrice);
 
 
         holder.view.setOnClickListener(new View.OnClickListener() {

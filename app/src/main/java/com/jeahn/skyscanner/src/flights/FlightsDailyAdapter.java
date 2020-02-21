@@ -14,6 +14,7 @@ import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.models.AirLine;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +43,8 @@ public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapte
         AirLine airLine = mAirLineList.get(position);
         Glide.with(holder.ivAirLine.getContext()).load(airLine.getAirLineImgUrl()).into(holder.ivAirLine);
         holder.tvAirLine.setText(airLine.getAirLineKr());
-        holder.tvPrice.setText(airLine.getMinPrice());
+        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(airLine.getMinPrice());
+        holder.tvPrice.setText(strPrice);
         String times = "";
         for (Ticket ticket : airLine.getTicketList()) {
             try {

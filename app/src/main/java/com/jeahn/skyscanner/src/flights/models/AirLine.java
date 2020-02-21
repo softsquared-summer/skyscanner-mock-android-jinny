@@ -15,7 +15,7 @@ public class AirLine {
     private String airLineImgUrl;
 
     @SerializedName("minPrice")
-    private String minPrice;
+    private int minPrice;
 
     @SerializedName("ticketList")
     private List<Ticket> ticketList;
@@ -32,7 +32,7 @@ public class AirLine {
         return airLineImgUrl;
     }
 
-    public String getMinPrice() {
+    public int getMinPrice() {
         return minPrice;
     }
 

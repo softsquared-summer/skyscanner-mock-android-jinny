@@ -28,7 +28,7 @@ public class Ticket implements Parcelable {
     private String arTime;
 
     @SerializedName("price")
-    private String price;
+    private int price;
 
     @SerializedName("timeGap")
     private String timeGap;
@@ -41,7 +41,7 @@ public class Ticket implements Parcelable {
         airLineImgUrl = in.readString();
         deTime = in.readString();
         arTime = in.readString();
-        price = in.readString();
+        price = in.readInt();
         timeGap = in.readString();
     }
 
@@ -85,7 +85,7 @@ public class Ticket implements Parcelable {
         return arTime;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -107,7 +107,7 @@ public class Ticket implements Parcelable {
         parcel.writeString(airLineImgUrl);
         parcel.writeString(deTime);
         parcel.writeString(arTime);
-        parcel.writeString(price);
+        parcel.writeInt(price);
         parcel.writeString(timeGap);
     }
 }

@@ -14,6 +14,7 @@ import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,7 +66,8 @@ public class FlightsDetailActivity extends BaseActivity {
         }
         mTvAirLineKr.setText(mTicket.getAirLineKr());
         mTvDuration.setText(mTicket.getTimeGap());
-        mTvPrice.setText(mTicket.getPrice());
+        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(mTicket.getPrice());
+        mTvPrice.setText(strPrice);
     }
 
     @Override
