@@ -40,5 +40,6 @@
     <string name="seat_dialog_premium_economy">프리미엄 일반석</string>
     <string name="seat_dialog_business">비즈니스</string>
     <string name="seat_dialog_first_class">일등석</string>
+    <string name="flight_detail_title">항공편 세부 정보</string>
 
 </resources>

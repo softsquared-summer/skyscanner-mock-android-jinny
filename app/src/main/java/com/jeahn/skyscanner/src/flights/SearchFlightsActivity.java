@@ -17,8 +17,6 @@ import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.flights.SearchFlightsTab.SearchFlightsPagerAdapter;
 
 public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
-    private static int START_SEARCH_FLIGHTS_ONE_WAY = 200;
-
     boolean isFirstSearch;
 
     private Toolbar mToolbar;

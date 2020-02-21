@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/search_flights_result_tv_from_to"
-                        android:text="4월 18일"
+                        android:text="2월 12일"
                         android:textSize="14sp"
                         android:textColor="@android:color/darker_gray"
                         android:textStyle="bold"/>

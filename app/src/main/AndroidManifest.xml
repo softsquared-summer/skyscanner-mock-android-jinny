@@ -22,6 +22,7 @@
         <activity android:name=".src.flights.SearchFlightsResultActivity"/>
         <activity android:name=".src.flights.SearchFlightsActivity"
             android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".src.flights.FlightDetailActivity"/>
     </application>
 
 </manifest>

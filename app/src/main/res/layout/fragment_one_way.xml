@@ -63,7 +63,7 @@
                 android:drawableStart="@drawable/ic_calendar"
                 android:paddingStart="15dp"
                 android:drawablePadding="15dp"
-                android:text="2월 21일 (금)"
+                android:text="2월 12일 (수)"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
                 android:gravity="center_vertical"/>

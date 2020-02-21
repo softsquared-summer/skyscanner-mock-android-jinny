@@ -1,5 +1,6 @@
 package com.jeahn.skyscanner.src.flights;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFlightsResultAdapter.ViewHolder> {
-    ArrayList<Ticket> mTicketList;
+    private static String KEY_TICKET = "TICKET";
+
+    private ArrayList<Ticket> mTicketList;
     private String mStrFrom, mStrTo;
 
     public SearchFlightsResultAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
@@ -57,6 +60,16 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
          holder.mTvAirLineKr.setText(item.getAirLineKr());
          holder.mTvDuration.setText(item.getTimeGap());
          holder.mTvPrice.setText(item.getPrice());
+
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), FlightDetailActivity.class);
+                intent.putExtra(KEY_TICKET, item);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,10 +78,12 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        public View mView;
         public TextView mTvTime, mTvFromTo, mTvAirLineKr, mTvDuration, mTvPrice;
         public ImageView mIvAirLine;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mView = itemView;
             mTvTime = itemView.findViewById(R.id.item_search_flights_tv_time);
             mTvFromTo = itemView.findViewById(R.id.item_search_flights_tv_from_to);
             mTvAirLineKr = itemView.findViewById(R.id.item_search_flights_tv_airline);
