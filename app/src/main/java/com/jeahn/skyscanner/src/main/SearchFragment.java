@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,9 @@ import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
 import com.jeahn.skyscanner.src.flights.SearchFlightsResultActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -28,6 +34,7 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
     private AppBarLayout mAppBar;
     private TextView mTvTitle, mTvFlight, mTvHotel, mTvCarRental, mTvExplore;
     private ImageButton mIbtnFlight, mIbtnHotel, mIbtnCarRental;
+    private RecyclerView mRecyclerView;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -48,12 +55,28 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
         mIbtnHotel = view.findViewById(R.id.search_ibtn_hotel);
         mIbtnCarRental = view.findViewById(R.id.search_ibtn_car_rental);
         mTvExplore = view.findViewById(R.id.search_tv_explore);
+        mRecyclerView = view.findViewById(R.id.search_recycler_explore);
+
+        setExploreRecycler();
 
         mIbtnFlight.setOnClickListener(this);
         mAppBar.addOnOffsetChangedListener(this);
         mTvExplore.setOnClickListener(this);
 
         return view;
+    }
+
+    private void setExploreRecycler() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        mRecyclerView.setFocusable(false);
+        List<String> items = new ArrayList<>();
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        items.add("test");
+        mRecyclerView.setAdapter(new SearchAdapter(items));
     }
 
     @Override
