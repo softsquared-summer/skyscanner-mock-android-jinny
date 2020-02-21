@@ -7,11 +7,16 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +26,7 @@ import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
 import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
 
-public class FlightsActivity extends BaseActivity implements FlightsActivityView {
+public class FlightsActivity extends BaseActivity implements View.OnClickListener, FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
     private static int SEARCH_FLIGHTS = 1;
 
@@ -30,10 +35,14 @@ public class FlightsActivity extends BaseActivity implements FlightsActivityView
     private FlightsAdapter mAdapter;
     private FlightsDailyAdapter mDailyAdapter;
 
-    private TextView mTvFromTo, mTvCount, mTvDailyCount, mTvDailyTimeGapAvg;
+    private TextView mTvFromTo, mTvCount, mTvDailyCount, mTvDailyTimeGapAvg, mTvMore;
+    private ImageView mIvMore;
+    private RelativeLayout mRelativeMore;
+    private CardView mCardDaily;
+    private NestedScrollView mNestedScroll;
 
     private String mStrDeAirPortCode, mStrArAirPortCode;
-    private int mIntCabinClass;
+    private int mIntCabinClass, mIntDailyCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +56,13 @@ public class FlightsActivity extends BaseActivity implements FlightsActivityView
         mTvCount = findViewById(R.id.flights_tv_count);
         mTvDailyCount = findViewById(R.id.flights_tv_daily_count);
         mTvDailyTimeGapAvg = findViewById(R.id.flights_tv_daily_time_avg);
+        mTvMore = findViewById(R.id.flights_daily_tv_more);
+        mRelativeMore = findViewById(R.id.flights_daily_relative_more);
+        mCardDaily = findViewById(R.id.flights_daily_card);
+        mNestedScroll = findViewById(R.id.flights_nested_scroll);
+        mIvMore = findViewById(R.id.flights_daily_iv_more);
+
+        mRelativeMore.setOnClickListener(this);
 
         setSupportActionBar(mToolbar);
         mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
@@ -118,10 +134,24 @@ public class FlightsActivity extends BaseActivity implements FlightsActivityView
             mRecyclerView.setAdapter(mAdapter);
         }else if(data instanceof DailyOneFlightResult){
             DailyOneFlightResult result = (DailyOneFlightResult)data;
-            mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
-            mTvDailyTimeGapAvg.setText(String.format(getString(R.string.flights_daily_time_avg), result.getTimeGapAvg()));
-            mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
-            mDailyRecyclerView.setAdapter(mDailyAdapter);
+            mIntDailyCount = result.getAirLineList().size();
+            if(mIntDailyCount == 0){
+                mCardDaily.setVisibility(View.GONE);
+            }else{
+                mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
+                mTvDailyTimeGapAvg.setText(String.format(getString(R.string.flights_daily_time_avg), result.getTimeGapAvg()));
+
+                mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
+                mDailyRecyclerView.setAdapter(mDailyAdapter);
+
+                if(mIntDailyCount > 3){
+                    //더보기 버튼
+                    mDailyAdapter.setItemCount(3);
+                    mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
+                }else{
+                    mRelativeMore.setVisibility(View.GONE);
+                }
+            }
         }
 
     }
@@ -129,5 +159,24 @@ public class FlightsActivity extends BaseActivity implements FlightsActivityView
     @Override
     public void validateFailure(String message) {
         Toast.makeText(getApplicationContext(),"검색 실패",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.flights_daily_relative_more:
+                if(mDailyAdapter.getItemCount() == 3){
+                    mDailyAdapter.setItemCount(mIntDailyCount);
+                    mTvMore.setText("항공사 숨기기");
+                    mIvMore.setImageResource(R.drawable.ic_up_arrow);
+                }else{
+                    mDailyAdapter.setItemCount(3);
+                    mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
+                    mIvMore.setImageResource(R.drawable.ic_down_arrow);
+                }
+                mDailyAdapter.notifyDataSetChanged();
+                mNestedScroll.smoothScrollTo(0, 0);
+                break;
+        }
     }
 }

@@ -21,10 +21,13 @@ import java.util.List;
 import java.util.Locale;
 
 public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapter.ViewHolder>{
-    List<AirLine> mAirLineList;
+    private List<AirLine> mAirLineList;
+
+    private int mItemCount;
 
     public FlightsDailyAdapter(List<AirLine> mAirLineList) {
         this.mAirLineList = mAirLineList;
+        mItemCount = mAirLineList.size();
     }
 
     @NonNull
@@ -59,7 +62,11 @@ public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapte
 
     @Override
     public int getItemCount() {
-        return mAirLineList.size();
+        return mItemCount;
+    }
+
+    public void setItemCount(int itemCount){
+        mItemCount = itemCount;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -98,6 +98,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/flights_nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -107,6 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.cardview.widget.CardView
+                android:id="@+id/flights_daily_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -146,6 +148,28 @@
                         android:id="@+id/flights_daily_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:id="@+id/flights_daily_relative_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:clickable="true">
+                        <TextView
+                            android:id="@+id/flights_daily_tv_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="8개의 항공사 더 보기"
+                            android:textColor="@color/flightsMainColor"/>
+                        <ImageView
+                            android:id="@+id/flights_daily_iv_more"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentRight="true"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_down_arrow"
+                            android:tint="@color/flightsIconColor"/>
+                    </RelativeLayout>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
