@@ -5,7 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--아이콘-->
-    <color name="ic_skyscanner_background">#006EE8</color>
+    <color name="skyscannerColor">#006EE8</color>
 
     <!--splash-->
     <color name="splashBackground">#CDDFF8</color>
@@ -21,6 +21,6 @@
     <color name="flightsMainColor">#111236</color>
     <color name="flightsIconColor">#68697f</color>
     <color name="flightsAccentColor">#00a698</color>
-    <color name="searchFlightsResultBackground">#F1F2F8</color>
+    <color name="flightsBackground">#F1F2F8</color>
     <color name="flightsDividerColor">#E2E2E8</color>
 </resources>

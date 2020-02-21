@@ -21,14 +21,14 @@ import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
 import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
 
-public class SearchFlightsResultActivity extends BaseActivity implements FlightsActivityView {
+public class FlightsActivity extends BaseActivity implements FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
     private static int SEARCH_FLIGHTS = 1;
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView, mDailyRecyclerView;
-    private SearchFlightsResultAdapter mAdapter;
-    private SearchFlightsResultDailyAdapter mDailyAdapter;
+    private FlightsAdapter mAdapter;
+    private FlightsDailyAdapter mDailyAdapter;
 
     private TextView mTvFromTo, mTvCount, mTvDailyCount, mTvDailyTimeGapAvg;
 
@@ -38,15 +38,15 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_flights_result);
+        setContentView(R.layout.activity_flights);
 
-        mToolbar = findViewById(R.id.search_flights_result_toolbar);
-        mRecyclerView = findViewById(R.id.search_flights_result_recycler);
-        mDailyRecyclerView = findViewById(R.id.search_flights_result_recycler_daily);
-        mTvFromTo = findViewById(R.id.search_flights_result_tv_from_to);
-        mTvCount = findViewById(R.id.search_flights_result_count);
-        mTvDailyCount = findViewById(R.id.search_flights_result_tv_daily_count);
-        mTvDailyTimeGapAvg = findViewById(R.id.search_flights_result_tv_daily_avg_time_gap_avg);
+        mToolbar = findViewById(R.id.flights_toolbar);
+        mRecyclerView = findViewById(R.id.flights_recycler);
+        mDailyRecyclerView = findViewById(R.id.flights_daily_recycler);
+        mTvFromTo = findViewById(R.id.flights_tv_from_to);
+        mTvCount = findViewById(R.id.flights_tv_count);
+        mTvDailyCount = findViewById(R.id.flights_tv_daily_count);
+        mTvDailyTimeGapAvg = findViewById(R.id.flights_tv_daily_time_avg);
 
         setSupportActionBar(mToolbar);
         mToolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
@@ -57,7 +57,7 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
         mDailyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDailyRecyclerView.setFocusable(false);
 
-        Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
+        Intent intent = new Intent(FlightsActivity.this, FlightsSearchActivity.class);
         intent.putExtra("isFirstSearch", true);
         startActivityForResult(intent, SEARCH_FLIGHTS);
     }
@@ -92,7 +92,7 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
 
     public void searchOnClick(View view){
         //검색창 열기
-        Intent intent = new Intent(SearchFlightsResultActivity.this, SearchFlightsActivity.class);
+        Intent intent = new Intent(FlightsActivity.this, FlightsSearchActivity.class);
         intent.putExtra("isFirstSearch", false);
         startActivityForResult(intent, SEARCH_FLIGHTS);
     }
@@ -113,14 +113,14 @@ public class SearchFlightsResultActivity extends BaseActivity implements Flights
     public void validateSuccess(Object data) {
         if(data instanceof OneFligthResult){
             OneFligthResult result = (OneFligthResult) data;
-            mTvCount.setText(result.getTotalTicketCount() + "개의 결과");
-            mAdapter = new SearchFlightsResultAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
+            mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
+            mAdapter = new FlightsAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
             mRecyclerView.setAdapter(mAdapter);
         }else if(data instanceof DailyOneFlightResult){
             DailyOneFlightResult result = (DailyOneFlightResult)data;
-            mTvDailyCount.setText("하루 "+ result.getTotalTicketCount() +"편의 직항 항공편 제공");
-            mTvDailyTimeGapAvg.setText("평균 소요 시간: " + result.getTimeGapAvg());
-            mDailyAdapter = new SearchFlightsResultDailyAdapter(result.getAirLineList());
+            mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
+            mTvDailyTimeGapAvg.setText(String.format(getString(R.string.flights_daily_time_avg), result.getTimeGapAvg()));
+            mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
             mDailyRecyclerView.setAdapter(mDailyAdapter);
         }
 

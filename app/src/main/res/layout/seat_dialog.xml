@@ -9,7 +9,7 @@
     android:layout_marginBottom="10dp"
     android:text="@string/seat_dialog_cabin_class"
     android:textSize="18sp"
-    android:textColor="@color/ic_skyscanner_background"/>
+    android:textColor="@color/skyscannerColor"/>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:text="@string/seat_dialog_economy"
-            android:buttonTint="@color/ic_skyscanner_background"
+            android:buttonTint="@color/skyscannerColor"
             android:checked="true"/>
         <RadioButton
             android:id="@+id/seat_dialog_radio_premium_economy"
@@ -27,21 +27,21 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:text="@string/seat_dialog_premium_economy"
-            android:buttonTint="@color/ic_skyscanner_background"/>
+            android:buttonTint="@color/skyscannerColor"/>
         <RadioButton
             android:id="@+id/seat_dialog_radio_business"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:text="@string/seat_dialog_business"
-            android:buttonTint="@color/ic_skyscanner_background"/>
+            android:buttonTint="@color/skyscannerColor"/>
         <RadioButton
             android:id="@+id/seat_dialog_radio_first_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:text="@string/seat_dialog_first_class"
-            android:buttonTint="@color/ic_skyscanner_background"/>
+            android:buttonTint="@color/skyscannerColor"/>
     </RadioGroup>
 
 

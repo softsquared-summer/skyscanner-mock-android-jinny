@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFlightsResultAdapter.ViewHolder> {
+public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHolder> {
     private static String KEY_TICKET = "TICKET";
 
     private ArrayList<Ticket> mTicketList;
     private String mStrFrom, mStrTo;
 
-    public SearchFlightsResultAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
+    public FlightsAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
         this.mTicketList = mTicketList;
         mStrFrom = from;
         mStrTo = to;
@@ -35,7 +35,7 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search_flights_result,null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flights,null);
         return new ViewHolder(v);
     }
 
@@ -65,7 +65,7 @@ public class SearchFlightsResultAdapter extends RecyclerView.Adapter<SearchFligh
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), FlightDetailActivity.class);
+                Intent intent = new Intent(view.getContext(), FlightsDetailActivity.class);
                 intent.putExtra(KEY_TICKET, item);
                 view.getContext().startActivity(intent);
             }

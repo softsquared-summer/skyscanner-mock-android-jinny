@@ -1,13 +1,13 @@
-package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
+package com.jeahn.skyscanner.src.flights.flightsSearchTab;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class SearchFlightsPagerAdapter extends FragmentStatePagerAdapter {
+public class FlightsSearchPagerAdapter extends FragmentStatePagerAdapter {
     private int mPageCount;
 
-    public SearchFlightsPagerAdapter(FragmentManager fm, int pageCount) {
+    public FlightsSearchPagerAdapter(FragmentManager fm, int pageCount) {
         super(fm);
         this.mPageCount = pageCount;
     }

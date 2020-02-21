@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class FlightDetailActivity extends BaseActivity {
+public class FlightsDetailActivity extends BaseActivity {
     private static String KEY_TICKET = "TICKET";
 
     private Toolbar mToolbar;
@@ -31,16 +31,16 @@ public class FlightDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flight_detail);
+        setContentView(R.layout.activity_flights_detail);
 
         mToolbar = findViewById(R.id.flight_detail_toolbar);
         setSupportActionBar(mToolbar);
 
-        mIvAirLine = findViewById(R.id.flight_detail_iv_airline);
-        mTvTime = findViewById(R.id.flight_detail_tv_time);
-        mTvAirLineKr = findViewById(R.id.flight_detail_tv_airline);
-        mTvDuration = findViewById(R.id.flight_detail_tv_duration);
-        mTvPrice = findViewById(R.id.flight_detail_tv_price);
+        mIvAirLine = findViewById(R.id.flights_detail_iv_airline);
+        mTvTime = findViewById(R.id.flights_detail_tv_time);
+        mTvAirLineKr = findViewById(R.id.flights_detail_tv_airline);
+        mTvDuration = findViewById(R.id.flights_detail_tv_duration);
+        mTvPrice = findViewById(R.id.flights_detail_tv_price);
 
         Intent intent = getIntent();
         mTicket = intent.getParcelableExtra(KEY_TICKET);

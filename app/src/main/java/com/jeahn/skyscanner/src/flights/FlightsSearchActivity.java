@@ -14,21 +14,21 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
-import com.jeahn.skyscanner.src.flights.SearchFlightsTab.SearchFlightsPagerAdapter;
+import com.jeahn.skyscanner.src.flights.flightsSearchTab.FlightsSearchPagerAdapter;
 
-public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     boolean isFirstSearch;
 
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
 
     private ViewPager mViewPager;
-    private SearchFlightsPagerAdapter mSearchFlightsPagerAdapter;
+    private FlightsSearchPagerAdapter mFlightsSearchPagerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_flights);
+        setContentView(R.layout.activity_flights_search);
 
         //첫 검색이면 뒤로가기 버튼, 아니면 닫기 버튼
         Intent intent = getIntent();
@@ -37,14 +37,14 @@ public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnT
             overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
         }
 
-        mToolbar = findViewById(R.id.search_flights_toolbar);
+        mToolbar = findViewById(R.id.flights_search_toolbar);
         setSupportActionBar(mToolbar);
         if(!isFirstSearch){
             mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_close_white));
         }
 
-        mTabLayout = findViewById(R.id.search_flights_tab);
-        mViewPager = findViewById(R.id.search_flights_pager);
+        mTabLayout = findViewById(R.id.flights_search_tab);
+        mViewPager = findViewById(R.id.flights_search_pager);
         setTabLayout();
 
     }
@@ -52,13 +52,13 @@ public class SearchFlightsActivity extends BaseActivity implements TabLayout.OnT
     //탭 설정
     private void setTabLayout() {
         //탭 추가
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_round_trip)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_one_way)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.search_flights_multi_city)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_round_trip)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_one_way)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_multi_city)));
 
         //어댑터 세팅
-        mSearchFlightsPagerAdapter = new SearchFlightsPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
-        mViewPager.setAdapter(mSearchFlightsPagerAdapter);
+        mFlightsSearchPagerAdapter = new FlightsSearchPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
+        mViewPager.setAdapter(mFlightsSearchPagerAdapter);
 
         //탭 선택 이벤트
         mTabLayout.addOnTabSelectedListener(this);

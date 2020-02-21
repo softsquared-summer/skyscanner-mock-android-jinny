@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".src.main.MainActivity"/>
-        <activity android:name=".src.flights.SearchFlightsResultActivity"/>
-        <activity android:name=".src.flights.SearchFlightsActivity"
+        <activity android:name=".src.flights.FlightsActivity"/>
+        <activity android:name=".src.flights.FlightsSearchActivity"
             android:theme="@style/Theme.Transparent"/>
-        <activity android:name=".src.flights.FlightDetailActivity"/>
+        <activity android:name=".src.flights.FlightsDetailActivity"/>
     </application>
 
 </manifest>

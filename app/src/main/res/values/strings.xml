@@ -23,14 +23,17 @@
     <!--explore-->
     <string name="explore_title">둘러보기</string>
 
-    <!--seach flights-->
-    <string name="search_flights_title">항공권 검색</string>
+    <!--flights-->
+    <string name="flights_title">항공권 검색</string>
     <string name="city_origin">출발지</string>
     <string name="city_destination">도착지</string>
-    <string name="search_flights_round_trip">왕복</string>
-    <string name="search_flights_one_way">편도</string>
-    <string name="search_flights_multi_city">다구간</string>
-    <string name="search_flights_sort_filter">정렬 및 필터(조건)</string>
+    <string name="flights_round_trip">왕복</string>
+    <string name="flights_one_way">편도</string>
+    <string name="flights_multi_city">다구간</string>
+    <string name="flights_sort_filter">정렬 및 필터(조건)</string>
+    <string name="flights_count">%d 개의 결과</string>
+    <string name="flights_daily_count">하루 %d편의 직항 항공편 제공</string>
+    <string name="flights_daily_time_avg">평균 소요 시간: %s</string>
 
     <!--seat dialog-->
     <string name="seat_dialog_apply">적용</string>
@@ -40,6 +43,9 @@
     <string name="seat_dialog_premium_economy">프리미엄 일반석</string>
     <string name="seat_dialog_business">비즈니스</string>
     <string name="seat_dialog_first_class">일등석</string>
+
+    <!--flight detail-->
     <string name="flight_detail_title">항공편 세부 정보</string>
+
 
 </resources>

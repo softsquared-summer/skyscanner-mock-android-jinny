@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
+package com.jeahn.skyscanner.src.flights.flightsSearchTab;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -74,8 +74,8 @@ public class SeatDialog {
 
 
                 //라디오 버튼 컬러 설정
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(mContext.getResources().getColor(R.color.ic_skyscanner_background));
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(mContext.getResources().getColor(R.color.ic_skyscanner_background));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(mContext.getResources().getColor(R.color.skyscannerColor));
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(mContext.getResources().getColor(R.color.skyscannerColor));
             }
         });
         dialog.show();

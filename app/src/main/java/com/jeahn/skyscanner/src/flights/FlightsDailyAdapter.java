@@ -20,17 +20,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchFlightsResultDailyAdapter extends RecyclerView.Adapter<SearchFlightsResultDailyAdapter.ViewHolder>{
+public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapter.ViewHolder>{
     List<AirLine> mAirLineList;
 
-    public SearchFlightsResultDailyAdapter(List<AirLine> mAirLineList) {
+    public FlightsDailyAdapter(List<AirLine> mAirLineList) {
         this.mAirLineList = mAirLineList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search_flights_result_daily, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flights_daily, null);
         return new ViewHolder(v);
     }
 
@@ -69,7 +69,7 @@ public class SearchFlightsResultDailyAdapter extends RecyclerView.Adapter<Search
             super(itemView);
             tvAirLine = itemView.findViewById(R.id.daily_flights_tv_airline);
             tvPrice = itemView.findViewById(R.id.daily_flights_tv_price);
-            tvTimes = itemView.findViewById(R.id.daily_flights_tv_times);
+            tvTimes = itemView.findViewById(R.id.flights_daily_tv_times);
             ivAirLine = itemView.findViewById(R.id.daily_flights_iv_airline);
         }
     }

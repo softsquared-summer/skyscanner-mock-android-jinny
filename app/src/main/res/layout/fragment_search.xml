@@ -259,7 +259,7 @@
                     android:layout_centerVertical="true"
                     android:background="?attr/selectableItemBackground"
                     android:text="@string/search_go_explore"
-                    android:textColor="@color/ic_skyscanner_background"
+                    android:textColor="@color/skyscannerColor"
                     android:clickable="true"/>
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView

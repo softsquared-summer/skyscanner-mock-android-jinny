@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
+package com.jeahn.skyscanner.src.flights.flightsSearchTab;
 
 import android.app.Dialog;
 import android.os.Bundle;

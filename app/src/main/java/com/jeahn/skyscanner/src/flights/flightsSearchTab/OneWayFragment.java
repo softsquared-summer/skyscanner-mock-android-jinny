@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.SearchFlightsTab;
+package com.jeahn.skyscanner.src.flights.flightsSearchTab;
 
 
 import android.content.DialogInterface;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
+import com.jeahn.skyscanner.src.flights.FlightsSearchActivity;
 import com.jeahn.skyscanner.src.flights.models.City;
 
 /**
@@ -25,7 +25,7 @@ import com.jeahn.skyscanner.src.flights.models.City;
 public class OneWayFragment extends Fragment implements View.OnClickListener {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
 
-    private SearchFlightsActivity mActivity;
+    private FlightsSearchActivity mActivity;
     private City mOriginCity, mDestinationCity;
     private int mCabinClass = 0;
 
@@ -37,7 +37,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mActivity = (SearchFlightsActivity)getActivity();
+        mActivity = (FlightsSearchActivity)getActivity();
 
         View view = inflater.inflate(R.layout.fragment_one_way, container, false);
 
@@ -116,10 +116,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             public void onItemSelected(City city) {
                 if (isOrigin) {
                     mOriginCity = city;
-                    mTvOrigin.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
+                    mTvOrigin.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
                 }else{
                     mDestinationCity = city;
-                    mTvDestination.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
+                    mTvDestination.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
                 }
             }
         });

@@ -12,19 +12,19 @@
         android:background="@color/flightsMainColor">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/search_flights_toolbar"
+            android:id="@+id/flights_search_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="?attr/homeAsUpIndicator"
             app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
             android:theme="@style/ToolbarTheme"
             app:titleTextColor="@android:color/white"
-            app:title="@string/search_flights_title">
+            app:title="@string/flights_title">
 
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/search_flights_tab"
+            android:id="@+id/flights_search_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -36,8 +36,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.jeahn.skyscanner.src.flights.SearchFlightsTab.NonSwipeViewPager
-        android:id="@+id/search_flights_pager"
+    <com.jeahn.skyscanner.src.flights.flightsSearchTab.NonSwipeViewPager
+        android:id="@+id/flights_search_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>
