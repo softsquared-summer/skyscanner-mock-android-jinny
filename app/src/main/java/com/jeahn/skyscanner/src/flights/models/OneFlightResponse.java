@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class OneFlightResponse {
     @SerializedName("result")
-    private OneFligthResult result;
+    private OneFlightResult result;
 
     @SerializedName("isSuccess")
     private boolean isSuccess;
@@ -15,7 +15,7 @@ public class OneFlightResponse {
     @SerializedName("message")
     private String message;
 
-    public OneFligthResult getResult() {
+    public OneFlightResult getResult() {
         return result;
     }
 

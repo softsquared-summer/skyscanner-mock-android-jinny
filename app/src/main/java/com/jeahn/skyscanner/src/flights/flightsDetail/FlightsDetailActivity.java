@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights;
+package com.jeahn.skyscanner.src.flights.flightsDetail;
 
 import android.content.Intent;
 import android.os.Bundle;

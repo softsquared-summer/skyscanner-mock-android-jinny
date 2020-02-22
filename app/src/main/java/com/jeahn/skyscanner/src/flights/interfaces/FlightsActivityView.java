@@ -1,12 +1,14 @@
 package com.jeahn.skyscanner.src.flights.interfaces;
 
-import com.jeahn.skyscanner.src.flights.models.City;
-import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
-
-import java.util.List;
+import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
+import com.jeahn.skyscanner.src.flights.models.OneFlightResult;
 
 public interface FlightsActivityView {
-    void validateSuccess(Object data);
+    void getDailyOneFlightSuccess(DailyOneFlightResult result);
 
-    void validateFailure(String message);
+    void getOneFlightSuccess(OneFlightResult result);
+
+    void getDailyOneFlightFailure(String message);
+
+    void getOneFlightFailure(String message);
 }

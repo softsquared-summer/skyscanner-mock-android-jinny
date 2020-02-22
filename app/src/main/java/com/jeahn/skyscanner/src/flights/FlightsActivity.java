@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
+import com.jeahn.skyscanner.src.flights.flightsSearch.FlightsSearchActivity;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
-import com.jeahn.skyscanner.src.flights.models.OneFligthResult;
+import com.jeahn.skyscanner.src.flights.models.OneFlightResult;
 
 public class FlightsActivity extends BaseActivity implements View.OnClickListener, FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
@@ -80,12 +80,11 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == SEARCH_FLIGHTS){
+        if (requestCode == SEARCH_FLIGHTS) {
             //검색창에서 <- 누르면 결과창도 함께 꺼짐
-            if(resultCode == Activity.RESULT_FIRST_USER){
+            if (resultCode == Activity.RESULT_FIRST_USER) {
                 finish();
-            }
-            else if(resultCode == START_SEARCH_FLIGHTS_ONE_WAY){ //편도 검색 시작
+            } else if (resultCode == START_SEARCH_FLIGHTS_ONE_WAY) { //편도 검색 시작
                 mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
                 mStrArAirPortCode = data.getStringExtra("arAirPortCode");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
@@ -106,7 +105,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         flightsService.getDailyOneFlight(deAirPortCode, arAirPortCode, deDate, seatCode);
     }
 
-    public void searchOnClick(View view){
+    public void searchOnClick(View view) {
         //검색창 열기
         Intent intent = new Intent(FlightsActivity.this, FlightsSearchActivity.class);
         intent.putExtra("isFirstSearch", false);
@@ -115,7 +114,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             //툴바의 <- 버튼 누르면 끝내기
             case android.R.id.home:
                 finish();
@@ -126,50 +125,53 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-    public void validateSuccess(Object data) {
-        if(data instanceof OneFligthResult){
-            OneFligthResult result = (OneFligthResult) data;
-            mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
-            mAdapter = new FlightsAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
-            mRecyclerView.setAdapter(mAdapter);
-        }else if(data instanceof DailyOneFlightResult){
-            DailyOneFlightResult result = (DailyOneFlightResult)data;
-            mIntDailyCount = result.getAirLineList().size();
-            if(mIntDailyCount == 0){
-                mCardDaily.setVisibility(View.GONE);
-            }else{
-                mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
-                mTvDailyTimeGapAvg.setText(String.format(getString(R.string.flights_daily_time_avg), result.getTimeGapAvg()));
+    public void getDailyOneFlightSuccess(DailyOneFlightResult result) {
+        mIntDailyCount = result.getAirLineList().size();
+        if (mIntDailyCount == 0) {
+            mCardDaily.setVisibility(View.GONE);
+        } else {
+            mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
+            mTvDailyTimeGapAvg.setText(String.format(getString(R.string.flights_daily_time_avg), result.getTimeGapAvg()));
 
-                mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
-                mDailyRecyclerView.setAdapter(mDailyAdapter);
+            mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
+            mDailyRecyclerView.setAdapter(mDailyAdapter);
 
-                if(mIntDailyCount > 3){
-                    //더보기 버튼
-                    mDailyAdapter.setItemCount(3);
-                    mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
-                }else{
-                    mRelativeMore.setVisibility(View.GONE);
-                }
+            if (mIntDailyCount > 3) {
+                //더보기 버튼
+                mDailyAdapter.setItemCount(3);
+                mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
+            } else {
+                mRelativeMore.setVisibility(View.GONE);
             }
         }
-
     }
 
     @Override
-    public void validateFailure(String message) {
-        Toast.makeText(getApplicationContext(),"검색 실패",Toast.LENGTH_SHORT).show();
+    public void getDailyOneFlightFailure(String message) {
+        Toast.makeText(getApplicationContext(), "일일 편도 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getOneFlightSuccess(OneFlightResult result) {
+        mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
+        mAdapter = new FlightsAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void getOneFlightFailure(String message) {
+        Toast.makeText(getApplicationContext(), "편도 항공권 검색 실패", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.flights_daily_relative_more:
-                if(mDailyAdapter.getItemCount() == 3){
+                if (mDailyAdapter.getItemCount() == 3) {
                     mDailyAdapter.setItemCount(mIntDailyCount);
                     mTvMore.setText("항공사 숨기기");
                     mIvMore.setImageResource(R.drawable.ic_up_arrow);
-                }else{
+                } else {
                     mDailyAdapter.setItemCount(3);
                     mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
                     mIvMore.setImageResource(R.drawable.ic_down_arrow);

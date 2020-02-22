@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.flightsSearchTab;
+package com.jeahn.skyscanner.src.flights.flightsSearch.city;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -17,14 +17,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.FlightsService;
-import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
-import com.jeahn.skyscanner.src.flights.models.City;
+import com.jeahn.skyscanner.src.flights.flightsSearch.city.interfaces.CityActivityView;
+import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.City;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CityDialog extends DialogFragment implements FlightsActivityView, AdapterView.OnItemClickListener {
+public class CityDialog extends DialogFragment implements CityActivityView, AdapterView.OnItemClickListener {
 
     private boolean mIsOrigin;
     private CityDialogListener mCityDialogListener;
@@ -85,20 +84,19 @@ public class CityDialog extends DialogFragment implements FlightsActivityView, A
 
     //도시 리스트 조회 api 통신
     private void tryGetCityList() {
-        final FlightsService flightsService = new FlightsService(this);
-        flightsService.getCityList();
+        final CityService cityService = new CityService(this);
+        cityService.getCityList();
     }
 
     @Override
-    public void validateSuccess(Object data) {
-        List<City> cityList = (List<City>) data;
-        mCityList = new ArrayList<>(cityList);
+    public void getCityListSuccess(List<City> result) {
+        mCityList = new ArrayList<>(result);
         mAutoCompleteTextView.setAdapter(new CityAdapter(getContext(), mCityList));
     }
 
     @Override
-    public void validateFailure(String message) {
-        Toast.makeText(getContext(), "조회 실패", Toast.LENGTH_SHORT).show();
+    public void getCityListFailure(String message) {
+        Toast.makeText(getContext(), "도시 목록 조회 실패", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -112,7 +110,7 @@ public class CityDialog extends DialogFragment implements FlightsActivityView, A
         mCityDialogListener = cityDialogListener;
     }
 
-    interface CityDialogListener {
+    public interface CityDialogListener {
         void onItemSelected(City city);
     }
 }

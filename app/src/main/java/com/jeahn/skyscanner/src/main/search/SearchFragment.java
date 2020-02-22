@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.main;
+package com.jeahn.skyscanner.src.main.search;
 
 
 import android.content.Intent;
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.FlightsActivity;
+import com.jeahn.skyscanner.src.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

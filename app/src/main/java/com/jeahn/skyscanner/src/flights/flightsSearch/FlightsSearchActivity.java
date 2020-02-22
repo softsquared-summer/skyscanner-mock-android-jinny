@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights;
+package com.jeahn.skyscanner.src.flights.flightsSearch;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
-import com.jeahn.skyscanner.src.flights.flightsSearchTab.FlightsSearchPagerAdapter;
+import com.jeahn.skyscanner.src.flights.flightsSearch.FlightsSearchPagerAdapter;
 
 public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     boolean isFirstSearch;

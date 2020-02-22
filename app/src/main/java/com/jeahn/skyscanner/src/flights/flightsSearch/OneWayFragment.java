@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.flightsSearchTab;
+package com.jeahn.skyscanner.src.flights.flightsSearch;
 
 
 import android.content.DialogInterface;
@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.FlightsSearchActivity;
-import com.jeahn.skyscanner.src.flights.models.City;
+import com.jeahn.skyscanner.src.flights.flightsSearch.city.CityDialog;
+import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.City;
 
 /**
  * A simple {@link Fragment} subclass.

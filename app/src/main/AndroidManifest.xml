@@ -20,9 +20,9 @@
         </activity>
         <activity android:name=".src.main.MainActivity"/>
         <activity android:name=".src.flights.FlightsActivity"/>
-        <activity android:name=".src.flights.FlightsSearchActivity"
+        <activity android:name=".src.flights.flightsSearch.FlightsSearchActivity"
             android:theme="@style/Theme.Transparent"/>
-        <activity android:name=".src.flights.FlightsDetailActivity"/>
+        <activity android:name=".src.flights.flightsDetail.FlightsDetailActivity"/>
     </application>
 
 </manifest>

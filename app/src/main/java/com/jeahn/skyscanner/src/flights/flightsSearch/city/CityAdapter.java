@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.flightsSearchTab;
+package com.jeahn.skyscanner.src.flights.flightsSearch.city;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.models.City;
+import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.City;
 
 import java.util.ArrayList;
 import java.util.List;

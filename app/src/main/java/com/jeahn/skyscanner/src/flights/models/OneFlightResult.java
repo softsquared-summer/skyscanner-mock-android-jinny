@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class OneFligthResult {
+public class OneFlightResult {
     @SerializedName("totalTicketCount")
     private int totalTicketCount;
 

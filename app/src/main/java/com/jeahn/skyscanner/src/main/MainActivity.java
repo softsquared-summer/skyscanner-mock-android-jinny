@@ -1,15 +1,15 @@
 package com.jeahn.skyscanner.src.main;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.main.explore.ExploreFragment;
+import com.jeahn.skyscanner.src.main.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigation;
@@ -39,26 +39,23 @@ public class MainActivity extends AppCompatActivity {
 
         mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
 
-        mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                mFragmentTransaction = mFragmentManager.beginTransaction();
+        mBottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
+            mFragmentTransaction = mFragmentManager.beginTransaction();
 
-                switch (menuItem.getItemId()){
-                    case R.id.action_search:
-                        mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
-                        break;
-                    case R.id.action_explore:
-                        mFragmentTransaction.replace(R.id.main_frame, mExploreFragment).commitAllowingStateLoss();
-                        break;
-                    case R.id.action_plan:
-                        break;
-                    case R.id.action_profile:
-                        break;
-                }
-
-                return true;
+            switch (menuItem.getItemId()){
+                case R.id.action_search:
+                    mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
+                    break;
+                case R.id.action_explore:
+                    mFragmentTransaction.replace(R.id.main_frame, mExploreFragment).commitAllowingStateLoss();
+                    break;
+                case R.id.action_plan:
+                    break;
+                case R.id.action_profile:
+                    break;
             }
+
+            return true;
         });
     }
 

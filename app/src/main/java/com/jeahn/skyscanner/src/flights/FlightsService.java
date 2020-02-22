@@ -1,11 +1,9 @@
 package com.jeahn.skyscanner.src.flights;
 
-import android.util.Log;
-
 import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsRetrofitInterface;
-import com.jeahn.skyscanner.src.flights.models.CityResponse;
+import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.CityResponse;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 
@@ -20,28 +18,6 @@ public class FlightsService {
         this.mFlightsActivityView = flightsActivityView;
     }
 
-    //도시리스트 조회 api
-    public void getCityList(){
-        final FlightsRetrofitInterface flightsRetrofitInterface =
-                ApplicationClass.getRetrofit().create(FlightsRetrofitInterface.class);
-        flightsRetrofitInterface.getCityList().enqueue(new Callback<CityResponse>() {
-            @Override
-            public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
-                final CityResponse cityResponse = response.body();
-                if(cityResponse ==null){
-                    mFlightsActivityView.validateFailure(null);
-                    return;
-                }
-
-                mFlightsActivityView.validateSuccess(cityResponse.getCityList());
-            }
-
-            @Override
-            public void onFailure(Call<CityResponse> call, Throwable t) {
-                mFlightsActivityView.validateFailure(null);
-            }
-        });
-    }
 
     //일일 편도 항공편 리스트 조회 api
     public void getDailyOneFlight(String deAirPortCode, String arAirPortCode, String deDate, int seatCode) {
@@ -52,16 +28,16 @@ public class FlightsService {
             public void onResponse(Call<DailyOneFlightResponse> call, Response<DailyOneFlightResponse> response) {
                 DailyOneFlightResponse oneDailyFlightResponse = response.body();
                 if(oneDailyFlightResponse == null){
-                    mFlightsActivityView.validateFailure(null);
+                    mFlightsActivityView.getDailyOneFlightFailure(null);
                     return;
                 }
 
-                mFlightsActivityView.validateSuccess(oneDailyFlightResponse.getResult());
+                mFlightsActivityView.getDailyOneFlightSuccess(oneDailyFlightResponse.getResult());
             }
 
             @Override
             public void onFailure(Call<DailyOneFlightResponse> call, Throwable t) {
-                mFlightsActivityView.validateFailure(null);
+                mFlightsActivityView.getDailyOneFlightFailure(null);
             }
         });
     }
@@ -75,16 +51,16 @@ public class FlightsService {
             public void onResponse(Call<OneFlightResponse> call, Response<OneFlightResponse> response) {
                 OneFlightResponse oneFlightResponse = response.body();
                 if(oneFlightResponse == null){
-                    mFlightsActivityView.validateFailure(null);
+                    mFlightsActivityView.getOneFlightFailure(null);
                     return;
                 }
 
-                mFlightsActivityView.validateSuccess(oneFlightResponse.getResult());
+                mFlightsActivityView.getOneFlightSuccess(oneFlightResponse.getResult());
             }
 
             @Override
             public void onFailure(Call<OneFlightResponse> call, Throwable t) {
-                mFlightsActivityView.validateFailure(null);
+                mFlightsActivityView.getOneFlightFailure(null);
             }
         });
     }

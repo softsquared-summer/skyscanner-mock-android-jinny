@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.flights.models;
+package com.jeahn.skyscanner.src.flights.flightsSearch.city.models;
 
 import com.google.gson.annotations.SerializedName;
 

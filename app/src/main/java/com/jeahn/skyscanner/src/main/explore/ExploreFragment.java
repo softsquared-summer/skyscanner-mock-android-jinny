@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.main;
+package com.jeahn.skyscanner.src.main.explore;
 
 
 import android.os.Bundle;
