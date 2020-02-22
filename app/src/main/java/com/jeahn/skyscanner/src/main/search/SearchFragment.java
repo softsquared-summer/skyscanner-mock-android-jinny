@@ -3,6 +3,7 @@ package com.jeahn.skyscanner.src.main.search;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,20 +85,15 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
         mTvHotel.setAlpha(ratio);
         mTvCarRental.setAlpha(ratio);
 
-//        //버튼 크기 조절
-//        int resize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50 + ratio * 10, getResources().getDisplayMetrics());
+        //버튼 크기 조절
+        float scale = 1 - (1 - ratio) / 5;
 
-//        mIbtnFlight.getLayoutParams().height = resize;
-//        mIbtnFlight.getLayoutParams().width = resize ;
-//        mIbtnFlight.requestLayout();
-//
-//        mIbtnHotel.getLayoutParams().height = resize;
-//        mIbtnHotel.getLayoutParams().width = resize;
-//        mIbtnHotel.requestLayout();
-//
-//        mIbtnCarRental.getLayoutParams().height = resize;
-//        mIbtnCarRental.getLayoutParams().width = resize;
-//        mIbtnCarRental.requestLayout();
+        mIbtnFlight.setScaleX(scale);
+        mIbtnFlight.setScaleY(scale);
+        mIbtnHotel.setScaleX(scale);
+        mIbtnHotel.setScaleY(scale);
+        mIbtnCarRental.setScaleX(scale);
+        mIbtnCarRental.setScaleY(scale);
     }
 
     @Override
