@@ -33,7 +33,7 @@
     <string name="flights_sort_filter">정렬 및 필터(조건)</string>
     <string name="flights_count">%d 개의 결과</string>
     <string name="flights_daily_count">하루 %d편의 직항 항공편 제공</string>
-    <string name="flights_daily_time_avg">평균 소요 시간: %s</string>
+    <string name="flights_daily_time_avg">평균 소요 시간: %d시간 %02d분</string>
 
     <!--seat dialog-->
     <string name="seat_dialog_apply">적용</string>

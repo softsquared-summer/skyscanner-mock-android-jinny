@@ -9,7 +9,7 @@ public class DailyOneFlightResult {
     private int totalTicketCount;
 
     @SerializedName("timeGapAvg")
-    private String timeGapAvg;
+    private int timeGapAvg;
 
     @SerializedName("airLineList")
     private List<AirLine> airLineList;
@@ -18,7 +18,7 @@ public class DailyOneFlightResult {
         return totalTicketCount;
     }
 
-    public String getTimeGapAvg() {
+    public int getTimeGapAvg() {
         return timeGapAvg;
     }
 

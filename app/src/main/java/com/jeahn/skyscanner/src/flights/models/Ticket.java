@@ -27,11 +27,17 @@ public class Ticket implements Parcelable {
     @SerializedName("arTime")
     private String arTime;
 
-    @SerializedName("price")
-    private int price;
+    @SerializedName("adultPrice")
+    private int adultPrice;
+
+    @SerializedName("infantPrice")
+    private int infantPrice;
+
+    @SerializedName("childPrice")
+    private int childPrice;
 
     @SerializedName("timeGap")
-    private String timeGap;
+    private int timeGap;
 
     protected Ticket(Parcel in) {
         flightId = in.readInt();
@@ -41,8 +47,10 @@ public class Ticket implements Parcelable {
         airLineImgUrl = in.readString();
         deTime = in.readString();
         arTime = in.readString();
-        price = in.readInt();
-        timeGap = in.readString();
+        adultPrice = in.readInt();
+        infantPrice = in.readInt();
+        childPrice = in.readInt();
+        timeGap = in.readInt();
     }
 
     public static final Creator<Ticket> CREATOR = new Creator<Ticket>() {
@@ -85,11 +93,19 @@ public class Ticket implements Parcelable {
         return arTime;
     }
 
-    public int getPrice() {
-        return price;
+    public int getAdultPrice() {
+        return adultPrice;
     }
 
-    public String getTimeGap() {
+    public int getInfantPrice() {
+        return infantPrice;
+    }
+
+    public int getChildPrice() {
+        return childPrice;
+    }
+
+    public int getTimeGap() {
         return timeGap;
     }
 
@@ -107,7 +123,9 @@ public class Ticket implements Parcelable {
         parcel.writeString(airLineImgUrl);
         parcel.writeString(deTime);
         parcel.writeString(arTime);
-        parcel.writeInt(price);
-        parcel.writeString(timeGap);
+        parcel.writeInt(adultPrice);
+        parcel.writeInt(infantPrice);
+        parcel.writeInt(childPrice);
+        parcel.writeInt(timeGap);
     }
 }

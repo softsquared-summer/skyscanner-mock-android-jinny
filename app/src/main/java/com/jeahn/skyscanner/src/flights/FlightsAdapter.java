@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHolder> {
     private static String KEY_TICKET = "TICKET";
@@ -28,7 +29,7 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
     private ArrayList<Ticket> mTicketList;
     private String mStrFrom, mStrTo;
 
-    public FlightsAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
+    FlightsAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
         this.mTicketList = mTicketList;
         mStrFrom = from;
         mStrTo = to;
@@ -37,7 +38,7 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flights,null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flights, null);
         return new ViewHolder(v);
     }
 
@@ -46,32 +47,37 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
         Ticket item = mTicketList.get(position);
 
         Glide.with(holder.ivAirLine.getContext()).load(item.getAirLineImgUrl()).into(holder.ivAirLine);
-         try {
-             SimpleDateFormat stringToTimeFormat = new SimpleDateFormat("HH:mm");
-             SimpleDateFormat amPmFormat = new SimpleDateFormat("a h:mm", Locale.KOREA);
-             Date deTime = stringToTimeFormat.parse(item.getDeTime());
-             String deTimeAmPm = amPmFormat.format(deTime);
-             Date arTime = stringToTimeFormat.parse(item.getArTime());
-             String arTimeAmPm = amPmFormat.format(arTime);
+        try {
+            SimpleDateFormat stringToTimeFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat amPmFormat = new SimpleDateFormat("a h:mm", Locale.KOREA);
+            Date deTime = stringToTimeFormat.parse(item.getDeTime());
+            String deTimeAmPm = amPmFormat.format(deTime);
+            Date arTime = stringToTimeFormat.parse(item.getArTime());
+            String arTimeAmPm = amPmFormat.format(arTime);
 
-             holder.tvTime.setText(deTimeAmPm + " - " + arTimeAmPm);
-         } catch (ParseException e) {
+            holder.tvTime.setText(String.format("%s - %s", deTimeAmPm, arTimeAmPm));
+        } catch (ParseException e) {
             e.printStackTrace();
-         }
-         holder.tvFromTo.setText(mStrFrom + "-" + mStrTo + ", ");
-         holder.tvAirLineKr.setText(item.getAirLineKr());
-         holder.tvDuration.setText(item.getTimeGap());
-         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(item.getPrice());
-         holder.tvPrice.setText(strPrice);
+        }
+        holder.tvFromTo.setText(String.format("%s-%s, ", mStrFrom, mStrTo));
+        holder.tvAirLineKr.setText(item.getAirLineKr());
+        long hour = TimeUnit.MINUTES.toHours(item.getTimeGap());
+        long minutes = TimeUnit.MINUTES.toMinutes(item.getTimeGap());
+        String strDuration = "";
+        if(hour > 0){
+            strDuration += hour + "시간 ";
+        }
+        if(minutes > 0){
+            strDuration += minutes + "분";
+        }
+        holder.tvDuration.setText(strDuration);
+        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(item.getAdultPrice());
+        holder.tvPrice.setText(strPrice);
 
-
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), FlightsDetailActivity.class);
-                intent.putExtra(KEY_TICKET, item);
-                view.getContext().startActivity(intent);
-            }
+        holder.view.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), FlightsDetailActivity.class);
+            intent.putExtra(KEY_TICKET, item);
+            view.getContext().startActivity(intent);
         });
     }
 
@@ -80,11 +86,12 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
         return this.mTicketList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        public View view;
-        public TextView tvTime, tvFromTo, tvAirLineKr, tvDuration, tvPrice;
-        public ImageView ivAirLine;
-        public ViewHolder(@NonNull View itemView) {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        View view;
+        TextView tvTime, tvFromTo, tvAirLineKr, tvDuration, tvPrice;
+        ImageView ivAirLine;
+
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
             tvTime = itemView.findViewById(R.id.item_search_flights_tv_time);

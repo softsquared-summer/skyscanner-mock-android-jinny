@@ -43,7 +43,7 @@ public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapte
         AirLine airLine = mAirLineList.get(position);
         Glide.with(holder.ivAirLine.getContext()).load(airLine.getAirLineImgUrl()).into(holder.ivAirLine);
         holder.tvAirLine.setText(airLine.getAirLineKr());
-        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(airLine.getMinPrice());
+        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(airLine.getMinAdultPrice());
         holder.tvPrice.setText(strPrice);
         String times = "";
         for (Ticket ticket : airLine.getTicketList()) {

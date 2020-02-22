@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class FlightsDetailActivity extends BaseActivity {
     private static String KEY_TICKET = "TICKET";
@@ -65,8 +66,17 @@ public class FlightsDetailActivity extends BaseActivity {
             e.printStackTrace();
         }
         mTvAirLineKr.setText(mTicket.getAirLineKr());
-        mTvDuration.setText(mTicket.getTimeGap());
-        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(mTicket.getPrice());
+        long hour = TimeUnit.MINUTES.toHours(mTicket.getTimeGap());
+        long minutes = TimeUnit.MINUTES.toMinutes(mTicket.getTimeGap());
+        String strDuration = "";
+        if(hour > 0){
+            strDuration += hour + "시간 ";
+        }
+        if(minutes > 0){
+            strDuration += minutes + "분";
+        }
+        mTvDuration.setText(strDuration);
+        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(mTicket.getAdultPrice());
         mTvPrice.setText(strPrice);
     }
 

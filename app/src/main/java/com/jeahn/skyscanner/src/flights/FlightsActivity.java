@@ -26,6 +26,8 @@ import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResult;
 
+import java.util.concurrent.TimeUnit;
+
 public class FlightsActivity extends BaseActivity implements View.OnClickListener, FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
     private static int SEARCH_FLIGHTS = 1;
@@ -131,7 +133,16 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
             mCardDaily.setVisibility(View.GONE);
         } else {
             mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
-            mTvDailyTimeGapAvg.setText(String.format(getString(R.string.flights_daily_time_avg), result.getTimeGapAvg()));
+            long hour = TimeUnit.MINUTES.toHours(result.getTimeGapAvg());
+            long minutes = TimeUnit.MINUTES.toMinutes(result.getTimeGapAvg());
+            String strDuration = "평균 소요 시간: ";
+            if(hour > 0){
+                strDuration += hour + "시간 ";
+            }
+            if(minutes > 0){
+                strDuration += minutes + "분";
+            }
+            mTvDailyTimeGapAvg.setText(strDuration);
 
             mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
             mDailyRecyclerView.setAdapter(mDailyAdapter);
