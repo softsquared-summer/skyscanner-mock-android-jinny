@@ -37,7 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ICN - CJU"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"/>
                     <TextView
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="100개의 결과"
+                android:text="0개의 결과"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />
 

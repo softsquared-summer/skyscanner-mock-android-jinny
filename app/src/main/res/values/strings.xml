@@ -25,15 +25,22 @@
 
     <!--flights-->
     <string name="flights_title">항공권 검색</string>
+    <string name="flights_sort_filter">정렬 및 필터(조건)</string>
+    <string name="flights_count">%d개의 결과</string>
+    <string name="flights_daily_count">하루 %d편의 직항 항공편 제공</string>
+    <string name="flights_daily_count_more_10">하루 10편 이상의 직항 항공편 제공</string>
+    <string name="flights_daily_time_avg">평균 소요 시간:&#160;</string>
+    <string name="flights_daily_see_more">%d개의 항공사 더 보기</string>
+    <string name="flights_daily_hide">항공사 숨기기</string>
+    <string name="flights_hour">시간&#160;</string>
+    <string name="flights_minutes">분&#160;</string>
+
+    <!--flights search-->
     <string name="city_origin">출발지</string>
     <string name="city_destination">도착지</string>
-    <string name="flights_round_trip">왕복</string>
-    <string name="flights_one_way">편도</string>
-    <string name="flights_multi_city">다구간</string>
-    <string name="flights_sort_filter">정렬 및 필터(조건)</string>
-    <string name="flights_count">%d 개의 결과</string>
-    <string name="flights_daily_count">하루 %d편의 직항 항공편 제공</string>
-    <string name="flights_daily_time_avg">평균 소요 시간: %d시간 %02d분</string>
+    <string name="flights_search_round_trip">왕복</string>
+    <string name="flights_search_one_way">편도</string>
+    <string name="flights_search_multi_city">다구간</string>
 
     <!--seat dialog-->
     <string name="seat_dialog_apply">적용</string>
@@ -46,6 +53,5 @@
 
     <!--flight detail-->
     <string name="flight_detail_title">항공편 세부 정보</string>
-
 
 </resources>

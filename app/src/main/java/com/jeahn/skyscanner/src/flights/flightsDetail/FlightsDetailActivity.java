@@ -69,10 +69,10 @@ public class FlightsDetailActivity extends BaseActivity {
         long hour = TimeUnit.MINUTES.toHours(mTicket.getTimeGap());
         long minutes = TimeUnit.MINUTES.toMinutes(mTicket.getTimeGap());
         String strDuration = "";
-        if(hour > 0){
+        if (hour > 0) {
             strDuration += hour + "시간 ";
         }
-        if(minutes > 0){
+        if (minutes > 0) {
             strDuration += minutes + "분";
         }
         mTvDuration.setText(strDuration);
@@ -82,7 +82,7 @@ public class FlightsDetailActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 return true;

@@ -14,13 +14,13 @@ public class FlightsSearchPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 RoundTripFragment roundTripFragment = new RoundTripFragment();
                 return roundTripFragment;
 
             case 1:
-                 OneWayFragment oneWayFragment = new OneWayFragment();
+                OneWayFragment oneWayFragment = new OneWayFragment();
                 return oneWayFragment;
 
             case 2:

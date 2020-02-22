@@ -1,6 +1,5 @@
 package com.jeahn.skyscanner.src.flights.interfaces;
 
-import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.CityResponse;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 

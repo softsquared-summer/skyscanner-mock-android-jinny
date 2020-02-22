@@ -47,11 +47,11 @@ public class CityDialog extends DialogFragment implements CityActivityView, Adap
 
         mAutoCompleteTextView = view.findViewById(R.id.city_autoCompleteTextView);
         mAutoCompleteTextView.setOnItemClickListener(this);
-        if(!mIsOrigin){
+        if (!mIsOrigin) {
             mAutoCompleteTextView.setHint("도착지");
             mAutoCompleteTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_landing, 0, 0, 0);
         }
-        if(mCurCity != null){
+        if (mCurCity != null) {
             mAutoCompleteTextView.setText(mCurCity.getCityNameKr() + " (" + mCurCity.getAirPortCode() + ")");
         }
         mAutoCompleteTextView.setSelectAllOnFocus(true);
@@ -101,12 +101,12 @@ public class CityDialog extends DialogFragment implements CityActivityView, Adap
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        City city = (City)adapterView.getItemAtPosition(i);
+        City city = (City) adapterView.getItemAtPosition(i);
         mCityDialogListener.onItemSelected(city);
         dismiss();
     }
 
-    public void setDialogListener(CityDialogListener cityDialogListener){
+    public void setDialogListener(CityDialogListener cityDialogListener) {
         mCityDialogListener = cityDialogListener;
     }
 

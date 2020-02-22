@@ -1,10 +1,10 @@
 package com.jeahn.skyscanner.src.main;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mBottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
             mFragmentTransaction = mFragmentManager.beginTransaction();
 
-            switch (menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.action_search:
                     mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
                     break;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void goExplore(){
+    public void goExplore() {
         mBottomNavigation.setSelectedItemId(R.id.action_explore);
     }
 }

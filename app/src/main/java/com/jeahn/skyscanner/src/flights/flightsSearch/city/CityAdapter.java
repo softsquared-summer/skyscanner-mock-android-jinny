@@ -21,7 +21,7 @@ public class CityAdapter extends ArrayAdapter<City> {
 
     private List<City> mCityList;
 
-    public CityAdapter(Context context, List<City> cityList){
+    public CityAdapter(Context context, List<City> cityList) {
         super(context, 0, cityList);
         mCityList = new ArrayList<>(cityList);
     }
@@ -35,7 +35,7 @@ public class CityAdapter extends ArrayAdapter<City> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if(convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_city, parent, false);
         }
 
@@ -44,8 +44,8 @@ public class CityAdapter extends ArrayAdapter<City> {
 
         City city = getItem(position);
 
-        if(city != null){
-            tvCityName.setText(city.getCityNameKr() +" (" + city.getAirPortCode() + ")");
+        if (city != null) {
+            tvCityName.setText(city.getCityNameKr() + " (" + city.getAirPortCode() + ")");
             tvCountry.setText(city.getCountry());
         }
 
@@ -58,13 +58,13 @@ public class CityAdapter extends ArrayAdapter<City> {
             FilterResults results = new FilterResults();
             List<City> suggestions = new ArrayList<>();
 
-            if(charSequence != null && charSequence.length() > 0){
+            if (charSequence != null && charSequence.length() > 0) {
                 String filterPattern = charSequence.toString().trim();
 
-                for(City item : mCityList){
-                    if(item.getCityNameKr().contains(filterPattern)
-                    || item.getAirPortCode().contains(filterPattern)
-                    || item.getCountry().contains(filterPattern)){
+                for (City item : mCityList) {
+                    if (item.getCityNameKr().contains(filterPattern)
+                            || item.getAirPortCode().contains(filterPattern)
+                            || item.getCountry().contains(filterPattern)) {
                         suggestions.add(item);
                     }
                 }
@@ -79,8 +79,8 @@ public class CityAdapter extends ArrayAdapter<City> {
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             clear();
-            if(filterResults.count > 0){
-                addAll((List)filterResults.values);
+            if (filterResults.count > 0) {
+                addAll((List) filterResults.values);
             }
             notifyDataSetChanged();
         }

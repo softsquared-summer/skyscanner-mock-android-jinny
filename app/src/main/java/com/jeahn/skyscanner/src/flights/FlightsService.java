@@ -3,7 +3,6 @@ package com.jeahn.skyscanner.src.flights;
 import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsRetrofitInterface;
-import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.CityResponse;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 
@@ -14,7 +13,7 @@ import retrofit2.Response;
 public class FlightsService {
     private final FlightsActivityView mFlightsActivityView;
 
-    public FlightsService(final FlightsActivityView flightsActivityView){
+    public FlightsService(final FlightsActivityView flightsActivityView) {
         this.mFlightsActivityView = flightsActivityView;
     }
 
@@ -27,7 +26,7 @@ public class FlightsService {
             @Override
             public void onResponse(Call<DailyOneFlightResponse> call, Response<DailyOneFlightResponse> response) {
                 DailyOneFlightResponse oneDailyFlightResponse = response.body();
-                if(oneDailyFlightResponse == null){
+                if (oneDailyFlightResponse == null) {
                     mFlightsActivityView.getDailyOneFlightFailure(null);
                     return;
                 }
@@ -50,7 +49,7 @@ public class FlightsService {
             @Override
             public void onResponse(Call<OneFlightResponse> call, Response<OneFlightResponse> response) {
                 OneFlightResponse oneFlightResponse = response.body();
-                if(oneFlightResponse == null){
+                if (oneFlightResponse == null) {
                     mFlightsActivityView.getOneFlightFailure(null);
                     return;
                 }

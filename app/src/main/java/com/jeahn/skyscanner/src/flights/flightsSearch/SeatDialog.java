@@ -13,7 +13,7 @@ import com.jeahn.skyscanner.R;
 public class SeatDialog {
     private Context mContext;
 
-    private  RadioButton mRadioEconomy, mRadioPremiumEconomy, mRadioBusiness, mRadioFirstClass;
+    private RadioButton mRadioEconomy, mRadioPremiumEconomy, mRadioBusiness, mRadioFirstClass;
 
     private SeatDialogListener mSeatDialogListener;
 
@@ -22,7 +22,7 @@ public class SeatDialog {
         mContext = context;
     }
 
-    public void showDialog(int cabinClass, TextView tvCabinClass){
+    public void showDialog(int cabinClass, TextView tvCabinClass) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.seat_dialog, null);
         mRadioEconomy = view.findViewById(R.id.seat_dialog_radio_economy);
@@ -30,8 +30,8 @@ public class SeatDialog {
         mRadioBusiness = view.findViewById(R.id.seat_dialog_radio_business);
         mRadioFirstClass = view.findViewById(R.id.seat_dialog_radio_first_class);
         //좌석 등급 선택
-        switch (cabinClass){
-            case 0 :
+        switch (cabinClass) {
+            case 0:
                 mRadioEconomy.setChecked(true);
                 break;
             case 1:
@@ -48,16 +48,16 @@ public class SeatDialog {
         AlertDialog dialog = builder.setPositiveButton(mContext.getString(R.string.seat_dialog_apply), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(mRadioEconomy.isChecked()){
+                if (mRadioEconomy.isChecked()) {
                     mSeatDialogListener.onApplyButtonClick(0);
                     tvCabinClass.setText(mContext.getText(R.string.seat_dialog_economy));
-                }else if(mRadioPremiumEconomy.isChecked()){
+                } else if (mRadioPremiumEconomy.isChecked()) {
                     mSeatDialogListener.onApplyButtonClick(1);
                     tvCabinClass.setText(mContext.getText(R.string.seat_dialog_premium_economy));
-                }else if(mRadioBusiness.isChecked()){
+                } else if (mRadioBusiness.isChecked()) {
                     mSeatDialogListener.onApplyButtonClick(2);
                     tvCabinClass.setText(mContext.getText(R.string.seat_dialog_business));
-                }else if(mRadioFirstClass.isChecked()){
+                } else if (mRadioFirstClass.isChecked()) {
                     mSeatDialogListener.onApplyButtonClick(3);
                     tvCabinClass.setText(mContext.getText(R.string.seat_dialog_first_class));
                 }
@@ -81,11 +81,11 @@ public class SeatDialog {
         dialog.show();
     }
 
-    public void setDialogListener(SeatDialogListener seatDialogListener){
+    public void setDialogListener(SeatDialogListener seatDialogListener) {
         mSeatDialogListener = seatDialogListener;
     }
 
-    interface SeatDialogListener{
+    interface SeatDialogListener {
         void onApplyButtonClick(int cabinClass);
     }
 }

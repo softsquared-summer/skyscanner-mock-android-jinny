@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class FlightsActivity extends BaseActivity implements View.OnClickListener, FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
     private static int SEARCH_FLIGHTS = 1;
+    private static int FLIGHTS_DAILY_SHOW_COUNT = 3;
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView, mDailyRecyclerView;
@@ -132,25 +133,30 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         if (mIntDailyCount == 0) {
             mCardDaily.setVisibility(View.GONE);
         } else {
-            mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
+            if (result.getTotalTicketCount() > 10) {
+                mTvDailyCount.setText(getString(R.string.flights_daily_count_more_10));
+
+            } else {
+                mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
+            }
             long hour = TimeUnit.MINUTES.toHours(result.getTimeGapAvg());
             long minutes = TimeUnit.MINUTES.toMinutes(result.getTimeGapAvg());
-            String strDuration = "평균 소요 시간: ";
-            if(hour > 0){
-                strDuration += hour + "시간 ";
+            String strDuration = getString(R.string.flights_daily_time_avg);
+            if (hour > 0) {
+                strDuration += hour + getString(R.string.flights_hour);
             }
-            if(minutes > 0){
-                strDuration += minutes + "분";
+            if (minutes > 0) {
+                strDuration += minutes + getString(R.string.flights_minutes);
             }
             mTvDailyTimeGapAvg.setText(strDuration);
 
             mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
             mDailyRecyclerView.setAdapter(mDailyAdapter);
 
-            if (mIntDailyCount > 3) {
+            if (mIntDailyCount > FLIGHTS_DAILY_SHOW_COUNT) {
                 //더보기 버튼
-                mDailyAdapter.setItemCount(3);
-                mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
+                mDailyAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
+                mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
             } else {
                 mRelativeMore.setVisibility(View.GONE);
             }
@@ -178,13 +184,13 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.flights_daily_relative_more:
-                if (mDailyAdapter.getItemCount() == 3) {
+                if (mDailyAdapter.getItemCount() == FLIGHTS_DAILY_SHOW_COUNT) {
                     mDailyAdapter.setItemCount(mIntDailyCount);
-                    mTvMore.setText("항공사 숨기기");
+                    mTvMore.setText(getString(R.string.flights_daily_hide));
                     mIvMore.setImageResource(R.drawable.ic_up_arrow);
                 } else {
-                    mDailyAdapter.setItemCount(3);
-                    mTvMore.setText(String.format("%d개의 항공사 더 보기", mIntDailyCount - 3));
+                    mDailyAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
+                    mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
                     mIvMore.setImageResource(R.drawable.ic_down_arrow);
                 }
                 mDailyAdapter.notifyDataSetChanged();

@@ -3,16 +3,15 @@ package com.jeahn.skyscanner.src.main.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.jeahn.skyscanner.R;
@@ -103,13 +102,13 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.search_ibtn_flight:
                 Intent intent = new Intent(getContext(), FlightsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.search_tv_explore:
-                MainActivity activity = (MainActivity)getActivity();
+                MainActivity activity = (MainActivity) getActivity();
                 activity.goExplore();
                 break;
         }

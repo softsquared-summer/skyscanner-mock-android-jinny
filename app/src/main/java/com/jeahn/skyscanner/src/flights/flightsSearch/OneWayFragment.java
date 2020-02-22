@@ -4,15 +4,14 @@ package com.jeahn.skyscanner.src.flights.flightsSearch;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
@@ -37,7 +36,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mActivity = (FlightsSearchActivity)getActivity();
+        mActivity = (FlightsSearchActivity) getActivity();
 
         View view = inflater.inflate(R.layout.fragment_one_way, container, false);
 
@@ -57,10 +56,9 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.one_way_floating_search: //검색 시작
-                if(checkInputData()){
+                if (checkInputData()) {
                     Intent intent = new Intent();
                     intent.putExtra("deAirPortCode", mOriginCity.getAirPortCode());
                     intent.putExtra("arAirPortCode", mDestinationCity.getAirPortCode());
@@ -68,7 +66,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                     getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY, intent);
                     getActivity().finish();
                     getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
-                }else{
+                } else {
                     Toast.makeText(getContext(), "검색 조건을 모두 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
 
@@ -94,18 +92,18 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
 
     //검색 조건 유효성 체크
     private boolean checkInputData() {
-        if(mTvOrigin.getText().toString().matches("")
-            || mTvDestination.getText().toString().matches("")){
+        if (mTvOrigin.getText().toString().matches("")
+                || mTvDestination.getText().toString().matches("")) {
             return false;
         }
         return true;
     }
 
-    public void showCityDialog(boolean isOrigin, City curCity){
+    public void showCityDialog(boolean isOrigin, City curCity) {
         CityDialog dialog = new CityDialog(isOrigin, curCity);
         dialog.show(mActivity.getSupportFragmentManager(), "TAG");
         mActivity.getSupportFragmentManager().executePendingTransactions();
-        dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener(){
+        dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 mActivity.setNavigationIconVisibility(true);
@@ -117,7 +115,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                 if (isOrigin) {
                     mOriginCity = city;
                     mTvOrigin.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
-                }else{
+                } else {
                     mDestinationCity = city;
                     mTvDestination.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
                 }

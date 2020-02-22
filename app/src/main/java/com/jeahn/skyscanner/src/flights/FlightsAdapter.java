@@ -64,11 +64,11 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
         long hour = TimeUnit.MINUTES.toHours(item.getTimeGap());
         long minutes = TimeUnit.MINUTES.toMinutes(item.getTimeGap());
         String strDuration = "";
-        if(hour > 0){
-            strDuration += hour + "시간 ";
+        if (hour > 0) {
+            strDuration += hour + holder.view.getContext().getString(R.string.flights_hour);
         }
-        if(minutes > 0){
-            strDuration += minutes + "분";
+        if (minutes > 0) {
+            strDuration += minutes + holder.view.getContext().getString(R.string.flights_minutes);
         }
         holder.tvDuration.setText(strDuration);
         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(item.getAdultPrice());

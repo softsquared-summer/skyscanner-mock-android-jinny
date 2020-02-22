@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapter.ViewHolder>{
+public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapter.ViewHolder> {
     private List<AirLine> mAirLineList;
 
     private int mItemCount;
@@ -67,13 +67,14 @@ public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapte
         return mItemCount;
     }
 
-    public void setItemCount(int itemCount){
+    public void setItemCount(int itemCount) {
         mItemCount = itemCount;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvAirLine, tvPrice, tvTimes;
         public ImageView ivAirLine;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvAirLine = itemView.findViewById(R.id.daily_flights_tv_airline);

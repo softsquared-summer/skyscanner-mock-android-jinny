@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -14,7 +13,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
-import com.jeahn.skyscanner.src.flights.flightsSearch.FlightsSearchPagerAdapter;
 
 public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     boolean isFirstSearch;
@@ -33,13 +31,13 @@ public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnT
         //첫 검색이면 뒤로가기 버튼, 아니면 닫기 버튼
         Intent intent = getIntent();
         isFirstSearch = intent.getBooleanExtra("isFirstSearch", false);
-        if(!isFirstSearch){
+        if (!isFirstSearch) {
             overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
         }
 
         mToolbar = findViewById(R.id.flights_search_toolbar);
         setSupportActionBar(mToolbar);
-        if(!isFirstSearch){
+        if (!isFirstSearch) {
             mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_close_white));
         }
 
@@ -52,9 +50,9 @@ public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnT
     //탭 설정
     private void setTabLayout() {
         //탭 추가
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_round_trip)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_one_way)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_multi_city)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_search_round_trip)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_search_one_way)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.flights_search_multi_city)));
 
         //어댑터 세팅
         mFlightsSearchPagerAdapter = new FlightsSearchPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
@@ -66,9 +64,9 @@ public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
-                if(isFirstSearch){ //첫 검색이면 검색결과 화면도 닫도록 result 보내기
+                if (isFirstSearch) { //첫 검색이면 검색결과 화면도 닫도록 result 보내기
                     setResult(Activity.RESULT_FIRST_USER);
                 }
                 finish();
@@ -80,10 +78,10 @@ public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnT
     }
 
     //뒤로가기 버튼 가시성 (도시 검색 창이 반투명이어서 뒤에 비치기 때문에 가시성 설정 필요)
-    public void setNavigationIconVisibility(boolean visible){
-        if(visible){
+    public void setNavigationIconVisibility(boolean visible) {
+        if (visible) {
             mToolbar.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mToolbar.setVisibility(View.INVISIBLE);
         }
     }
@@ -105,7 +103,7 @@ public class FlightsSearchActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void onBackPressed() {
-        if(isFirstSearch){ //첫 검색이면 검색결과 화면도 닫도록 result 보내기
+        if (isFirstSearch) { //첫 검색이면 검색결과 화면도 닫도록 result 보내기
             setResult(Activity.RESULT_FIRST_USER);
         }
         overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
