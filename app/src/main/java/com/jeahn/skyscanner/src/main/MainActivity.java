@@ -2,7 +2,6 @@ package com.jeahn.skyscanner.src.main;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -11,6 +10,7 @@ import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.main.explore.ExploreFragment;
 import com.jeahn.skyscanner.src.main.search.SearchFragment;
+import com.jeahn.skyscanner.src.main.trips.TripsFragment;
 
 public class MainActivity extends BaseActivity {
     private BottomNavigationView mBottomNavigation;
@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity {
 
     private SearchFragment mSearchFragment;
     private ExploreFragment mExploreFragment;
+    private TripsFragment mTripsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity {
 
         mSearchFragment = new SearchFragment();
         mExploreFragment = new ExploreFragment();
+        mTripsFragment = new TripsFragment();
 
         mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
 
@@ -50,7 +52,8 @@ public class MainActivity extends BaseActivity {
                 case R.id.action_explore:
                     mFragmentTransaction.replace(R.id.main_frame, mExploreFragment).commitAllowingStateLoss();
                     break;
-                case R.id.action_plan:
+                case R.id.action_trips:
+                    mFragmentTransaction.replace(R.id.main_frame, mTripsFragment).commitAllowingStateLoss();
                     break;
                 case R.id.action_profile:
                     break;

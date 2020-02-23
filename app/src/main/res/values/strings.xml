@@ -56,4 +56,12 @@
     <string name="explore_find">다음 목적지 찾기</string>
     <string name="explore_everywhere">Everywhere 검색</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trips_title">여행 일정</string>
+    <string name="trips_upcoming_text_1">다음 여행을 계획해 보세요!</string>
+    <string name="trips_upcoming_text_2">항공편 추가로 여행을 생성하거나 로그인하여 저장한 여행을 확인하세요.</string>
+    <string name="trips_past_text_1">이곳에서 지난날의 모험들을 떠올려 보세요!</string>
+    <string name="trips_past_text_2">먼저 다음 항공편을 추가해 보세요.</string>
+
 </resources>

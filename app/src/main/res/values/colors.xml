@@ -10,6 +10,9 @@
     <!--splash-->
     <color name="splashBackground">#CDDFF8</color>
 
+    <!--main-->
+    <color name="mainTextColor">#111236</color>
+
     <!--search-->
     <color name="searchBtnForeground">#00a698</color>
     <color name="searchBtnBackground">#d0eeec</color>
@@ -27,6 +30,11 @@
     <!--explore-->
     <color name="exploreFind">#C0C0CB</color>
     <color name="exploreEverywhereBackground">#99000000</color>
-    <color name="exploreSubTitle">#1E1F41</color>
+
+    <!--trips-->
+    <color name="tripsIndicator">#5A489B</color>
+    <color name="tripsFabBackground">#00A698</color>
+    <color name="tripsTabTextColor">#BCBCC8</color>
+
 
 </resources>
