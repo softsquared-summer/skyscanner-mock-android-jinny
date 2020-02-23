@@ -53,5 +53,7 @@
 
     <!--flight detail-->
     <string name="flight_detail_title">항공편 세부 정보</string>
+    <string name="explore_find">다음 목적지 찾기</string>
+    <string name="explore_everywhere">Everywhere 검색</string>
 
 </resources>

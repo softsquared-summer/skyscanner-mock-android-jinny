@@ -8,10 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.main.explore.ExploreFragment;
 import com.jeahn.skyscanner.src.main.search.SearchFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private BottomNavigationView mBottomNavigation;
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;

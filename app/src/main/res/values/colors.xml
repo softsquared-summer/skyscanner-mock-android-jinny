@@ -23,4 +23,10 @@
     <color name="flightsAccentColor">#00a698</color>
     <color name="flightsBackground">#F1F2F8</color>
     <color name="flightsDividerColor">#E2E2E8</color>
+
+    <!--explore-->
+    <color name="exploreFind">#C0C0CB</color>
+    <color name="exploreEverywhereBackground">#99000000</color>
+    <color name="exploreSubTitle">#1E1F41</color>
+
 </resources>

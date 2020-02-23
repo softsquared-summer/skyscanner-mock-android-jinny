@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".src.main.explore.ExploreFragment"
     android:background="@android:color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/search_appbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:background="@android:color/white">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -18,9 +19,13 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleTextAppearance="@style/CollapsingToolbar.TitleText"
-            app:expandedTitleGravity="bottom">
+            app:expandedTitleGravity="bottom"
+            app:expandedTitleMargin="30dp"
+            app:expandedTitleMarginBottom="20dp"
+            android:fitsSystemWindows="true">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/explore_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -34,39 +39,127 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
             <TextView
+                android:id="@+id/explore_tv_find"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:gravity="center"
-                android:text="TEST"
-                android:textColor="@color/colorPrimary"/>
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/explore_tv_find"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_searching_gray"
+                android:paddingStart="15dp"
+                android:drawablePadding="15dp"
+                android:text="@string/explore_find"
+                android:textSize="16sp"
+                android:textColor="@color/exploreFind"
+                android:gravity="center_vertical" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="15dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:src="@drawable/img_people2"
+                        android:scaleType="centerCrop"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingHorizontal="25dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/explore_everywhere"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/round_corner"
+                        android:backgroundTint="@color/exploreEverywhereBackground"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="추천 목적지"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/exploreSubTitle"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/explore_rv_recommend"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:gravity="center"
-                android:text="TEST"
-                android:textColor="@color/colorPrimary"/>
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:clipToPadding="false"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="맞춤 여행"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/exploreSubTitle"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/explore_rv_custom"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:gravity="center"
-                android:text="TEST"
-                android:textColor="@color/colorPrimary"/>
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:clipToPadding="false"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="주말 특가"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/exploreSubTitle"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/explore_rv_weekend"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:gravity="center"
-                android:text="TEST"
-                android:textColor="@color/colorPrimary"/>
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:clipToPadding="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="월별 인기 상품"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/exploreSubTitle"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/explore_rv_monthly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:clipToPadding="false"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
