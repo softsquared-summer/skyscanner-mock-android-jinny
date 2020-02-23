@@ -2,14 +2,12 @@ package com.jeahn.skyscanner.src.main.trips;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 
-public class TripsPagerAdapter extends FragmentStatePagerAdapter {
-    private int mPageCount;
+public class TripsPagerAdapter extends FragmentPagerAdapter {
 
-    public TripsPagerAdapter(FragmentManager fm, int pageCount) {
+    public TripsPagerAdapter(FragmentManager fm) {
         super(fm);
-        mPageCount = pageCount;
     }
 
     @Override
@@ -26,6 +24,6 @@ public class TripsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return mPageCount;
+        return 2;
     }
 }

@@ -47,13 +47,31 @@ public class MainActivity extends BaseActivity {
 
             switch (menuItem.getItemId()) {
                 case R.id.action_search:
-                    mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
+                    if(mSearchFragment != null && mSearchFragment.isAdded()){
+                        mFragmentTransaction.detach(mSearchFragment);
+                        mFragmentTransaction.attach(mSearchFragment).commit();
+                    }else{
+                        mSearchFragment = new SearchFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mSearchFragment).addToBackStack(null).commit();
+                    }
                     break;
                 case R.id.action_explore:
-                    mFragmentTransaction.replace(R.id.main_frame, mExploreFragment).commitAllowingStateLoss();
+                    if(mExploreFragment != null && mExploreFragment.isAdded()){
+                        mFragmentTransaction.detach(mExploreFragment);
+                        mFragmentTransaction.attach(mExploreFragment).commit();
+                    }else{
+                        mExploreFragment = new ExploreFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mExploreFragment).addToBackStack(null).commit();
+                    }
                     break;
                 case R.id.action_trips:
-                    mFragmentTransaction.replace(R.id.main_frame, mTripsFragment).commitAllowingStateLoss();
+                    if(mTripsFragment != null && mTripsFragment.isAdded()){
+                        mFragmentTransaction.detach(mTripsFragment);
+                        mFragmentTransaction.attach(mTripsFragment).commit();
+                    }else{
+                        mTripsFragment = new TripsFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mTripsFragment).addToBackStack(null).commit();
+                    }
                     break;
                 case R.id.action_profile:
                     break;

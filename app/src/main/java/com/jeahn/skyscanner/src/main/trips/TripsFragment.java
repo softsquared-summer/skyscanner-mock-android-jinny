@@ -1,6 +1,7 @@
 package com.jeahn.skyscanner.src.main.trips;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -36,16 +37,22 @@ public class TripsFragment extends Fragment implements TabLayout.OnTabSelectedLi
         mTripsTab = v.findViewById(R.id.trips_tab);
         mViewPager = v.findViewById(R.id.trips_pager);
 
-        mTripsTab.addTab(mTripsTab.newTab().setText("다가오는 여행"));
-        mTripsTab.addTab(mTripsTab.newTab().setText("지난 여행"));
+        mTripsTab.addTab(mTripsTab.newTab().setText(getString(R.string.trips_upcoming)));
+        mTripsTab.addTab(mTripsTab.newTab().setText(getString(R.string.trips_past)));
 
-        mTripsPagerAdapter = new TripsPagerAdapter(getFragmentManager(), mTripsTab.getTabCount());
         mViewPager.setAdapter(mTripsPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTripsTab));
 
         mTripsTab.addOnTabSelectedListener(this);
 
         return v;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mTripsPagerAdapter = new TripsPagerAdapter(getChildFragmentManager());
+
     }
 
     @Override
