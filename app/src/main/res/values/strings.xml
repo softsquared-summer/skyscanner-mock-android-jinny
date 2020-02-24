@@ -57,12 +57,27 @@
     <string name="explore_everywhere">Everywhere 검색</string>
 
     <!--trips-->
+    <string name="trips_past">지난 여행</string>
+    <string name="trips_upcoming">다가오는 여행</string>
     <string name="trips_title">여행 일정</string>
     <string name="trips_upcoming_text_1">다음 여행을 계획해 보세요!</string>
     <string name="trips_upcoming_text_2">항공편 추가로 여행을 생성하거나 로그인하여 저장한 여행을 확인하세요.</string>
     <string name="trips_past_text_1">이곳에서 지난날의 모험들을 떠올려 보세요!</string>
     <string name="trips_past_text_2">먼저 다음 항공편을 추가해 보세요.</string>
-    <string name="trips_past">지난 여행</string>
-    <string name="trips_upcoming">다가오는 여행</string>
+
+    <!--profile-->
+    <string name="profile_title">프로필</string>
+    <string name="profile_login_signup">로그인/회원가입</string>
+    <string name="profile_text">여행 증명서, 결제 카드, 데이터 설정을 관리하세요.</string>
+    <string name="profile_setting_title">설정</string>
+    <string name="profile_preferences">선호도</string>
+    <string name="profile_payments">결제</string>
+    <string name="profile_alerts">알림</string>
+    <string name="profile_support">지원</string>
+    <string name="profile_about_title">스카이스캐너 소개</string>
+    <string name="profile_about_subtitle_1">지속 가능한 여행</string>
+    <string name="profile_about_contents1">긍정적인 영향을 주기 위한 스카이스캐너의 약속을 읽어보세요.</string>
+    <string name="profile_about_subtitle_2">스카이스캐너와 함께 해야 하는 이유</string>
+    <string name="profile_about_2">스카이스캐너는 든든한 여러분의 후원자입니다. 그 이유를 알려드리죠.</string>
 
 </resources>

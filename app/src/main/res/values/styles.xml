@@ -42,4 +42,11 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <!--<item name="android:windowAnimationStyle">@style/DialogAnimation</item>-->
     </style>
+
+    <!--main title-->
+    <style name="ToolbarTitleText">
+        <item name="android:textColor">@color/mainTextColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

@@ -36,5 +36,14 @@
     <color name="tripsFabBackground">#00A698</color>
     <color name="tripsTabTextColor">#BCBCC8</color>
 
+    <!--profile-->
+    <color name="profileToolbarDivider">#F3F4F9</color>
+    <color name="profileAboutBackgroundStroke">#EFEFF2</color>
+    <color name="profileLoginBackground">#00A698</color>
+    <color name="profilePreferencesBackground">#D0EEEC</color>
+    <color name="profilePaymentsBackground">#FFE7E0</color>
+    <color name="profileAlertsBackground">#FFEBD0</color>
+    <color name="profileSupportBackground">#E1DDEC</color>
+
 
 </resources>

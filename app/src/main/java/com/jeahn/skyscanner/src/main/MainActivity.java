@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.main.explore.ExploreFragment;
+import com.jeahn.skyscanner.src.main.profile.ProfileFragment;
 import com.jeahn.skyscanner.src.main.search.SearchFragment;
 import com.jeahn.skyscanner.src.main.trips.TripsFragment;
 
@@ -20,6 +21,7 @@ public class MainActivity extends BaseActivity {
     private SearchFragment mSearchFragment;
     private ExploreFragment mExploreFragment;
     private TripsFragment mTripsFragment;
+    private ProfileFragment mProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MainActivity extends BaseActivity {
         mSearchFragment = new SearchFragment();
         mExploreFragment = new ExploreFragment();
         mTripsFragment = new TripsFragment();
+        mProfileFragment = new ProfileFragment();
 
         mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
 
@@ -74,6 +77,13 @@ public class MainActivity extends BaseActivity {
                     }
                     break;
                 case R.id.action_profile:
+                    if(mProfileFragment != null && mProfileFragment.isAdded()){
+                        mFragmentTransaction.detach(mProfileFragment);
+                        mFragmentTransaction.attach(mProfileFragment).commit();
+                    }else{
+                        mProfileFragment = new ProfileFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mProfileFragment).addToBackStack(null).commit();
+                    }
                     break;
             }
 
