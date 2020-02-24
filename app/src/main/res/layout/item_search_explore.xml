@@ -14,20 +14,27 @@
         app:cardUseCompatPadding="true"
         app:cardElevation="0dp">
         <RelativeLayout
-            android:layout_width="130dp"
-            android:layout_height="220dp"
+            android:layout_width="145dp"
+            android:layout_height="225dp"
             android:clipToPadding="true">
             <ImageView
+                android:id="@+id/item_search_explore_iv_picture"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_travel_1"/>
+                android:src="@drawable/img_explore_2"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/gradient_black"/>
             <TextView
+                android:id="@+id/item_search_explore_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="10dp"
-                android:text="이번 주말"
+                android:layout_margin="15dp"
+                android:text="인기 있는 목적지"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:textSize="16sp"/>

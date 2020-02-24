@@ -22,6 +22,17 @@
 
     <!--explore-->
     <string name="explore_title">둘러보기</string>
+    <string name="explore_find">다음 목적지 찾기</string>
+    <string name="explore_everywhere">Everywhere 검색</string>
+    <string name="explore_product_popular">인기 있는 목적지</string>
+    <string name="explore_product_quick">단기 휴가</string>
+    <string name="explore_product_long">장기 여행</string>
+    <string name="explore_product_last_minute">임박 상품</string>
+    <string name="explore_product_early_bird">얼리버드 상품</string>
+    <string name="explore_product_solo">나홀로 여행</string>
+    <string name="explore_product_couple">커플/우정 인기 여행지</string>
+    <string name="explore_product_next_weekend">다음 주말</string>
+    <string name="explore_product_this_weekend">이번 주말</string>
 
     <!--flights-->
     <string name="flights_title">항공권 검색</string>
@@ -53,8 +64,7 @@
 
     <!--flight detail-->
     <string name="flight_detail_title">항공편 세부 정보</string>
-    <string name="explore_find">다음 목적지 찾기</string>
-    <string name="explore_everywhere">Everywhere 검색</string>
+
 
     <!--trips-->
     <string name="trips_past">지난 여행</string>

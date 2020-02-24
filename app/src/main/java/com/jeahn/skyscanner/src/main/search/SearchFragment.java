@@ -3,7 +3,6 @@ package com.jeahn.skyscanner.src.main.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flights.FlightsActivity;
 import com.jeahn.skyscanner.src.main.MainActivity;
+import com.jeahn.skyscanner.src.main.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +65,15 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
     private void setExploreRecycler() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         mRecyclerView.setFocusable(false);
-        List<String> items = new ArrayList<>();
-        items.add("test");
-        items.add("test");
-        items.add("test");
-        items.add("test");
-        items.add("test");
-        items.add("test");
+        List<Product> items = new ArrayList<>();
+        items.add(new Product(R.drawable.img_explore_1, getString(R.string.explore_product_this_weekend)));
+        items.add(new Product(R.drawable.img_explore_2, getString(R.string.explore_product_next_weekend)));
+        items.add(new Product(R.drawable.img_explore_3, "2월"));
+        items.add(new Product(R.drawable.img_explore_4, "3월"));
+        items.add(new Product(R.drawable.img_explore_5, "4월"));
+        items.add(new Product(R.drawable.img_explore_6, getString(R.string.explore_product_popular)));
+        items.add(new Product(R.drawable.img_explore_7, getString(R.string.explore_product_quick)));
+        items.add(new Product(R.drawable.img_explore_8, getString(R.string.explore_everywhere)));
         mRecyclerView.setAdapter(new SearchAdapter(items));
     }
 
