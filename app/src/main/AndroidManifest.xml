@@ -24,6 +24,7 @@
             android:theme="@style/Theme.Transparent"/>
         <activity android:name=".src.flights.flightsDetail.FlightsDetailActivity"/>
         <activity android:name=".src.main.profile.login.LoginActivity"/>
+        <activity android:name=".src.main.profile.login.LoginEmailActivity"/>
     </application>
 
 </manifest>

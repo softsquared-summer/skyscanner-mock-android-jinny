@@ -1,5 +1,6 @@
 package com.jeahn.skyscanner.src.main.profile.login;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.text.util.Linkify;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,9 +24,10 @@ import com.jeahn.skyscanner.src.BaseActivity;
 
 import java.util.regex.Pattern;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private Toolbar mToolbar;
     private TextView mTvTos;
+    private Button mBtnEmail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +36,9 @@ public class LoginActivity extends BaseActivity {
 
         mToolbar = findViewById(R.id.login_toolbar);
         mTvTos = findViewById(R.id.login_tv_tos);
+        mBtnEmail = findViewById(R.id.login_btn_email);
+
+        mBtnEmail.setOnClickListener(this);
 
         setToolbar();
         setTosText();
@@ -77,5 +84,15 @@ public class LoginActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.login_btn_email:
+                Intent intent = new Intent(getApplicationContext(), LoginEmailActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
