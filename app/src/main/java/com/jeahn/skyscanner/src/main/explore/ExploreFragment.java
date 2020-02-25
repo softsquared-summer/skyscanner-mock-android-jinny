@@ -8,12 +8,16 @@ import android.view.ViewGroup;
 
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
+import com.jeahn.skyscanner.src.main.explore.exploreCountry.ExploreCountryFragment;
 import com.jeahn.skyscanner.src.main.models.Product;
 
 import java.util.ArrayList;
@@ -22,9 +26,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExploreFragment extends Fragment {
+public class ExploreFragment extends Fragment implements View.OnClickListener {
     private Toolbar mToolbar;
     private RecyclerView mRvRecommend, mRvCustom, mRvWeekend, mRvMonthly;
+    private CardView mCardSearchEverywhere;
 
     public ExploreFragment() {
         // Required empty public constructor
@@ -38,12 +43,15 @@ public class ExploreFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_explore, container, false);
 
         mToolbar = v.findViewById(R.id.explore_toolbar);
+        mCardSearchEverywhere = v.findViewById(R.id.explore_card_everywhere);
         mRvRecommend = v.findViewById(R.id.explore_rv_recommend);
         mRvCustom = v.findViewById(R.id.explore_rv_custom);
         mRvWeekend = v.findViewById(R.id.explore_rv_weekend);
         mRvMonthly = v.findViewById(R.id.explore_rv_monthly);
 
         ((BaseActivity)getActivity()).setSupportActionBar(mToolbar);
+
+        mCardSearchEverywhere.setOnClickListener(this);
 
         mRvRecommend.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         List<Product> items = new ArrayList<>();
@@ -77,6 +85,24 @@ public class ExploreFragment extends Fragment {
         mRvMonthly.setAdapter(new ExploreAdapter(monthlyItems));
 
         return v;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.explore_card_everywhere:
+                startExploreCountry();
+                break;
+        }
+    }
+
+    private void startExploreCountry() {
+        ExploreCountryFragment exploreCountryFragment = new ExploreCountryFragment();
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.main_frame, exploreCountryFragment).addToBackStack(null).commit();
     }
 
 }
