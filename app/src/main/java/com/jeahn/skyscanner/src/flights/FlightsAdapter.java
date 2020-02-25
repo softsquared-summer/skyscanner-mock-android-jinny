@@ -102,4 +102,9 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHold
             ivAirLine = itemView.findViewById(R.id.item_search_flights_iv_airline);
         }
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
 }

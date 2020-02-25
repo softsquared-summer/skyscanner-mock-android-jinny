@@ -1,7 +1,6 @@
 package com.jeahn.skyscanner.src.flights.flightsSearch;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,7 +31,6 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
     private TextView mTvOrigin, mTvDestination, mTvCabinClass;
     private LinearLayout mLinearSeat;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,7 +38,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_one_way, container, false);
 
-        mFabSearch = view.findViewById(R.id.one_way_floating_search);
+        mFabSearch = view.findViewById(R.id.one_way_fab_search);
         mTvOrigin = view.findViewById(R.id.one_way_tv_origin);
         mTvDestination = view.findViewById(R.id.one_way_tv_destination);
         mTvCabinClass = view.findViewById(R.id.one_way_tv_cabin_class);
@@ -57,7 +55,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.one_way_floating_search: //검색 시작
+            case R.id.one_way_fab_search: //검색 시작
                 if (checkInputData()) {
                     Intent intent = new Intent();
                     intent.putExtra("deAirPortCode", mOriginCity.getAirPortCode());
@@ -80,12 +78,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             case R.id.one_way_seat_setting: //인원 및 좌석 등급 선택
                 SeatDialog seatDialog = new SeatDialog(getContext());
                 seatDialog.showDialog(mCabinClass, mTvCabinClass);
-                seatDialog.setDialogListener(new SeatDialog.SeatDialogListener() {
-                    @Override
-                    public void onApplyButtonClick(int cabinClass) {
-                        mCabinClass = cabinClass;
-                    }
-                });
+                seatDialog.setDialogListener(cabinClass -> mCabinClass = cabinClass);
                 break;
         }
     }
@@ -103,22 +96,14 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         CityDialog dialog = new CityDialog(isOrigin, curCity);
         dialog.show(mActivity.getSupportFragmentManager(), "TAG");
         mActivity.getSupportFragmentManager().executePendingTransactions();
-        dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mActivity.setNavigationIconVisibility(true);
-            }
-        });
-        dialog.setDialogListener(new CityDialog.CityDialogListener() {
-            @Override
-            public void onItemSelected(City city) {
-                if (isOrigin) {
-                    mOriginCity = city;
-                    mTvOrigin.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
-                } else {
-                    mDestinationCity = city;
-                    mTvDestination.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
-                }
+        dialog.getDialog().setOnDismissListener(dialogInterface -> mActivity.setNavigationIconVisibility(true));
+        dialog.setDialogListener(city -> {
+            if (isOrigin) {
+                mOriginCity = city;
+                mTvOrigin.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
+            } else {
+                mDestinationCity = city;
+                mTvDestination.setText(String.format("%s (%s)", city.getCityNameKr(), city.getAirPortCode()));
             }
         });
 

@@ -63,7 +63,7 @@
                 android:drawableStart="@drawable/ic_calendar"
                 android:paddingStart="15dp"
                 android:drawablePadding="15dp"
-                android:text="2월 21일 (금)"
+                android:text="2월 12일 (금)"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
                 android:gravity="center_vertical"/>
@@ -82,7 +82,7 @@
                 android:drawableStart="@drawable/ic_calendar"
                 android:paddingStart="15dp"
                 android:drawablePadding="15dp"
-                android:text="2월 28일 (금)"
+                android:text="2월 12일 (금)"
                 android:textSize="18sp"
                 android:textColor="@color/flightsMainColor"
                 android:gravity="center_vertical"/>
@@ -141,6 +141,7 @@
                 android:tint="@color/flightsAccentColor"/>
 
             <TextView
+                android:id="@+id/round_trip_tv_cabin_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -160,7 +161,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating"
+        android:id="@+id/round_trip_fab_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"

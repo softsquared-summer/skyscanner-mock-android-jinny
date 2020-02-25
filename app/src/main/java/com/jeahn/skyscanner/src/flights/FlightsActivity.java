@@ -25,11 +25,14 @@ import com.jeahn.skyscanner.src.flights.flightsSearch.FlightsSearchActivity;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResult;
+import com.jeahn.skyscanner.src.flights.models.RoundFlightResult;
 
 import java.util.concurrent.TimeUnit;
 
 public class FlightsActivity extends BaseActivity implements View.OnClickListener, FlightsActivityView {
     private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
+    private static int START_SEARCH_FLIGHTS_ROUND_TRIP = 200;
+
     private static int SEARCH_FLIGHTS = 1;
     private static int FLIGHTS_DAILY_SHOW_COUNT = 3;
 
@@ -94,6 +97,13 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
                 tryGetOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass, "price");
                 tryGetDailyOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass);
+            } else if (resultCode == START_SEARCH_FLIGHTS_ROUND_TRIP){ //왕복 검색 시작
+                mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
+                mStrArAirPortCode = data.getStringExtra("arAirPortCode");
+                mIntCabinClass = data.getIntExtra("cabinClass", 0);
+                mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
+                tryGetRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass, "price");
+                //tryGetDailyRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass);
             }
         }
     }
@@ -106,6 +116,14 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     private void tryGetDailyOneFlight(String deAirPortCode, String arAirPortCode, String deDate, int seatCode) {
         final FlightsService flightsService = new FlightsService(this);
         flightsService.getDailyOneFlight(deAirPortCode, arAirPortCode, deDate, seatCode);
+    }
+
+    private void tryGetRoundFlight(String deAirPortCode, String arAirPortCode, String deDate, String arDate, int seatCode, String sortBy) {
+        final FlightsService flightsService = new FlightsService(this);
+        flightsService.getRoundFlight(deAirPortCode, arAirPortCode, deDate, arDate, seatCode, sortBy);
+    }
+
+    private void tryGetDailyRoundFlight(String mStrDeAirPortCode, String mStrArAirPortCode, String s, String s1, int mIntCabinClass) {
     }
 
     public void searchOnClick(View view) {
@@ -178,6 +196,18 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void getOneFlightFailure(String message) {
         Toast.makeText(getApplicationContext(), "편도 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getRoundFlightSuccess(RoundFlightResult result) {
+        mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
+        RoundFlightAdapter roundFlightAdapter = new RoundFlightAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
+        mRecyclerView.setAdapter(roundFlightAdapter);
+    }
+
+    @Override
+    public void getRoundFlightFailure(String message) {
+        Toast.makeText(getApplicationContext(), "왕복 항공권 검색 실패", Toast.LENGTH_SHORT).show();
     }
 
     @Override
