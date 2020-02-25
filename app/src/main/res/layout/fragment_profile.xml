@@ -57,6 +57,7 @@
                     android:layout_alignParentRight="true"
                     android:src="@drawable/img_profile_1"/>
                 <Button
+                    android:id="@+id/profile_btn_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"

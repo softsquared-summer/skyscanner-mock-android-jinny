@@ -45,5 +45,8 @@
     <color name="profileAlertsBackground">#FFEBD0</color>
     <color name="profileSupportBackground">#E1DDEC</color>
 
+    <!--login-->
+    <color name="loginSmallTextColor">#878395</color>
+
 
 </resources>
