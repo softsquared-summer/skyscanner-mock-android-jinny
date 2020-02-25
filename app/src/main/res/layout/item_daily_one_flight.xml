@@ -24,7 +24,7 @@
             android:layout_height="18dp"
             android:layout_alignTop="@id/flights_daily_scroll_times"
             android:padding="2dp"
-            android:src="@drawable/ic_right_arrow"
+            android:src="@drawable/ic_right"
             android:tint="@color/flightsIconColor"/>
         <TextView
             android:id="@+id/daily_flights_tv_price"

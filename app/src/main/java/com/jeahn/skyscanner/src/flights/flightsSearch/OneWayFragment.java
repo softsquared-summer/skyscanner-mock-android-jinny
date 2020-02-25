@@ -21,7 +21,7 @@ import com.jeahn.skyscanner.src.flights.flightsSearch.city.models.City;
  * A simple {@link Fragment} subclass.
  */
 public class OneWayFragment extends Fragment implements View.OnClickListener {
-    private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
+    private static int SEARCH_FLIGHTS_ONE_WAY = 100;
 
     private FlightsSearchActivity mActivity;
     private City mOriginCity, mDestinationCity;
@@ -61,7 +61,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                     intent.putExtra("deAirPortCode", mOriginCity.getAirPortCode());
                     intent.putExtra("arAirPortCode", mDestinationCity.getAirPortCode());
                     intent.putExtra("cabinClass", mCabinClass);
-                    getActivity().setResult(START_SEARCH_FLIGHTS_ONE_WAY, intent);
+                    getActivity().setResult(SEARCH_FLIGHTS_ONE_WAY, intent);
                     getActivity().finish();
                     getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
                 } else {

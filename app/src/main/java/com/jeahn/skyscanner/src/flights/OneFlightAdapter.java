@@ -23,13 +23,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.ViewHolder> {
+public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.ViewHolder> {
     private static String KEY_TICKET = "TICKET";
 
     private ArrayList<Ticket> mTicketList;
     private String mStrFrom, mStrTo;
 
-    FlightsAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
+    OneFlightAdapter(ArrayList<Ticket> mTicketList, String from, String to) {
         this.mTicketList = mTicketList;
         mStrFrom = from;
         mStrTo = to;

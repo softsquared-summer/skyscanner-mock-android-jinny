@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DailyOneFlightResult {
+public class DailyRoundFlightResult {
     @SerializedName("totalTicketCount")
     private int totalTicketCount;
 
@@ -12,7 +12,7 @@ public class DailyOneFlightResult {
     private int timeGapAvg;
 
     @SerializedName("airLineList")
-    private List<DailyOneAirLine> airLineList;
+    private List<DailyRoundAirLine> airLineList;
 
     public int getTotalTicketCount() {
         return totalTicketCount;
@@ -22,7 +22,7 @@ public class DailyOneFlightResult {
         return timeGapAvg;
     }
 
-    public List<DailyOneAirLine> getAirLineList() {
+    public List<DailyRoundAirLine> getAirLineList() {
         return airLineList;
     }
 }

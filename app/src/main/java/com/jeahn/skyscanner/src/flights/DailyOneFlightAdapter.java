@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.models.AirLine;
+import com.jeahn.skyscanner.src.flights.models.DailyOneAirLine;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
 
 import java.text.NumberFormat;
@@ -21,12 +21,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapter.ViewHolder> {
-    private List<AirLine> mAirLineList;
+public class DailyOneFlightAdapter extends RecyclerView.Adapter<DailyOneFlightAdapter.ViewHolder> {
+    private List<DailyOneAirLine> mAirLineList;
 
     private int mItemCount;
 
-    public FlightsDailyAdapter(List<AirLine> mAirLineList) {
+    public DailyOneFlightAdapter(List<DailyOneAirLine> mAirLineList) {
         this.mAirLineList = mAirLineList;
         mItemCount = mAirLineList.size();
     }
@@ -34,13 +34,13 @@ public class FlightsDailyAdapter extends RecyclerView.Adapter<FlightsDailyAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flights_daily, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_daily_one_flight, null);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        AirLine airLine = mAirLineList.get(position);
+        DailyOneAirLine airLine = mAirLineList.get(position);
         Glide.with(holder.ivAirLine.getContext()).load(airLine.getAirLineImgUrl()).into(holder.ivAirLine);
         holder.tvAirLine.setText(airLine.getAirLineKr());
         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(airLine.getMinAdultPrice());

@@ -137,6 +137,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_below="@id/flights_tv_daily_count"
                             android:text="평균 소요 시간: 0시간 0분"
+                            android:textSize="16sp"
                             android:textColor="@color/flightsMainColor"/>
                     </RelativeLayout>
                     <View

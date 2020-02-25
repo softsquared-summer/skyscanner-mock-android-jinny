@@ -6,6 +6,7 @@ import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsRetrofitInterface;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
+import com.jeahn.skyscanner.src.flights.models.DailyRoundFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.RoundFlightResponse;
 
@@ -28,13 +29,13 @@ public class FlightsService {
         flightsRetrofitInterface.getDailyOneFlight(deAirPortCode, arAirPortCode, deDate, seatCode).enqueue(new Callback<DailyOneFlightResponse>() {
             @Override
             public void onResponse(Call<DailyOneFlightResponse> call, Response<DailyOneFlightResponse> response) {
-                DailyOneFlightResponse oneDailyFlightResponse = response.body();
-                if (oneDailyFlightResponse == null) {
+                DailyOneFlightResponse dailyOneFlightResponse = response.body();
+                if (dailyOneFlightResponse == null) {
                     mFlightsActivityView.getDailyOneFlightFailure(null);
                     return;
                 }
 
-                mFlightsActivityView.getDailyOneFlightSuccess(oneDailyFlightResponse.getResult());
+                mFlightsActivityView.getDailyOneFlightSuccess(dailyOneFlightResponse.getResult());
             }
 
             @Override
@@ -67,6 +68,29 @@ public class FlightsService {
         });
     }
 
+    //일일 왕복 항공편 리스트 조회 api
+    public void getDailyRoundFlight(String deAirPortCode, String arAirPortCode, String deDate, String arDate, int seatCode) {
+        final FlightsRetrofitInterface flightsRetrofitInterface =
+                ApplicationClass.getRetrofit().create(FlightsRetrofitInterface.class);
+        flightsRetrofitInterface.getDailyRoundFlight(deAirPortCode, arAirPortCode, deDate, arDate, seatCode).enqueue(new Callback<DailyRoundFlightResponse>() {
+            @Override
+            public void onResponse(Call<DailyRoundFlightResponse> call, Response<DailyRoundFlightResponse> response) {
+                DailyRoundFlightResponse DailyRoundFlightResponse = response.body();
+                if (DailyRoundFlightResponse == null) {
+                    mFlightsActivityView.getDailyRoundFlightFailure(null);
+                    return;
+                }
+
+                mFlightsActivityView.getDailyRoundFlightSuccess(DailyRoundFlightResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<DailyRoundFlightResponse> call, Throwable t) {
+                mFlightsActivityView.getDailyRoundFlightFailure(null);
+            }
+        });
+    }
+
     //왕복 항공편 리스트 조회 api
     public void getRoundFlight(String deAirPortCode, String arAirPortCode, String deDate, String arDate,int seatCode, String sortBy) {
         final FlightsRetrofitInterface flightsRetrofitInterface =
@@ -89,4 +113,5 @@ public class FlightsService {
             }
         });
     }
+
 }

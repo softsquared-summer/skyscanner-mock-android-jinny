@@ -24,22 +24,24 @@ import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.flights.flightsSearch.FlightsSearchActivity;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
+import com.jeahn.skyscanner.src.flights.models.DailyRoundFlightResult;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResult;
 import com.jeahn.skyscanner.src.flights.models.RoundFlightResult;
 
 import java.util.concurrent.TimeUnit;
 
 public class FlightsActivity extends BaseActivity implements View.OnClickListener, FlightsActivityView {
-    private static int START_SEARCH_FLIGHTS_ONE_WAY = 100;
-    private static int START_SEARCH_FLIGHTS_ROUND_TRIP = 200;
+    private static int SEARCH_FLIGHTS_ONE_WAY = 100;
+    private static int SEARCH_FLIGHTS_ROUND_TRIP = 200;
 
     private static int SEARCH_FLIGHTS = 1;
     private static int FLIGHTS_DAILY_SHOW_COUNT = 3;
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView, mDailyRecyclerView;
-    private FlightsAdapter mAdapter;
-    private FlightsDailyAdapter mDailyAdapter;
+    private OneFlightAdapter mAdapter;
+    private DailyOneFlightAdapter mDailyOneFlightAdapter;
+    private DailyRoundFlightAdapter mDailyRoundFlightAdapter;
 
     private TextView mTvFromTo, mTvCount, mTvDailyCount, mTvDailyTimeGapAvg, mTvMore;
     private ImageView mIvMore;
@@ -48,7 +50,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     private NestedScrollView mNestedScroll;
 
     private String mStrDeAirPortCode, mStrArAirPortCode;
-    private int mIntCabinClass, mIntDailyCount;
+    private int mSearchType, mIntCabinClass, mIntDailyCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,20 +92,22 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
             //검색창에서 <- 누르면 결과창도 함께 꺼짐
             if (resultCode == Activity.RESULT_FIRST_USER) {
                 finish();
-            } else if (resultCode == START_SEARCH_FLIGHTS_ONE_WAY) { //편도 검색 시작
+            } else if (resultCode == SEARCH_FLIGHTS_ONE_WAY) { //편도 검색 시작
+                mSearchType = SEARCH_FLIGHTS_ONE_WAY;
                 mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
                 mStrArAirPortCode = data.getStringExtra("arAirPortCode");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
                 mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
                 tryGetOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass, "price");
                 tryGetDailyOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass);
-            } else if (resultCode == START_SEARCH_FLIGHTS_ROUND_TRIP){ //왕복 검색 시작
+            } else if (resultCode == SEARCH_FLIGHTS_ROUND_TRIP){ //왕복 검색 시작
+                mSearchType = SEARCH_FLIGHTS_ROUND_TRIP;
                 mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
                 mStrArAirPortCode = data.getStringExtra("arAirPortCode");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
                 mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
                 tryGetRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass, "price");
-                //tryGetDailyRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass);
+                tryGetDailyRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass);
             }
         }
     }
@@ -123,7 +127,9 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         flightsService.getRoundFlight(deAirPortCode, arAirPortCode, deDate, arDate, seatCode, sortBy);
     }
 
-    private void tryGetDailyRoundFlight(String mStrDeAirPortCode, String mStrArAirPortCode, String s, String s1, int mIntCabinClass) {
+    private void tryGetDailyRoundFlight(String deAirPortCode, String arAirPortCode, String deDate, String arDate, int seatCode) {
+        final FlightsService flightsService = new FlightsService(this);
+        flightsService.getDailyRoundFlight(deAirPortCode, arAirPortCode, deDate, arDate, seatCode);
     }
 
     public void searchOnClick(View view) {
@@ -168,12 +174,12 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
             }
             mTvDailyTimeGapAvg.setText(strDuration);
 
-            mDailyAdapter = new FlightsDailyAdapter(result.getAirLineList());
-            mDailyRecyclerView.setAdapter(mDailyAdapter);
+            mDailyOneFlightAdapter = new DailyOneFlightAdapter(result.getAirLineList());
+            mDailyRecyclerView.setAdapter(mDailyOneFlightAdapter);
 
             if (mIntDailyCount > FLIGHTS_DAILY_SHOW_COUNT) {
                 //더보기 버튼
-                mDailyAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
+                mDailyOneFlightAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
                 mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
             } else {
                 mRelativeMore.setVisibility(View.GONE);
@@ -189,13 +195,53 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void getOneFlightSuccess(OneFlightResult result) {
         mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
-        mAdapter = new FlightsAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
+        mAdapter = new OneFlightAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void getOneFlightFailure(String message) {
         Toast.makeText(getApplicationContext(), "편도 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getDailyRoundFlightSuccess(DailyRoundFlightResult result) {
+        mIntDailyCount = result.getAirLineList().size();
+        if (mIntDailyCount == 0) {
+            mCardDaily.setVisibility(View.GONE);
+        } else {
+            if (result.getTotalTicketCount() > 10) {
+                mTvDailyCount.setText(getString(R.string.flights_daily_count_more_10));
+
+            } else {
+                mTvDailyCount.setText(String.format(getString(R.string.flights_daily_count), result.getTotalTicketCount()));
+            }
+            long hour = TimeUnit.MINUTES.toHours(result.getTimeGapAvg());
+            long minutes = TimeUnit.MINUTES.toMinutes(result.getTimeGapAvg());
+            String strDuration = getString(R.string.flights_daily_time_avg);
+            if (hour > 0) {
+                strDuration += hour + getString(R.string.flights_hour);
+            }
+            if (minutes > 0) {
+                strDuration += minutes + getString(R.string.flights_minutes);
+            }
+            mTvDailyTimeGapAvg.setText(strDuration);
+
+            mDailyRoundFlightAdapter= new DailyRoundFlightAdapter(result.getAirLineList());
+            mDailyRecyclerView.setAdapter(mDailyRoundFlightAdapter);
+
+            if (mIntDailyCount > FLIGHTS_DAILY_SHOW_COUNT) {
+                //더보기 버튼
+                mDailyRoundFlightAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
+                mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
+            } else {
+                mRelativeMore.setVisibility(View.GONE);
+            }
+        }    }
+
+    @Override
+    public void getDailyRoundFlightFailure(String message) {
+        Toast.makeText(getApplicationContext(), "일일 왕복 항공권 검색 실패", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -214,16 +260,30 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.flights_daily_relative_more:
-                if (mDailyAdapter.getItemCount() == FLIGHTS_DAILY_SHOW_COUNT) {
-                    mDailyAdapter.setItemCount(mIntDailyCount);
-                    mTvMore.setText(getString(R.string.flights_daily_hide));
-                    mIvMore.setImageResource(R.drawable.ic_up_arrow);
-                } else {
-                    mDailyAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
-                    mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
-                    mIvMore.setImageResource(R.drawable.ic_down_arrow);
+                if(mSearchType == SEARCH_FLIGHTS_ONE_WAY){
+                    if (mDailyOneFlightAdapter.getItemCount() == FLIGHTS_DAILY_SHOW_COUNT) {
+                        mDailyOneFlightAdapter.setItemCount(mIntDailyCount);
+                        mTvMore.setText(getString(R.string.flights_daily_hide));
+                        mIvMore.setImageResource(R.drawable.ic_up_arrow);
+                    } else {
+                        mDailyOneFlightAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
+                        mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
+                        mIvMore.setImageResource(R.drawable.ic_down_arrow);
+                    }
+                    mDailyOneFlightAdapter.notifyDataSetChanged();
+                }else if(mSearchType == SEARCH_FLIGHTS_ROUND_TRIP){
+                    if (mDailyRoundFlightAdapter.getItemCount() == FLIGHTS_DAILY_SHOW_COUNT) {
+                        mDailyRoundFlightAdapter.setItemCount(mIntDailyCount);
+                        mTvMore.setText(getString(R.string.flights_daily_hide));
+                        mIvMore.setImageResource(R.drawable.ic_up_arrow);
+                    } else {
+                        mDailyRoundFlightAdapter.setItemCount(FLIGHTS_DAILY_SHOW_COUNT);
+                        mTvMore.setText(String.format(getString(R.string.flights_daily_see_more), mIntDailyCount - FLIGHTS_DAILY_SHOW_COUNT));
+                        mIvMore.setImageResource(R.drawable.ic_down_arrow);
+                    }
+                    mDailyRoundFlightAdapter.notifyDataSetChanged();
                 }
-                mDailyAdapter.notifyDataSetChanged();
+
                 mNestedScroll.smoothScrollTo(0, 0);
                 break;
         }

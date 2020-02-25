@@ -1,6 +1,7 @@
 package com.jeahn.skyscanner.src.flights.interfaces;
 
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResponse;
+import com.jeahn.skyscanner.src.flights.models.DailyRoundFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
 import com.jeahn.skyscanner.src.flights.models.RoundFlightResponse;
 
@@ -29,4 +30,11 @@ public interface FlightsRetrofitInterface {
                                              @Query("arDate") String arDate,
                                              @Query("seatCode") int seatCode,
                                              @Query("sortBy") String sortBy);
+
+    @GET("/daily-round-flight")
+    Call<DailyRoundFlightResponse> getDailyRoundFlight(@Query("deAirPortCode") String deAirPortCode,
+                                                       @Query("arAirPortCode") String arAirPortCode,
+                                                       @Query("deDate") String deDate,
+                                                       @Query("arDate") String arDate,
+                                                       @Query("seatCode") int seatCode);
 }
