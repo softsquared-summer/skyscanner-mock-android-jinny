@@ -13,7 +13,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.main.profile.login.LoginMainActivity;
+import com.jeahn.skyscanner.src.login.LoginMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

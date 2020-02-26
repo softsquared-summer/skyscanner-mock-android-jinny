@@ -20,12 +20,12 @@
         </activity>
         <activity android:name=".src.main.MainActivity"/>
         <activity android:name=".src.flights.FlightsActivity"/>
-        <activity android:name=".src.flights.flightsSearch.FlightsSearchActivity"
+        <activity android:name=".src.flightsSearch.FlightsSearchActivity"
             android:theme="@style/Theme.Transparent"/>
-        <activity android:name=".src.flights.flightsDetail.FlightsDetailActivity"/>
-        <activity android:name=".src.main.profile.login.LoginMainActivity"/>
-        <activity android:name=".src.main.profile.login.LoginActivity"/>
-        <activity android:name=".src.main.profile.login.LoginRegisterSuccessActivity"/>
+        <activity android:name=".src.flightsDetail.FlightsDetailActivity"/>
+        <activity android:name=".src.login.LoginMainActivity"/>
+        <activity android:name=".src.login.LoginActivity"/>
+        <activity android:name=".src.login.LoginRegisterSuccessActivity"/>
     </application>
 
 </manifest>

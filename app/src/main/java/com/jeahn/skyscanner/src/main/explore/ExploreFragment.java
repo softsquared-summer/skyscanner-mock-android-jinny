@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
-import com.jeahn.skyscanner.src.main.explore.exploreCountry.ExploreCountryFragment;
+import com.jeahn.skyscanner.src.main.exploreCountry.ExploreCountryFragment;
 import com.jeahn.skyscanner.src.main.models.Product;
 
 import java.util.ArrayList;

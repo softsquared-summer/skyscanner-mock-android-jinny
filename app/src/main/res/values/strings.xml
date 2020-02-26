@@ -90,8 +90,7 @@
     <string name="profile_about_subtitle_2">스카이스캐너와 함께 해야 하는 이유</string>
     <string name="profile_about_2">스카이스캐너는 든든한 여러분의 후원자입니다. 그 이유를 알려드리죠.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--login-->
     <string name="login_tos_pattern_1">서비스 약관</string>
     <string name="login_tos_pattern_2">개인정보처리방침</string>
     <string name="login_content_1">모든 기능을 이용하세요</string>

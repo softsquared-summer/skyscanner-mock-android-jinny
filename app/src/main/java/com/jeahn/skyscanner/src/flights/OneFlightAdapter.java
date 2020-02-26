@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.flightsDetail.FlightsDetailActivity;
+import com.jeahn.skyscanner.src.flightsDetail.FlightsDetailActivity;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
 
 import java.text.NumberFormat;

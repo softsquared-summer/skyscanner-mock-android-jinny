@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
-import com.jeahn.skyscanner.src.flights.flightsSearch.FlightsSearchActivity;
+import com.jeahn.skyscanner.src.flightsSearch.FlightsSearchActivity;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
 import com.jeahn.skyscanner.src.flights.models.DailyRoundFlightResult;
@@ -89,8 +89,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == SEARCH_FLIGHTS) {
-            //검색창에서 <- 누르면 결과창도 함께 꺼짐
-            if (resultCode == Activity.RESULT_FIRST_USER) {
+            if (resultCode == Activity.RESULT_FIRST_USER) { //검색창에서 <- 누르면 결과창도 함께 꺼짐
                 finish();
             } else if (resultCode == SEARCH_FLIGHTS_ONE_WAY) { //편도 검색 시작
                 mSearchType = SEARCH_FLIGHTS_ONE_WAY;
@@ -237,7 +236,8 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
             } else {
                 mRelativeMore.setVisibility(View.GONE);
             }
-        }    }
+        }
+    }
 
     @Override
     public void getDailyRoundFlightFailure(String message) {

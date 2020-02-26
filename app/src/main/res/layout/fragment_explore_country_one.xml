@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".src.main.explore.exploreCountry.ExploreCountryOneFragment">
+    tools:context=".src.main.exploreCountry.ExploreCountryOneFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
