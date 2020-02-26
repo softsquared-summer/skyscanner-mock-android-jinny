@@ -51,6 +51,8 @@
     <color name="LoginButtonDisableColor">#DDDDE5</color>
     <color name="loginDisableColor">#C4C4C4</color>
     <color name="loginDisableLineColor">#ECECEC</color>
+    <color name="loginErrorColor">#D1435B</color>
+    <color name="loginErrorBackground">#F6DDE1</color>
 
 
 </resources>

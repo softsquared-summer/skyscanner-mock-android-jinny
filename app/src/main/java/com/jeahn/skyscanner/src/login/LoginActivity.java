@@ -14,6 +14,9 @@ import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.login.interfaces.LoginActivityView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginActivity extends BaseActivity implements LoginActivityView {
     public static LoginActivity mLoginActivity;
 
@@ -37,9 +40,14 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
             if (fragment instanceof LoginEmailFragment) {
                 tryPostEmail();
             } else if (fragment instanceof LoginRegisterFragment) {
-                String email = ((LoginRegisterFragment) fragment).getEmail();
                 String password = ((LoginRegisterFragment) fragment).getPassword();
-                tryPostRegister(email, password);
+                if(isValidatePassword(password)){
+                    String email = ((LoginRegisterFragment) fragment).getEmail();
+                    tryPostRegister(email, password);
+                }else{
+                    //비밀번호 오류
+                    ((LoginRegisterFragment) fragment).showPasswordError();
+                }
             }
         });
 
@@ -51,10 +59,19 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         getSupportFragmentManager().beginTransaction().replace(R.id.login_frame, mLoginEmailFragment).commit();
     }
 
+    private boolean isValidatePassword(String password) {
+        String pattern = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,}$";
+        Matcher matcher = Pattern.compile(pattern).matcher(password);
+
+        if(matcher.matches() && !password.contains(" ")){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            //툴바의 <- 버튼 누르면 끝내기
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -93,7 +110,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
 
     @Override
     public void postEmailFailure(String message) {
-        showCustomToast("이메일 인증 실패");
+        showCustomToast("이메일 중복 확인 실패");
     }
 
     @Override
@@ -123,5 +140,15 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         } else {
             mBtnNext.setEnabled(false);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.login_frame);
+        if (fragment instanceof LoginRegisterFragment) {
+            setButtonEnable(true);
+            mBtnNext.setText(getString(R.string.login_button_next));
+        }
+        super.onBackPressed();
     }
 }

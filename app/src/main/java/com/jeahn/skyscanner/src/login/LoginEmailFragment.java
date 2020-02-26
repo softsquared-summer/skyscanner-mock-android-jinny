@@ -27,16 +27,16 @@ public class LoginEmailFragment extends Fragment {
         mEtEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (Patterns.EMAIL_ADDRESS.matcher(charSequence).matches()) {
                     ((LoginActivity) getActivity()).setButtonEnable(true);
                 } else {
                     ((LoginActivity) getActivity()).setButtonEnable(false);
                 }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
