@@ -13,7 +13,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.main.profile.login.LoginActivity;
+import com.jeahn.skyscanner.src.main.profile.login.LoginMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,10 +47,10 @@ public class ProfileFragment extends Fragment implements NestedScrollView.OnScro
 
     @Override
     public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        if(scrollY < 40){
+        if (scrollY < 40) {
             mToolbar.setTitle("");
             mToolbarDivider.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             mToolbar.setTitle(getString(R.string.profile_title));
             mToolbarDivider.setVisibility(View.VISIBLE);
         }
@@ -58,9 +58,9 @@ public class ProfileFragment extends Fragment implements NestedScrollView.OnScro
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.profile_btn_login:
-                Intent intent = new Intent(getContext(), LoginActivity.class);
+                Intent intent = new Intent(getContext(), LoginMainActivity.class);
                 startActivity(intent);
                 break;
         }

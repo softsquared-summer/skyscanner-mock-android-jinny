@@ -47,6 +47,10 @@
 
     <!--login-->
     <color name="loginSmallTextColor">#878395</color>
+    <color name="loginButtonColor">#00A698</color>
+    <color name="LoginButtonDisableColor">#DDDDE5</color>
+    <color name="loginDisableColor">#C4C4C4</color>
+    <color name="loginDisableLineColor">#ECECEC</color>
 
 
 </resources>

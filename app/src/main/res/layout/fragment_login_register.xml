@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.main.profile.login.LoginRegisterFragment">
+
+    <TextView
+        android:id="@+id/login_register_tv_content_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login_register_content_1"
+        android:textSize="28sp"
+        android:textColor="@color/mainTextColor"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/login_register_tv_content_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/login_register_tv_content_1"
+        android:text="@string/login_register_content_2"
+        android:textColor="@color/loginSmallTextColor"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/login_register_tv_email_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_register_tv_content_2"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/login_email_title"
+        android:textColor="@color/loginDisableColor"
+        android:textSize="12sp"/>
+    <EditText
+        android:id="@+id/login_register_et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_register_tv_email_title"
+        android:layout_marginHorizontal="20dp"
+        android:text="aaa@aaa.com"
+        android:textColor="@color/loginDisableColor"
+        android:textSize="18sp"
+        android:backgroundTint="@color/loginDisableLineColor"
+        android:enabled="false"/>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_check"
+        android:layout_alignRight="@id/login_register_et_email"
+        android:layout_alignBottom="@id/login_register_et_email"
+        android:layout_alignTop="@id/login_register_et_email"
+        android:tint="@color/loginButtonColor"/>
+
+    <TextView
+        android:id="@+id/login_register_tv_password_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_register_et_email"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/login_password_title"
+        android:textColor="@color/skyscannerColor"
+        android:textSize="12sp"/>
+
+    <EditText
+        android:id="@+id/login_register_et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_register_tv_password_title"
+        android:layout_marginHorizontal="20dp"
+        android:textCursorDrawable="@drawable/et_email_cursor"
+        android:backgroundTint="@color/skyscannerColor"
+        android:inputType="textPassword"/>
+</RelativeLayout>

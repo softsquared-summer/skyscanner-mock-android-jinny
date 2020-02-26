@@ -1,118 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img_login"
-            android:scaleType="centerCrop"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/login_content_1"
-            android:textColor="@color/mainTextColor"
-            android:textSize="24sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/login_content_2"
-            android:textColor="@color/loginSmallTextColor"/>
-        <RelativeLayout
-            android:id="@+id/login_btn_google"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="20dp"
-            android:stateListAnimator="@null"
-            android:background="@drawable/login_button"
-            android:clickable="true">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@drawable/ic_google"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/login_google"
-                    android:textStyle="bold"
-                    android:textColor="@color/skyscannerColor"/>
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/login_btn_facebook"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="15dp"
-            android:stateListAnimator="@null"
-            android:background="@drawable/login_button"
-            android:clickable="true">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@drawable/ic_facebook"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/login_facebook"
-                    android:textStyle="bold"
-                    android:textColor="@color/skyscannerColor"/>
-            </LinearLayout>
-        </RelativeLayout>
-        <Button
-            android:id="@+id/login_btn_email"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/login_email"
-            android:textColor="@color/skyscannerColor"
-            android:textStyle="bold"
-            android:background="@drawable/login_button"
-            android:elevation="0dp"
-            android:stateListAnimator="@null"/>
-    </LinearLayout>
-
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/login_toolbar"
+        android:id="@+id/login_email_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="?attr/homeAsUpIndicator"/>
-
-    <TextView
-        android:id="@+id/login_tv_tos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/login_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_email_toolbar"
+        android:layout_above="@id/login_email_btn_next"/>
+    <Button
+        android:id="@+id/login_email_btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="@string/login_tos"
-        android:textSize="12sp"
-        android:textColor="@color/loginSmallTextColor"
-        android:textColorLink="@color/skyscannerColor"/>
+        android:layout_margin="25dp"
+        android:text="@string/login_button_next"
+        android:textColor="@android:color/white"
+        android:background="@drawable/login_email_btn_next"
+        android:enabled="false"
+        android:stateListAnimator="@null"/>
 </RelativeLayout>
