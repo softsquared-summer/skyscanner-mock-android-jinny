@@ -4,6 +4,7 @@ import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.login.interfaces.LoginActivityView;
 import com.jeahn.skyscanner.src.login.interfaces.LoginRetrofitInterface;
 import com.jeahn.skyscanner.src.login.models.EmailResponse;
+import com.jeahn.skyscanner.src.login.models.LoginResponse;
 import com.jeahn.skyscanner.src.login.models.RegisterResponse;
 
 import org.json.JSONException;
@@ -79,6 +80,44 @@ public class LoginService {
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 mLoginActivityView.postRegisterFailure(null);
+            }
+        });
+    }
+
+    public void postLogin(String email, String password) {
+        final LoginRetrofitInterface loginRetrofitInterface =
+                ApplicationClass.getRetrofit().create(LoginRetrofitInterface.class);
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email", email);
+            jsonObject.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(jsonObject.toString(), MediaType.parse("application/json; charset=utf-8"));
+        loginRetrofitInterface.postLogin(requestBody).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
+                if (loginResponse == null) {
+                    mLoginActivityView.postLoginFailure(null);
+                    return;
+                }
+
+                switch (loginResponse.getCode() ){
+                    case 100:
+                        mLoginActivityView.postLoginSuccess(loginResponse.getResult());
+                        break;
+                    case 200:
+                        mLoginActivityView.postLoginFailure(null);
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                mLoginActivityView.postLoginFailure(null);
             }
         });
     }

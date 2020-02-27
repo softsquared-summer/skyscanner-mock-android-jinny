@@ -7,22 +7,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.ApplicationClass;
+import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.login.LoginMainActivity;
+import com.jeahn.skyscanner.src.login.interfaces.LoginActivityView;
+import com.jeahn.skyscanner.src.main.profile.interfaces.ProfileActivityView;
+
+import static com.jeahn.skyscanner.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.jeahn.skyscanner.src.ApplicationClass.sSharedPreferences;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment implements NestedScrollView.OnScrollChangeListener, Button.OnClickListener {
+public class ProfileFragment extends Fragment implements NestedScrollView.OnScrollChangeListener, Button.OnClickListener, ProfileActivityView {
+    private static int LOGIN_SUCCESS = 200;
+
     private Toolbar mToolbar;
     private NestedScrollView mScrollView;
+    private LinearLayout mLinearTraveler;
     private View mToolbarDivider;
     private Button mBtnLogin;
+    private TextView mTvEdit, mTvContent, mTvName;
+    private ImageView mIv1;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -36,13 +52,33 @@ public class ProfileFragment extends Fragment implements NestedScrollView.OnScro
 
         mToolbar = v.findViewById(R.id.profile_toolbar);
         mScrollView = v.findViewById(R.id.profile_scroll);
+        mLinearTraveler = v.findViewById(R.id.profile_linear_traveler);
         mToolbarDivider = v.findViewById(R.id.profile_toolbar_divider);
         mBtnLogin = v.findViewById(R.id.profile_btn_login);
+        mTvEdit = v.findViewById(R.id.profile_tv_edit);
+        mTvContent = v.findViewById(R.id.profile_tv_content);
+        mTvName = v.findViewById(R.id.profile_tv_name);
+        mIv1 = v.findViewById(R.id.profile_iv_1);
 
         mBtnLogin.setOnClickListener(this);
         mScrollView.setOnScrollChangeListener(this);
 
+        tryGetTokenValidate();
+
         return v;
+    }
+
+    private void tryGetTokenValidate() {
+        String jwtToken = sSharedPreferences.getString(X_ACCESS_TOKEN, null);
+
+        if(jwtToken != null){
+            ProfileService profileService = new ProfileService(this);
+            profileService.getTokenValidate(jwtToken);
+        }else{
+            mBtnLogin.setVisibility(View.VISIBLE);
+            mTvContent.setVisibility(View.VISIBLE);
+            mIv1.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -61,8 +97,33 @@ public class ProfileFragment extends Fragment implements NestedScrollView.OnScro
         switch (view.getId()) {
             case R.id.profile_btn_login:
                 Intent intent = new Intent(getContext(), LoginMainActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
+        }
+    }
+
+    @Override
+    public void getTokenValidateSuccess(String email) {
+        mTvEdit.setVisibility(View.VISIBLE);
+        mLinearTraveler.setVisibility(View.VISIBLE);
+        String name = email.substring(0, 2).toUpperCase();
+        mTvName.setText(name);
+        mTvName.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getTokenValidateFailure(String message) {
+        mBtnLogin.setVisibility(View.VISIBLE);
+        mTvContent.setVisibility(View.VISIBLE);
+        mIv1.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == LOGIN_SUCCESS){ //로그인 성공
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(this).attach(this).commit();
         }
     }
 }

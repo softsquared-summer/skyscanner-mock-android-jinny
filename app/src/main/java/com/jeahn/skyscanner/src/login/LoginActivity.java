@@ -1,6 +1,7 @@
 package com.jeahn.skyscanner.src.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.login.interfaces.LoginActivityView;
 
@@ -18,6 +20,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends BaseActivity implements LoginActivityView {
+    private static int REGISTER_SUCCESS = 100;
+    private static int LOGIN_SUCCESS = 200;
+
     public static LoginActivity mLoginActivity;
 
     private Toolbar mToolbar;
@@ -48,6 +53,10 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
                     //비밀번호 오류
                     ((LoginRegisterFragment) fragment).showPasswordError();
                 }
+            }else if(fragment instanceof  LoginPasswordFragment){
+                String email = ((LoginPasswordFragment) fragment).getEmail();
+                String password = ((LoginPasswordFragment) fragment).getPassword();
+                tryPostLogtin(email, password);
             }
         });
 
@@ -90,11 +99,20 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         loginService.postRegister(email, password);
     }
 
+    private void tryPostLogtin(String email, String password) {
+        LoginService loginService = new LoginService(this);
+        loginService.postLogin(email, password);
+    }
+
+
     @Override
     public void postEmailSuccess(int result) {
         switch (result) {
             case 100:
-                showCustomToast("해당 이메일이 존재합니다");
+                mBtnNext.setText(getString(R.string.login_button_login));
+                setButtonEnable(false);
+                LoginPasswordFragment loginPasswordFragment = new LoginPasswordFragment(mLoginEmailFragment.getEmail());
+                getSupportFragmentManager().beginTransaction().replace(R.id.login_frame, loginPasswordFragment).addToBackStack(null).commit();
                 break;
             case 200:
                 mBtnNext.setText(getString(R.string.login_button_register));
@@ -117,8 +135,10 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     public void postRegisterSuccess(int result) {
         switch (result) {
             case 100:
-                Intent intent = new Intent(getApplicationContext(), LoginRegisterSuccessActivity.class);
-                startActivity(intent);
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.login_frame);
+                String email = ((LoginRegisterFragment) fragment).getEmail();
+                String password = ((LoginRegisterFragment) fragment).getPassword();
+                tryPostLogtin(email, password);
                 break;
             case 201:
                 showCustomToast("비밀번호 오류");
@@ -134,6 +154,32 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         showCustomToast("가입 실패");
     }
 
+    @Override
+    public void postLoginSuccess(String token) {
+        SharedPreferences.Editor editor = ApplicationClass.sSharedPreferences.edit();
+        editor.putString(ApplicationClass.X_ACCESS_TOKEN, token);
+        editor.commit();
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.login_frame);
+        if(fragment instanceof LoginPasswordFragment){
+            Intent intent = new Intent(getApplicationContext(), LoginSuccessActivity.class);
+            intent.putExtra("type", LOGIN_SUCCESS);
+            intent.putExtra("message", getString(R.string.login_success));
+            startActivityForResult(intent, LOGIN_SUCCESS);
+        }else if(fragment instanceof LoginRegisterFragment){
+            Intent intent = new Intent(getApplicationContext(), LoginSuccessActivity.class);
+            intent.putExtra("type", REGISTER_SUCCESS);
+            intent.putExtra("message", getString(R.string.login_register_success));
+            startActivityForResult(intent, REGISTER_SUCCESS);
+        }
+    }
+
+    @Override
+    public void postLoginFailure(String message) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.login_frame);
+        ((LoginPasswordFragment)fragment).showPasswordError();
+    }
+
     public void setButtonEnable(boolean isEnable) {
         if (isEnable) {
             mBtnNext.setEnabled(true);
@@ -145,10 +191,22 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     @Override
     public void onBackPressed() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.login_frame);
-        if (fragment instanceof LoginRegisterFragment) {
+        if (fragment instanceof LoginRegisterFragment || fragment instanceof  LoginPasswordFragment) {
             setButtonEnable(true);
             mBtnNext.setText(getString(R.string.login_button_next));
         }
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REGISTER_SUCCESS){
+            setResult(REGISTER_SUCCESS);
+            finish();
+        }else if(requestCode == LOGIN_SUCCESS){
+            setResult(LOGIN_SUCCESS);
+            finish();
+        }
     }
 }

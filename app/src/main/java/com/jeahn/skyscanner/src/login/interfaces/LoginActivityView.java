@@ -8,4 +8,8 @@ public interface LoginActivityView {
     void postRegisterSuccess(int result);
 
     void postRegisterFailure(String message);
+
+    void postLoginSuccess(String token);
+
+    void postLoginFailure(String message);
 }

@@ -55,7 +55,20 @@
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/img_profile_1"/>
+                    android:src="@drawable/img_profile_1"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/profile_tv_name"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentRight="true"
+                    android:text="AB"
+                    android:textColor="@android:color/white"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/profileLoginBackground"
+                    android:visibility="gone"/>
                 <Button
                     android:id="@+id/profile_btn_login"
                     android:layout_width="match_parent"
@@ -66,16 +79,69 @@
                     android:text="@string/profile_login_signup"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
-                    android:backgroundTint="@color/profileLoginBackground"/>
+                    android:backgroundTint="@color/profileLoginBackground"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/profile_tv_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_tv_title"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/profile_edit"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/profileLoginBackground"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:visibility="gone"/>
             </RelativeLayout>
             <TextView
+                android:id="@+id/profile_tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="35dp"
                 android:text="@string/profile_text"
                 android:textSize="20sp"
-                android:textColor="@color/mainTextColor"/>
+                android:textColor="@color/mainTextColor"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/profile_linear_traveler"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/profile_traveler_title"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/mainTextColor"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#F4F5FA"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/profile_add_traveler"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/profileLoginBackground"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F4F5FA"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

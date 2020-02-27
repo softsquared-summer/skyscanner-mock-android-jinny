@@ -25,7 +25,7 @@
         <activity android:name=".src.flightsDetail.FlightsDetailActivity"/>
         <activity android:name=".src.login.LoginMainActivity"/>
         <activity android:name=".src.login.LoginActivity"/>
-        <activity android:name=".src.login.LoginRegisterSuccessActivity"/>
+        <activity android:name=".src.login.LoginSuccessActivity"/>
     </application>
 
 </manifest>

@@ -25,6 +25,11 @@ import com.jeahn.skyscanner.src.BaseActivity;
 import java.util.regex.Pattern;
 
 public class LoginMainActivity extends BaseActivity implements View.OnClickListener {
+    private static int REGISTER_SUCCESS = 100;
+    private static int LOGIN_SUCCESS = 200;
+
+    public static LoginMainActivity mLogintMainActivity;
+
     private Toolbar mToolbar;
     private TextView mTvTos;
     private Button mBtnEmail;
@@ -33,6 +38,8 @@ public class LoginMainActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+
+        mLogintMainActivity = this;
 
         mToolbar = findViewById(R.id.login_toolbar);
         mTvTos = findViewById(R.id.login_tv_tos);
@@ -91,8 +98,19 @@ public class LoginMainActivity extends BaseActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.login_btn_email:
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == LOGIN_SUCCESS){
+            setResult(LOGIN_SUCCESS);
+            finish();
+        }else if(resultCode == REGISTER_SUCCESS){
+            setResult(LOGIN_SUCCESS);
         }
     }
 }
