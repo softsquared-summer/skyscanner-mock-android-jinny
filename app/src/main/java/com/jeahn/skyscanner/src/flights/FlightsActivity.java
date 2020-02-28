@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,9 +51,11 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout mRelativeMore;
     private CardView mCardDaily;
     private NestedScrollView mNestedScroll;
+    private ProgressBar mProgressBar;
 
-    private int mSearchType, mIntCabinClass, mIntDailyCount;
+    private int mSearchType, mIntCabinClass, mIntDailyCount, mProgress;
     private City mDeCity, mArCity;
+    private Thread mProgressThread;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         mCardDaily = findViewById(R.id.flights_daily_card);
         mNestedScroll = findViewById(R.id.flights_nested_scroll);
         mIvMore = findViewById(R.id.flights_daily_iv_more);
+        mProgressBar = findViewById(R.id.flights_progress);
 
         mRelativeMore.setOnClickListener(this);
 
@@ -92,12 +97,14 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         if (requestCode == SEARCH_FLIGHTS) {
             if (resultCode == Activity.RESULT_FIRST_USER) { //검색창에서 <- 누르면 결과창도 함께 꺼짐
                 finish();
+                return;
             } else if (resultCode == SEARCH_FLIGHTS_ONE_WAY) { //편도 검색 시작
                 mSearchType = SEARCH_FLIGHTS_ONE_WAY;
                 mDeCity = data.getParcelableExtra("deCity");
                 mArCity = data.getParcelableExtra("arCity");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
                 mTvFromTo.setText(mDeCity.getAirPortCode() + " - " + mArCity.getAirPortCode());
+                startProgress();
                 tryGetOneFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12", mIntCabinClass, "price");
                 tryGetDailyOneFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(), "2020-02-12", mIntCabinClass);
             } else if (resultCode == SEARCH_FLIGHTS_ROUND_TRIP){ //왕복 검색 시작
@@ -106,10 +113,51 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 mArCity = data.getParcelableExtra("arCity");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
                 mTvFromTo.setText(mDeCity.getAirPortCode() + " - " + mArCity.getAirPortCode());
+                startProgress();
                 tryGetRoundFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12","2020-02-12", mIntCabinClass, "price");
                 tryGetDailyRoundFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12","2020-02-12", mIntCabinClass);
             }
         }
+    }
+
+    private void startProgress() {
+        mProgress = 0;
+        mProgressThread = new Thread(() -> {
+            while(true){
+                if(!Thread.currentThread().isInterrupted()){
+                    mProgress += 1;
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
+                    }
+                    mProgressBar.setProgress(mProgress);
+
+                    if(mProgress > 1000){
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }else{
+                    mProgressBar.setProgress(1000);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
+                    }
+                    mProgressBar.setProgress(0);
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        mProgressThread.start();
+        Log.d("test", "start");
+    }
+
+    private void stopProgress(){
+        mProgressThread.interrupt();
     }
 
     private void tryGetOneFlight(String deAirPortCode, String arAirPortCode, String deDate, int seatCode, String sortBy) {
@@ -185,11 +233,13 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 mRelativeMore.setVisibility(View.GONE);
             }
         }
+        stopProgress();
     }
 
     @Override
     public void getDailyOneFlightFailure(String message) {
         Toast.makeText(getApplicationContext(), "일일 편도 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+        stopProgress();
     }
 
     @Override
@@ -197,11 +247,13 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
         mAdapter = new OneFlightAdapter(result.getTicketList(), mDeCity, mArCity);
         mRecyclerView.setAdapter(mAdapter);
+        stopProgress();
     }
 
     @Override
     public void getOneFlightFailure(String message) {
         Toast.makeText(getApplicationContext(), "편도 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+        stopProgress();
     }
 
     @Override
@@ -238,11 +290,13 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 mRelativeMore.setVisibility(View.GONE);
             }
         }
+        //stopProgress();
     }
 
     @Override
     public void getDailyRoundFlightFailure(String message) {
         Toast.makeText(getApplicationContext(), "일일 왕복 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+        //stopProgress();
     }
 
     @Override
@@ -250,11 +304,13 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
         mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
         RoundFlightAdapter roundFlightAdapter = new RoundFlightAdapter(result.getTicketList(), mDeCity, mArCity);
         mRecyclerView.setAdapter(roundFlightAdapter);
+        stopProgress();
     }
 
     @Override
     public void getRoundFlightFailure(String message) {
         Toast.makeText(getApplicationContext(), "왕복 항공권 검색 실패", Toast.LENGTH_SHORT).show();
+        stopProgress();
     }
 
     @Override

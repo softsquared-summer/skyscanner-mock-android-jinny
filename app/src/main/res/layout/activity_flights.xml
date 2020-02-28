@@ -95,6 +95,14 @@
                 android:textColor="@color/flightsAccentColor"
                 android:textStyle="bold"/>
         </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/flights_progress"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:maxHeight="5dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progressTint="@color/flightsProgressColor"
+            android:max="1000"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
