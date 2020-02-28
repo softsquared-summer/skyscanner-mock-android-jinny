@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.city.CityDialog;
 import com.jeahn.skyscanner.src.city.models.City;
+import com.jeahn.skyscanner.src.selectDate.SelectDateActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +29,7 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
     private int mCabinClass = 0;
 
     private FloatingActionButton mFabSearch;
-    private TextView mTvOrigin, mTvDestination, mTvCabinClass;
+    private TextView mTvOrigin, mTvDestination, mTvCabinClass, mTvDepartureDate;
     private LinearLayout mLinearSeat;
 
     @Override
@@ -42,11 +43,13 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         mTvOrigin = view.findViewById(R.id.one_way_tv_origin);
         mTvDestination = view.findViewById(R.id.one_way_tv_destination);
         mTvCabinClass = view.findViewById(R.id.one_way_tv_cabin_class);
+        mTvDepartureDate = view.findViewById(R.id.one_way_tv_date_departure);
         mLinearSeat = view.findViewById(R.id.one_way_seat_setting);
 
         mFabSearch.setOnClickListener(this);
         mTvOrigin.setOnClickListener(this);
         mTvDestination.setOnClickListener(this);
+        mTvDepartureDate.setOnClickListener(this);
         mLinearSeat.setOnClickListener(this);
 
         return view;
@@ -74,6 +77,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.one_way_tv_destination: //도착지 검색
                 showCityDialog(false, mDestinationCity);
+                break;
+            case R.id.one_way_tv_date_departure: //날짜 검색
+                Intent intent = new Intent(getContext(), SelectDateActivity.class);
+                startActivity(intent);
                 break;
             case R.id.one_way_seat_setting: //인원 및 좌석 등급 선택
                 SeatDialog seatDialog = new SeatDialog(getContext());

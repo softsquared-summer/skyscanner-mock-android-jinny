@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.jeahn.skyscanner.config.XAccessTokenInterceptor;
 
 import java.text.SimpleDateFormat;
@@ -45,6 +46,7 @@ public class ApplicationClass extends Application {
         if (sSharedPreferences == null) {
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         }
+        AndroidThreeTen.init(this);
     }
 
     public static Retrofit getRetrofit() {
