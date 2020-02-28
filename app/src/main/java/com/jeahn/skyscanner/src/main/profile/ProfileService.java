@@ -1,9 +1,6 @@
 package com.jeahn.skyscanner.src.main.profile;
 
 import com.jeahn.skyscanner.src.ApplicationClass;
-import com.jeahn.skyscanner.src.flights.interfaces.FlightsRetrofitInterface;
-import com.jeahn.skyscanner.src.flights.models.OneFlightResponse;
-import com.jeahn.skyscanner.src.login.interfaces.LoginActivityView;
 import com.jeahn.skyscanner.src.main.profile.interfaces.ProfileActivityView;
 import com.jeahn.skyscanner.src.main.profile.interfaces.ProfileRetrofitInterface;
 import com.jeahn.skyscanner.src.main.profile.models.TokenValidateResponse;
@@ -19,7 +16,7 @@ public class ProfileService {
         this.mProfileActivityView = mProfileActivityView;
     }
 
-    public void getTokenValidate(String token){
+    public void getTokenValidate(String token) {
         final ProfileRetrofitInterface profileRetrofitInterface =
                 ApplicationClass.getRetrofit().create(ProfileRetrofitInterface.class);
         profileRetrofitInterface.getTokenValidate(token).enqueue(new Callback<TokenValidateResponse>() {
@@ -30,8 +27,8 @@ public class ProfileService {
                     mProfileActivityView.getTokenValidateFailure(null);
                     return;
                 }
-                switch (tokenValidateResponse.getCode()){
-                    case 100 :
+                switch (tokenValidateResponse.getCode()) {
+                    case 100:
                         mProfileActivityView.getTokenValidateSuccess(tokenValidateResponse.getResult().getEmail());
                         break;
                     case 200:

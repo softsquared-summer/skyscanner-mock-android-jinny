@@ -44,6 +44,7 @@
     <color name="profilePaymentsBackground">#FFE7E0</color>
     <color name="profileAlertsBackground">#FFEBD0</color>
     <color name="profileSupportBackground">#E1DDEC</color>
+    <color name="profileSeparatorColor">#F4F5FA</color>
 
     <!--login-->
     <color name="loginSmallTextColor">#878395</color>
@@ -53,6 +54,11 @@
     <color name="loginDisableLineColor">#ECECEC</color>
     <color name="loginErrorColor">#D1435B</color>
     <color name="loginErrorBackground">#F6DDE1</color>
+
+    <!--preferences-->
+    <color name="preferencesLogout">#00A698</color>
+    <color name="preferencesDeleteAccount">#D1435B</color>
+    <color name="preferencesSeparatorColor">#F4F5FA</color>
 
 
 </resources>

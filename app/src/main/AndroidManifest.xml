@@ -26,6 +26,7 @@
         <activity android:name=".src.login.LoginMainActivity"/>
         <activity android:name=".src.login.LoginActivity"/>
         <activity android:name=".src.login.LoginSuccessActivity"/>
+        <activity android:name=".src.preferences.PreferencesActivity"/>
     </application>
 
 </manifest>

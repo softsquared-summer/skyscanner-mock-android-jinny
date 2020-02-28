@@ -120,4 +120,13 @@
     <string name="login_password_error">죄송합니다. 입력하신 이메일과 비밀번호 조합을 인식하지 못했습니다.</string>
     <string name="login_success">로그인이 완료되었습니다.</string>
 
+    <!--preferences-->
+    <string name="preferences_title">선호도</string>
+    <string name="preferences_logout">로그아웃</string>
+    <string name="preferences_delete_account">계정 삭제</string>
+    <string name="preferences_account_management">계정 관리</string>
+    <string name="preferences_ask_logout">스카이스캐너에서 로그아웃하시겠습니까?</string>
+    <string name="preferences_logout_button">로그아웃</string>
+    <string name="preferences_cancel_button">취소</string>
+
 </resources>
