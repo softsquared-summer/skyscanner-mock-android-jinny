@@ -58,8 +58,8 @@ public class RoundTripFragment extends Fragment implements View.OnClickListener{
             case R.id.round_trip_fab_search: //검색 시작
                 if (checkInputData()) {
                     Intent intent = new Intent();
-                    intent.putExtra("deAirPortCode", mOriginCity.getAirPortCode());
-                    intent.putExtra("arAirPortCode", mDestinationCity.getAirPortCode());
+                    intent.putExtra("deCity", mOriginCity);
+                    intent.putExtra("arCity", mDestinationCity);
                     intent.putExtra("cabinClass", mCabinClass);
                     getActivity().setResult(SEARCH_FLIGHTS_ROUND_TRIP, intent);
                     getActivity().finish();

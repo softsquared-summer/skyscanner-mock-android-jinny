@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.BaseActivity;
+import com.jeahn.skyscanner.src.city.models.City;
 import com.jeahn.skyscanner.src.flightsSearch.FlightsSearchActivity;
 import com.jeahn.skyscanner.src.flights.interfaces.FlightsActivityView;
 import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
@@ -49,8 +50,8 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     private CardView mCardDaily;
     private NestedScrollView mNestedScroll;
 
-    private String mStrDeAirPortCode, mStrArAirPortCode;
     private int mSearchType, mIntCabinClass, mIntDailyCount;
+    private City mDeCity, mArCity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,20 +94,20 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 finish();
             } else if (resultCode == SEARCH_FLIGHTS_ONE_WAY) { //편도 검색 시작
                 mSearchType = SEARCH_FLIGHTS_ONE_WAY;
-                mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
-                mStrArAirPortCode = data.getStringExtra("arAirPortCode");
+                mDeCity = data.getParcelableExtra("deCity");
+                mArCity = data.getParcelableExtra("arCity");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
-                mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
-                tryGetOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass, "price");
-                tryGetDailyOneFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12", mIntCabinClass);
+                mTvFromTo.setText(mDeCity.getAirPortCode() + " - " + mArCity.getAirPortCode());
+                tryGetOneFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12", mIntCabinClass, "price");
+                tryGetDailyOneFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(), "2020-02-12", mIntCabinClass);
             } else if (resultCode == SEARCH_FLIGHTS_ROUND_TRIP){ //왕복 검색 시작
                 mSearchType = SEARCH_FLIGHTS_ROUND_TRIP;
-                mStrDeAirPortCode = data.getStringExtra("deAirPortCode");
-                mStrArAirPortCode = data.getStringExtra("arAirPortCode");
+                mDeCity = data.getParcelableExtra("deCity");
+                mArCity = data.getParcelableExtra("arCity");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
-                mTvFromTo.setText(mStrDeAirPortCode + " - " + mStrArAirPortCode);
-                tryGetRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass, "price");
-                tryGetDailyRoundFlight(mStrDeAirPortCode, mStrArAirPortCode, "2020-02-12","2020-02-12", mIntCabinClass);
+                mTvFromTo.setText(mDeCity.getAirPortCode() + " - " + mArCity.getAirPortCode());
+                tryGetRoundFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12","2020-02-12", mIntCabinClass, "price");
+                tryGetDailyRoundFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12","2020-02-12", mIntCabinClass);
             }
         }
     }
@@ -194,7 +195,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void getOneFlightSuccess(OneFlightResult result) {
         mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
-        mAdapter = new OneFlightAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
+        mAdapter = new OneFlightAdapter(result.getTicketList(), mDeCity, mArCity);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -247,7 +248,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void getRoundFlightSuccess(RoundFlightResult result) {
         mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
-        RoundFlightAdapter roundFlightAdapter = new RoundFlightAdapter(result.getTicketList(), mStrDeAirPortCode, mStrArAirPortCode);
+        RoundFlightAdapter roundFlightAdapter = new RoundFlightAdapter(result.getTicketList(), mDeCity, mArCity);
         mRecyclerView.setAdapter(roundFlightAdapter);
     }
 

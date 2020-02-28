@@ -28,83 +28,284 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:background="@color/flightsBackground">
+            android:background="@android:color/white">
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp"
-                android:background="@android:color/white">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2월 12일 수요일"
-                    android:textColor="@color/flightsMainColor"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="서울/김포 - 제주"
-                    android:textColor="@color/flightsMainColor"/>
-                <RelativeLayout
+                android:background="@color/flightsBackground">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
+                    android:orientation="vertical"
                     android:padding="15dp"
-                    android:background="@drawable/flight_detail_box">
-                    <ImageView
-                        android:id="@+id/flights_detail_iv_airline"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="7dp"
-                        android:scaleType="centerCrop"/>
+                    android:background="@android:color/white">
                     <TextView
-                        android:id="@+id/flights_detail_tv_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@id/flights_detail_iv_airline"
-                        android:layout_marginLeft="10dp"
-                        android:text="00:00 - 00:00"
-                        android:textColor="@color/flightsMainColor" />
+                        android:text="2월 12일 수요일"
+                        android:textColor="@color/flightsMainColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/flights_detail_tv_from_to"
+                        android:id="@+id/flights_detail_tv_from_to_kr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/flights_detail_tv_time"
-                        android:layout_toRightOf="@id/flights_detail_iv_airline"
-                        android:layout_marginLeft="10dp"
-                        android:text="ICN-CJU, "
-                        android:textColor="@color/flightsIconColor"
-                        android:textSize="12dp"/>
+                        android:text="서울/김포 - 제주"
+                        android:textColor="@color/flightsMainColor"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:padding="15dp"
+                        android:background="@drawable/flight_detail_box">
+                        <ImageView
+                            android:id="@+id/flights_detail_iv_airline"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="7dp"
+                            android:scaleType="centerCrop"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@id/flights_detail_iv_airline"
+                            android:layout_marginLeft="10dp"
+                            android:text="00:00 - 00:00"
+                            android:textColor="@color/flightsMainColor" />
+                        <TextView
+                            android:id="@+id/flights_detail_tv_from_to"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/flights_detail_tv_time"
+                            android:layout_toRightOf="@id/flights_detail_iv_airline"
+                            android:layout_marginLeft="10dp"
+                            android:text="ICN-CJU, "
+                            android:textColor="@color/flightsDetailInfoText"
+                            android:textSize="12dp"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_airline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/flights_detail_tv_time"
+                            android:layout_toRightOf="@id/flights_detail_tv_from_to"
+                            android:text="항공"
+                            android:textColor="@color/flightsDetailInfoText"
+                            android:textSize="12dp"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="00분"
+                            android:textColor="@color/flightsMainColor" />
+                        <TextView
+                            android:id="@+id/flights_detail_tv_stop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/flights_detail_tv_duration"
+                            android:text="직항"
+                            android:textColor="@color/flightsDetailInfoText"
+                            android:textSize="12dp"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/flights_detail_tv_stop"
+                            android:layout_marginBottom="15dp"
+                            android:text="자세한 정보"
+                            android:textColor="@color/skyscannerColor"
+                            android:textSize="12dp"/>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/flights_detail_linear_return"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    android:background="@android:color/white"
+                    android:visibility="gone">
                     <TextView
-                        android:id="@+id/flights_detail_tv_airline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/flights_detail_tv_time"
-                        android:layout_toRightOf="@id/flights_detail_tv_from_to"
-                        android:text="항공"
-                        android:textColor="@color/flightsIconColor"
-                        android:textSize="12dp"/>
+                        android:text="2월 12일 수요일"
+                        android:textColor="@color/flightsMainColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/flights_detail_tv_duration"
+                        android:id="@+id/flights_detail_tv_from_to_kr_return"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="00분"
-                        android:textColor="@color/flightsMainColor" />
+                        android:text="서울/김포 - 제주"
+                        android:textColor="@color/flightsMainColor"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:padding="15dp"
+                        android:background="@drawable/flight_detail_box">
+                        <ImageView
+                            android:id="@+id/flights_detail_iv_airline_return"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="7dp"
+                            android:scaleType="centerCrop"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_time_return"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@id/flights_detail_iv_airline_return"
+                            android:layout_marginLeft="10dp"
+                            android:text="00:00 - 00:00"
+                            android:textColor="@color/flightsMainColor" />
+                        <TextView
+                            android:id="@+id/flights_detail_tv_from_to_return"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/flights_detail_tv_time_return"
+                            android:layout_toRightOf="@id/flights_detail_iv_airline_return"
+                            android:layout_marginLeft="10dp"
+                            android:text="ICN-CJU, "
+                            android:textColor="@color/flightsDetailInfoText"
+                            android:textSize="12dp"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_airline_return"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/flights_detail_tv_time_return"
+                            android:layout_toRightOf="@id/flights_detail_tv_from_to_return"
+                            android:text="항공"
+                            android:textColor="@color/flightsDetailInfoText"
+                            android:textSize="12dp"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_duration_return"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="00분"
+                            android:textColor="@color/flightsMainColor" />
+                        <TextView
+                            android:id="@+id/flights_detail_tv_stop_return"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/flights_detail_tv_duration_return"
+                            android:text="직항"
+                            android:textColor="@color/flightsDetailInfoText"
+                            android:textSize="12dp"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_detail_return"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/flights_detail_tv_stop_return"
+                            android:layout_marginBottom="15dp"
+                            android:text="자세한 정보"
+                            android:textColor="@color/skyscannerColor"
+                            android:textSize="12dp"/>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@android:color/white">
                     <TextView
-                        android:id="@+id/flights_detail_tv_stop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@id/flights_detail_tv_duration"
-                        android:text="직항"
-                        android:textColor="@color/flightsIconColor"
-                        android:textSize="12dp"/>
-                </RelativeLayout>
+                        android:text="아직 예약할 준비가 안 되셨나요?"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:textColor="@color/flightsMainColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <RelativeLayout
+                        android:id="@+id/flights_detail_relative_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="15dp"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:id="@+id/flights_detail_iv_save"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_alignTop="@id/flights_detail_tv_save_1"
+                            android:layout_alignBottom="@id/flights_detail_tv_save_2"
+                            android:src="@drawable/ic_heart_empty"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_save_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/flights_detail_iv_save"
+                            android:text="이 항공편 저장"
+                            android:textColor="@color/skyscannerColor"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/flights_detail_tv_save_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/flights_detail_tv_save_1"
+                            android:layout_toRightOf="@id/flights_detail_iv_save"
+                            android:text="저장한 항공편은 더 쉽게 찾고 비교할 수 있습니다."
+                            android:textColor="@color/mainTextColor"/>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="15dp"
+                    android:background="@android:color/white">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flights_detail_info_title"
+                        android:textColor="@color/flightsDetailInfoText"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flights_detail_info_1"
+                        android:textColor="@color/flightsDetailInfoText"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/flights_detail_info_2"
+                        android:textColor="@color/flightsDetailInfoText"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flights_detail_info_3"
+                        android:textColor="@color/flightsDetailInfoText"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/flights_detail_info_4"
+                        android:textColor="@color/flightsDetailInfoText"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flights_detail_info_5"
+                        android:textColor="@color/flightsDetailInfoText"/>
+                </LinearLayout>
             </LinearLayout>
+
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
   <RelativeLayout

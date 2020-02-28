@@ -60,5 +60,8 @@
     <color name="preferencesDeleteAccount">#D1435B</color>
     <color name="preferencesSeparatorColor">#F4F5FA</color>
 
+    <!--flights detail-->
+    <color name="flightsDetailInfoText">#75768A</color>
+
 
 </resources>

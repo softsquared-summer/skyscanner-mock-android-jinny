@@ -64,7 +64,8 @@
 
     <!--flight detail-->
     <string name="flight_detail_title">항공편 세부 정보</string>
-
+    <string name="flights_detail_info_1">표시되는 가격에는 예상되는 모든 필수 세금과 수수료가 포함되어 있지만, 예약 전 예약 사이트에서는 "<b>"모든 티켓 세부 정보, 최종 가격 및 이용 약관을 반드시 확인"</b>"하세요.</string>
+    <string name="flights_detail_info_title">중요 정보</string>
 
     <!--trips-->
     <string name="trips_past">지난 여행</string>
@@ -128,5 +129,9 @@
     <string name="preferences_ask_logout">스카이스캐너에서 로그아웃하시겠습니까?</string>
     <string name="preferences_logout_button">로그아웃</string>
     <string name="preferences_cancel_button">취소</string>
+    <string name="flights_detail_info_2">추가 수수료 확인</string>
+    <string name="flights_detail_info_3">일부 항공사/여행사에서는 수화물,보험 또는 신용 카드 사용에 별도의 수수료를 부과할 수 있습니다. 항공사 수수료를 확인하세요.</string>
+    <string name="flights_detail_info_4">만 12~16세 승객을 위한 이용 약관 확인</string>
+    <string name="flights_detail_info_5">어린이 승객이 혼자 여행하는 경우 제한 사항이 적용될 수 있습니다.</string>
 
 </resources>

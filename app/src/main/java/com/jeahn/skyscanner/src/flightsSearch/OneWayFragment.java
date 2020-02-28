@@ -58,8 +58,8 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
             case R.id.one_way_fab_search: //검색 시작
                 if (checkInputData()) {
                     Intent intent = new Intent();
-                    intent.putExtra("deAirPortCode", mOriginCity.getAirPortCode());
-                    intent.putExtra("arAirPortCode", mDestinationCity.getAirPortCode());
+                    intent.putExtra("deCity", mOriginCity);
+                    intent.putExtra("arCity", mDestinationCity);
                     intent.putExtra("cabinClass", mCabinClass);
                     getActivity().setResult(SEARCH_FLIGHTS_ONE_WAY, intent);
                     getActivity().finish();

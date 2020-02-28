@@ -1,5 +1,6 @@
 package com.jeahn.skyscanner.src.flights;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.jeahn.skyscanner.R;
+import com.jeahn.skyscanner.src.city.models.City;
 import com.jeahn.skyscanner.src.flights.models.RoundTicket;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
+import com.jeahn.skyscanner.src.flightsDetail.FlightsDetailActivity;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -23,15 +26,16 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class RoundFlightAdapter extends RecyclerView.Adapter<RoundFlightAdapter.ViewHolder> {
-    private static String KEY_TICKET = "TICKET";
+    private static String KEY_TICKET = "ticket";
+    private static String KEY_TICKET_TYPE = "ticketType";
 
     private List<RoundTicket> mTicketList;
-    private String mStrFrom, mStrTo;
+    private City mDeCity, mArCity;
 
-    RoundFlightAdapter(List<RoundTicket> mTicketList, String from, String to) {
+    RoundFlightAdapter(List<RoundTicket> mTicketList, City deCity, City arCity) {
         this.mTicketList = mTicketList;
-        mStrFrom = from;
-        mStrTo = to;
+        mDeCity = deCity;
+        mArCity = arCity;
     }
 
     @NonNull
@@ -60,7 +64,7 @@ public class RoundFlightAdapter extends RecyclerView.Adapter<RoundFlightAdapter.
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.tvDeFromTo.setText(String.format("%s-%s, ", mStrFrom, mStrTo));
+        holder.tvDeFromTo.setText(String.format("%s-%s, ", mDeCity.getAirPortCode(), mArCity.getAirPortCode()));
         holder.tvDeAirLine.setText(deTicket.getAirLineKr());
         long hour = TimeUnit.MINUTES.toHours(deTicket.getTimeGap());
         long minutes = TimeUnit.MINUTES.toMinutes(deTicket.getTimeGap());
@@ -86,7 +90,7 @@ public class RoundFlightAdapter extends RecyclerView.Adapter<RoundFlightAdapter.
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.tvReFromTo.setText(String.format("%s-%s, ", mStrTo, mStrFrom));
+        holder.tvReFromTo.setText(String.format("%s-%s, ", mDeCity.getAirPortCode(), mArCity.getAirPortCode()));
         holder.tvReAirLine.setText(reTicket.getAirLineKr());
         hour = TimeUnit.MINUTES.toHours(reTicket.getTimeGap());
         minutes = TimeUnit.MINUTES.toMinutes(reTicket.getTimeGap());
@@ -101,11 +105,14 @@ public class RoundFlightAdapter extends RecyclerView.Adapter<RoundFlightAdapter.
         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(deTicket.getAdultPrice() + reTicket.getAdultPrice());
         holder.tvPrice.setText(strPrice);
 
-//        holder.view.setOnClickListener(view -> {
-//            Intent intent = new Intent(view.getContext(), FlightsDetailActivity.class);
-//            intent.putExtra(KEY_TICKET, item);
-//            view.getContext().startActivity(intent);
-//        });
+        holder.view.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), FlightsDetailActivity.class);
+            intent.putExtra("deCity", mDeCity);
+            intent.putExtra("arCity", mArCity);
+            intent.putExtra(KEY_TICKET_TYPE, 2);
+            intent.putExtra(KEY_TICKET, item);
+            view.getContext().startActivity(intent);
+        });
     }
 
     @Override
