@@ -1,13 +1,12 @@
-package com.jeahn.skyscanner.src.main.exploreCountry;
-
+package com.jeahn.skyscanner.src.main.exploreCity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -16,35 +15,26 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.jeahn.skyscanner.R;
 import com.jeahn.skyscanner.src.flightsSearch.NonSwipeViewPager;
+import com.jeahn.skyscanner.src.main.exploreCountry.ExploreCountryPagerAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ExploreCountryFragment extends Fragment implements AppBarLayout.OnOffsetChangedListener, TabLayout.OnTabSelectedListener {
+public class ExploreCityFragment extends Fragment implements AppBarLayout.OnOffsetChangedListener, TabLayout.OnTabSelectedListener {
     private AppBarLayout mAppBar;
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private View mBlind;
     private NonSwipeViewPager mViewPager;
 
-    private ExploreCountryPagerAdapter mExploreCountryPagerAdapter;
+    private ExploreCityPagerAdapter mExploreCountryPagerAdapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_explore_city, container, false);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_explore_country, container, false);
-
-        mAppBar = v.findViewById(R.id.explore_country_appbar);
-        mToolbar = v.findViewById(R.id.explore_country_toolbar);
-        mTabLayout = v.findViewById(R.id.explore_country_tab);
-        mBlind = v.findViewById(R.id.explore_country_blind);
-        mViewPager = v.findViewById(R.id.explore_country_pager);
+        mAppBar = v.findViewById(R.id.explore_city_appbar);
+        mToolbar = v.findViewById(R.id.explore_city_toolbar);
+        mTabLayout = v.findViewById(R.id.explore_city_tab);
+        mBlind = v.findViewById(R.id.explore_city_blind);
+        mViewPager = v.findViewById(R.id.explore_city_pager);
 
         mAppBar.addOnOffsetChangedListener(this);
         mToolbar.setNavigationOnClickListener(view -> getActivity().onBackPressed());
@@ -91,6 +81,6 @@ public class ExploreCountryFragment extends Fragment implements AppBarLayout.OnO
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mExploreCountryPagerAdapter = new ExploreCountryPagerAdapter(getChildFragmentManager());
+        mExploreCountryPagerAdapter = new ExploreCityPagerAdapter(getChildFragmentManager());
     }
 }
