@@ -4,6 +4,7 @@ import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.flightsDetail.interfaces.FlightsDetailActivityView;
 import com.jeahn.skyscanner.src.flightsDetail.interfaces.FlightsDetailRetrofitInterface;
 import com.jeahn.skyscanner.src.flightsDetail.models.AddScheduleResponse;
+import com.jeahn.skyscanner.src.flightsDetail.models.DeleteScheduleResponse;
 import com.jeahn.skyscanner.src.flightsDetail.models.IsSavedFlightResponse;
 
 import org.json.JSONException;
@@ -84,6 +85,40 @@ public class FlightsDetailService {
             @Override
             public void onFailure(Call<IsSavedFlightResponse> call, Throwable t) {
                 mFlightsDetailActivityView.getIsSavedFlightFailure(null);
+            }
+        });
+    }
+
+    public void deleteSchedule(int deFlightId) {
+        final FlightsDetailRetrofitInterface flightsDetailRetrofitInterface =
+                ApplicationClass.getRetrofit().create(FlightsDetailRetrofitInterface.class);
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("deFlightId", deFlightId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(jsonObject.toString(), MediaType.parse("application/json; charset=utf-8"));
+        flightsDetailRetrofitInterface.deleteSchedule(requestBody).enqueue(new Callback<DeleteScheduleResponse>() {
+            @Override
+            public void onResponse(Call<DeleteScheduleResponse> call, Response<DeleteScheduleResponse> response) {
+                DeleteScheduleResponse deleteScheduleResponse = response.body();
+                if (deleteScheduleResponse == null) {
+                    mFlightsDetailActivityView.deleteScheduleFailure(null);
+                    return;
+                }
+                if(deleteScheduleResponse.getCode() == 100){
+                    mFlightsDetailActivityView.deleteScheduleSuccess();
+                }else{
+                    mFlightsDetailActivityView.deleteScheduleFailure(null);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<DeleteScheduleResponse> call, Throwable t) {
+                mFlightsDetailActivityView.deleteScheduleFailure(null);
             }
         });
     }

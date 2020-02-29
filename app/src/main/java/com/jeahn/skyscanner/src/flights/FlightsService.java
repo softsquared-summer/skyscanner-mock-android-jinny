@@ -35,7 +35,11 @@ public class FlightsService {
                     return;
                 }
 
-                mFlightsActivityView.getDailyOneFlightSuccess(dailyOneFlightResponse.getResult());
+                if(dailyOneFlightResponse.getCode() == 100){
+                    mFlightsActivityView.getDailyOneFlightSuccess(dailyOneFlightResponse.getResult());
+                }else{
+                    mFlightsActivityView.getDailyOneFlightFailure(null);
+                }
             }
 
             @Override

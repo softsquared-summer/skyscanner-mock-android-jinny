@@ -8,4 +8,8 @@ public interface FlightsDetailActivityView {
     void getIsSavedFlightSuccess();
 
     void getIsSavedFlightFailure(String message);
+
+    void deleteScheduleSuccess();
+
+    void deleteScheduleFailure(String message);
 }

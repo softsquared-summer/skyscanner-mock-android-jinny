@@ -1,4 +1,4 @@
-package com.jeahn.skyscanner.src.main.exploreCity;
+package com.jeahn.skyscanner.src.util;
 
 import android.graphics.Rect;
 import android.view.View;

@@ -1,8 +1,14 @@
-package com.jeahn.skyscanner.src.flightsDetail.models;
+package com.jeahn.skyscanner.src.main.trips.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.jeahn.skyscanner.src.flights.models.DailyOneFlightResult;
 
-public class DeleteScheduleResponse {
+import java.util.List;
+
+public class ScheduleResponse {
+    @SerializedName("result")
+    private List<Schedule> result;
+
     @SerializedName("isSuccess")
     private boolean isSuccess;
 
@@ -11,6 +17,10 @@ public class DeleteScheduleResponse {
 
     @SerializedName("message")
     private String message;
+
+    public List<Schedule> getResult() {
+        return result;
+    }
 
     public boolean isSuccess() {
         return isSuccess;

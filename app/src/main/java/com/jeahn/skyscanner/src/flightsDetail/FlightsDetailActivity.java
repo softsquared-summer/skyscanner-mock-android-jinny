@@ -40,7 +40,7 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
     private City mDeCity, mArCity;
     private int mTotalPrice;
     private Ticket mTicket;
-    private boolean isSaved = false;
+    private boolean mIsSaved = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -179,13 +179,18 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.flights_detail_relative_save:
-                if(isSaved){
-                    
+                if(mIsSaved){
+                    tryDeleteSchedule();
                 }else{
                     tryPostAddSchedule();
                 }
                 break;
         }
+    }
+
+    private void tryDeleteSchedule() {
+        FlightsDetailService flightsDetailService = new FlightsDetailService(this);
+        flightsDetailService.deleteSchedule(mTicket.getFlightId());
     }
 
     private void tryPostAddSchedule() {
@@ -206,11 +211,21 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
     @Override
     public void getIsSavedFlightSuccess() {
         mIvSave.setImageDrawable(getDrawable(R.drawable.ic_heart_fill));
-        isSaved = true;
+        mIsSaved = true;
     }
 
     @Override
     public void getIsSavedFlightFailure(String message) {
-        showCustomToast("저장 조회 실패");
+    }
+
+    @Override
+    public void deleteScheduleSuccess() {
+        mIvSave.setImageDrawable(getDrawable(R.drawable.ic_heart_empty));
+        mIsSaved = false;
+    }
+
+    @Override
+    public void deleteScheduleFailure(String message) {
+        showCustomToast("저장 삭제 실패");
     }
 }
