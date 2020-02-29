@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.jeahn.skyscanner.src.BaseActivity;
 import com.jeahn.skyscanner.src.city.models.City;
 import com.jeahn.skyscanner.src.flights.models.RoundTicket;
 import com.jeahn.skyscanner.src.flights.models.Ticket;
+import com.jeahn.skyscanner.src.flightsDetail.interfaces.FlightsDetailActivityView;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -25,17 +27,19 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class FlightsDetailActivity extends BaseActivity {
+public class FlightsDetailActivity extends BaseActivity implements View.OnClickListener, FlightsDetailActivityView {
     private static String KEY_TICKET = "ticket";
     private static String KEY_TICKET_TYPE = "ticketType";
 
     private Toolbar mToolbar;
     private LinearLayout mLinearReturn;
-    private ImageView mIvAirLine, mIvAirLineReturn;
+    private RelativeLayout mRelativeSave;
+    private ImageView mIvAirLine, mIvAirLineReturn, mIvSave;
     private TextView mTvFromToKr, mTvFromToKrReturn, mTvTime, mTvTimeReturn, mTvFromTo, mTvFromToReturn, mTvAirLineKr, mTvAirLineKrReturn, mTvDuration, mTvDurationReturn, mTvPrice;
 
     private City mDeCity, mArCity;
     private int mTotalPrice;
+    private Ticket mTicket;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +48,9 @@ public class FlightsDetailActivity extends BaseActivity {
 
         mToolbar = findViewById(R.id.flight_detail_toolbar);
         setSupportActionBar(mToolbar);
+
+        mRelativeSave = findViewById(R.id.flights_detail_relative_save);
+        mRelativeSave.setOnClickListener(this);
 
         mTvFromToKr = findViewById(R.id.flights_detail_tv_from_to_kr);
         mIvAirLine = findViewById(R.id.flights_detail_iv_airline);
@@ -62,6 +69,8 @@ public class FlightsDetailActivity extends BaseActivity {
         mTvAirLineKrReturn = findViewById(R.id.flights_detail_tv_airline_return);
         mTvDurationReturn = findViewById(R.id.flights_detail_tv_duration_return);
 
+        mIvSave = findViewById(R.id.flights_detail_iv_save);
+
         Intent intent = getIntent();
         if (intent != null) {
             mDeCity = intent.getParcelableExtra("deCity");
@@ -69,8 +78,8 @@ public class FlightsDetailActivity extends BaseActivity {
             mTotalPrice = intent.getIntExtra("totalPrice", 0);
             switch (intent.getIntExtra(KEY_TICKET_TYPE, 0)) {
                 case 1:
-                    Ticket ticket = intent.getParcelableExtra(KEY_TICKET);
-                    setTicketInfo(ticket);
+                    mTicket = intent.getParcelableExtra(KEY_TICKET);
+                    setTicketInfo(mTicket);
                     break;
                 case 2:
                     RoundTicket roundTicket = intent.getParcelableExtra(KEY_TICKET);
@@ -156,5 +165,30 @@ public class FlightsDetailActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.flights_detail_relative_save:
+                tryPostAddSchedule();
+                break;
+        }
+    }
+
+    private void tryPostAddSchedule() {
+        FlightsDetailService flightsDetailService = new FlightsDetailService(this);
+        flightsDetailService.postAddSchedule(mTicket.getFlightId());
+    }
+
+    @Override
+    public void postAddScheduleSuccess() {
+        showCustomToast("저장 완료");
+        mIvSave.setImageDrawable(getDrawable(R.drawable.ic_heart_fill));
+    }
+
+    @Override
+    public void postAddScheduleFailure(String message) {
+        showCustomToast("저장 실패");
     }
 }

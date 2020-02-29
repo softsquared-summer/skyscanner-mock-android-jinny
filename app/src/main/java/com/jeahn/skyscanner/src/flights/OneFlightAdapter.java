@@ -80,7 +80,7 @@ public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.View
         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(item.getAdultPrice());
         holder.tvPrice.setText(strPrice);
         int totalPrice = 0;
-        if(mAdultCount > 1 || mInfantCount > 0 || mChildCount == 0){
+        if(mAdultCount > 1 || mInfantCount > 0 || mChildCount > 0){
             int totalCount = mAdultCount + mInfantCount + mChildCount;
             totalPrice = item.getAdultPrice() * mAdultCount + item.getInfantPrice() * mInfantCount + item.getChildPrice() * mChildCount;
             String strTotalPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(totalPrice);
@@ -89,6 +89,7 @@ public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.View
             holder.tvTotalPrice.setVisibility(View.VISIBLE);
         }else{
             totalPrice = item.getAdultPrice();
+            holder.tvTotalPrice.setVisibility(View.GONE);
         }
 
         int finalTotalPrice = totalPrice;
