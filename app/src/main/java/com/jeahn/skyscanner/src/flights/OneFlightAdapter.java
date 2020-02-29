@@ -30,11 +30,15 @@ public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.View
 
     private ArrayList<Ticket> mTicketList;
     private City mDeCity, mArCity;
+    private int mAdultCount, mInfantCount, mChildCount;
 
-    OneFlightAdapter(ArrayList<Ticket> mTicketList, City deCity, City arCity) {
+    OneFlightAdapter(ArrayList<Ticket> mTicketList, City deCity, City arCity, int adultCount, int infantCount, int childCount) {
         this.mTicketList = mTicketList;
         mDeCity = deCity;
         mArCity = arCity;
+        mAdultCount = adultCount;
+        mInfantCount = infantCount;
+        mChildCount = childCount;
     }
 
     @NonNull
@@ -75,11 +79,24 @@ public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.View
         holder.tvDuration.setText(strDuration);
         String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(item.getAdultPrice());
         holder.tvPrice.setText(strPrice);
+        int totalPrice = 0;
+        if(mAdultCount > 1 || mInfantCount > 0 || mChildCount == 0){
+            int totalCount = mAdultCount + mInfantCount + mChildCount;
+            totalPrice = item.getAdultPrice() * mAdultCount + item.getInfantPrice() * mInfantCount + item.getChildPrice() * mChildCount;
+            String strTotalPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(totalPrice);
 
+            holder.tvTotalPrice.setText(totalCount+"명 "+strTotalPrice);
+            holder.tvTotalPrice.setVisibility(View.VISIBLE);
+        }else{
+            totalPrice = item.getAdultPrice();
+        }
+
+        int finalTotalPrice = totalPrice;
         holder.view.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), FlightsDetailActivity.class);
             intent.putExtra("deCity", mDeCity);
             intent.putExtra("arCity", mArCity);
+            intent.putExtra("totalPrice", finalTotalPrice);
             intent.putExtra(KEY_TICKET_TYPE, 1);
             intent.putExtra(KEY_TICKET, item);
             view.getContext().startActivity(intent);
@@ -93,7 +110,7 @@ public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
         View view;
-        TextView tvTime, tvFromTo, tvAirLineKr, tvDuration, tvPrice;
+        TextView tvTime, tvFromTo, tvAirLineKr, tvDuration, tvPrice, tvTotalPrice;
         ImageView ivAirLine;
 
         ViewHolder(@NonNull View itemView) {
@@ -105,6 +122,7 @@ public class OneFlightAdapter extends RecyclerView.Adapter<OneFlightAdapter.View
             tvDuration = itemView.findViewById(R.id.item_search_flights_tv_duration);
             tvPrice = itemView.findViewById(R.id.item_search_flights_tv_price);
             ivAirLine = itemView.findViewById(R.id.item_search_flights_iv_airline);
+            tvTotalPrice = itemView.findViewById(R.id.item_search_flights_tv_total_price);
         }
     }
 

@@ -26,10 +26,10 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
 
     private FlightsSearchActivity mActivity;
     private City mOriginCity, mDestinationCity;
-    private int mCabinClass = 0;
+    private int mCabinClass = 0, mAdultCount = 1, mInfantCount = 0, mChildCount = 0;
 
     private FloatingActionButton mFabSearch;
-    private TextView mTvOrigin, mTvDestination, mTvCabinClass, mTvDepartureDate;
+    private TextView mTvOrigin, mTvDestination, mTvCabinClass, mTvDepartureDate, mTvAdultCount, mTvInfantCount, mTvChildCount;
     private LinearLayout mLinearSeat;
 
     @Override
@@ -42,6 +42,9 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
         mFabSearch = view.findViewById(R.id.one_way_fab_search);
         mTvOrigin = view.findViewById(R.id.one_way_tv_origin);
         mTvDestination = view.findViewById(R.id.one_way_tv_destination);
+        mTvAdultCount = view.findViewById(R.id.one_way_tv_adult_count);
+        mTvInfantCount = view.findViewById(R.id.one_way_tv_infant_count);
+        mTvChildCount = view.findViewById(R.id.one_way_tv_child_count);
         mTvCabinClass = view.findViewById(R.id.one_way_tv_cabin_class);
         mTvDepartureDate = view.findViewById(R.id.one_way_tv_date_departure);
         mLinearSeat = view.findViewById(R.id.one_way_seat_setting);
@@ -64,6 +67,9 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                     intent.putExtra("deCity", mOriginCity);
                     intent.putExtra("arCity", mDestinationCity);
                     intent.putExtra("cabinClass", mCabinClass);
+                    intent.putExtra("adultCount", mAdultCount);
+                    intent.putExtra("infantCount", mInfantCount);
+                    intent.putExtra("childCount", mChildCount);
                     getActivity().setResult(SEARCH_FLIGHTS_ONE_WAY, intent);
                     getActivity().finish();
                     getActivity().overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
@@ -84,8 +90,34 @@ public class OneWayFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.one_way_seat_setting: //인원 및 좌석 등급 선택
                 SeatDialog seatDialog = new SeatDialog(getContext());
-                seatDialog.showDialog(mCabinClass, mTvCabinClass);
-                seatDialog.setDialogListener(cabinClass -> mCabinClass = cabinClass);
+                seatDialog.showDialog(mCabinClass, mAdultCount, mInfantCount, mChildCount);
+                seatDialog.setDialogListener(new SeatDialog.SeatDialogListener() {
+                    @Override
+                    public void onApplyButtonClick(int cabinClass, int adultCount, int infantCount, int childCount) {
+                        mCabinClass = cabinClass;
+                        mAdultCount = adultCount;
+                        mInfantCount = infantCount;
+                        mChildCount = childCount;
+
+                        switch (cabinClass){
+                            case 0:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_economy));
+                                break;
+                            case 1:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_business));
+                                break;
+                            case 2:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_premium_economy));
+                                break;
+                            case 3:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_first_class));
+                        }
+
+                        mTvAdultCount.setText(adultCount + "");
+                        mTvInfantCount.setText(infantCount + "");
+                        mTvChildCount.setText(childCount + "");
+                    }
+                });
                 break;
         }
     }

@@ -3,10 +3,86 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp">
-<TextView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="승객 정보"
+        android:textSize="18sp"
+        android:textColor="@color/skyscannerColor"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/seat_dialog_tv_adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성인"
+            android:textColor="@color/mainTextColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seat_dialog_tv_adult"
+            android:text="만 12세 이상"/>
+        <Spinner
+            android:id="@+id/seat_dialog_spinner_adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/seat_dialog_tv_infant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유/소아"
+            android:textColor="@color/mainTextColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seat_dialog_tv_infant"
+            android:text="만 12세 미만"/>
+        <Spinner
+            android:id="@+id/seat_dialog_spinner_infant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/seat_dialog_tv_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유아"
+            android:textColor="@color/mainTextColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seat_dialog_tv_child"
+            android:text="만 12세 미만"/>
+        <Spinner
+            android:id="@+id/seat_dialog_spinner_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginVertical="10dp"
     android:text="@string/seat_dialog_cabin_class"
     android:textSize="18sp"
     android:textColor="@color/skyscannerColor"/>

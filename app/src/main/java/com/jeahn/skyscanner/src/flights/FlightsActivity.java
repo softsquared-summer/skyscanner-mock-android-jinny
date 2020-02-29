@@ -53,7 +53,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     private NestedScrollView mNestedScroll;
     private ProgressBar mProgressBar;
 
-    private int mSearchType, mIntCabinClass, mIntDailyCount, mProgress;
+    private int mSearchType, mIntCabinClass, mIntDailyCount, mProgress, mAdultCount, mInfantCount, mChildCount;
     private City mDeCity, mArCity;
     private Thread mProgressThread;
 
@@ -103,6 +103,9 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 mDeCity = data.getParcelableExtra("deCity");
                 mArCity = data.getParcelableExtra("arCity");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
+                mAdultCount = data.getIntExtra("adultCount", 1);
+                mInfantCount = data.getIntExtra("infantCount", 0);
+                mChildCount = data.getIntExtra("childCount", 0);
                 mTvFromTo.setText(mDeCity.getAirPortCode() + " - " + mArCity.getAirPortCode());
                 startProgress();
                 tryGetOneFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12", mIntCabinClass, "price");
@@ -112,6 +115,9 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
                 mDeCity = data.getParcelableExtra("deCity");
                 mArCity = data.getParcelableExtra("arCity");
                 mIntCabinClass = data.getIntExtra("cabinClass", 0);
+                mAdultCount = data.getIntExtra("adultCount", 1);
+                mInfantCount = data.getIntExtra("infantCount", 0);
+                mChildCount = data.getIntExtra("childCount", 0);
                 mTvFromTo.setText(mDeCity.getAirPortCode() + " - " + mArCity.getAirPortCode());
                 startProgress();
                 tryGetRoundFlight(mDeCity.getAirPortCode(), mArCity.getAirPortCode(),"2020-02-12","2020-02-12", mIntCabinClass, "price");
@@ -245,7 +251,7 @@ public class FlightsActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void getOneFlightSuccess(OneFlightResult result) {
         mTvCount.setText(String.format(getString(R.string.flights_count), result.getTotalTicketCount()));
-        mAdapter = new OneFlightAdapter(result.getTicketList(), mDeCity, mArCity);
+        mAdapter = new OneFlightAdapter(result.getTicketList(), mDeCity, mArCity, mAdultCount, mInfantCount, mChildCount);
         mRecyclerView.setAdapter(mAdapter);
         stopProgress();
     }

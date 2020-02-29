@@ -35,6 +35,7 @@ public class FlightsDetailActivity extends BaseActivity {
     private TextView mTvFromToKr, mTvFromToKrReturn, mTvTime, mTvTimeReturn, mTvFromTo, mTvFromToReturn, mTvAirLineKr, mTvAirLineKrReturn, mTvDuration, mTvDurationReturn, mTvPrice;
 
     private City mDeCity, mArCity;
+    private int mTotalPrice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class FlightsDetailActivity extends BaseActivity {
         if (intent != null) {
             mDeCity = intent.getParcelableExtra("deCity");
             mArCity = intent.getParcelableExtra("arCity");
+            mTotalPrice = intent.getIntExtra("totalPrice", 0);
             switch (intent.getIntExtra(KEY_TICKET_TYPE, 0)) {
                 case 1:
                     Ticket ticket = intent.getParcelableExtra(KEY_TICKET);
@@ -141,7 +143,7 @@ public class FlightsDetailActivity extends BaseActivity {
             strDuration += minutes + "분";
         }
         mTvDuration.setText(strDuration);
-        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(ticket.getAdultPrice());
+        String strPrice = NumberFormat.getCurrencyInstance(Locale.KOREA).format(mTotalPrice);
         mTvPrice.setText(strPrice);
     }
 

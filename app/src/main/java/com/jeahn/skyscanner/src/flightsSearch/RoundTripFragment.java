@@ -25,10 +25,10 @@ public class RoundTripFragment extends Fragment implements View.OnClickListener{
 
     private FlightsSearchActivity mActivity;
     private City mOriginCity, mDestinationCity;
-    private int mCabinClass = 0;
+    private int mCabinClass = 0, mAdultCount = 1, mInfantCount = 0, mChildCount = 0;
 
     private FloatingActionButton mFabSearch;
-    private TextView mTvOrigin, mTvDestination, mTvCabinClass;
+    private TextView mTvOrigin, mTvDestination, mTvCabinClass, mTvDepartureDate, mTvAdultCount, mTvInfantCount, mTvChildCount;
     private LinearLayout mLinearSeat;
 
     @Override
@@ -77,8 +77,30 @@ public class RoundTripFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.round_trip_seat_setting: //인원 및 좌석 등급 선택
                 SeatDialog seatDialog = new SeatDialog(getContext());
-                seatDialog.showDialog(mCabinClass, mTvCabinClass);
-                seatDialog.setDialogListener(cabinClass -> mCabinClass = cabinClass);
+                seatDialog.showDialog(mCabinClass, mAdultCount, mInfantCount, mChildCount);
+                seatDialog.setDialogListener(new SeatDialog.SeatDialogListener() {
+                    @Override
+                    public void onApplyButtonClick(int cabinClass, int adultCount, int infantCount, int childCount) {
+                        mCabinClass = cabinClass;
+                        mAdultCount = adultCount;
+                        mInfantCount = infantCount;
+                        mChildCount = childCount;
+
+                        switch (cabinClass){
+                            case 0:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_economy));
+                                break;
+                            case 1:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_business));
+                                break;
+                            case 2:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_premium_economy));
+                                break;
+                            case 3:
+                                mTvCabinClass.setText(getString(R.string.seat_dialog_first_class));
+                        }
+                    }
+                });
                 break;
         }
     }
