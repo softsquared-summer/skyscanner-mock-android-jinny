@@ -40,6 +40,7 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
     private City mDeCity, mArCity;
     private int mTotalPrice;
     private Ticket mTicket;
+    private boolean isSaved = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +87,13 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
                     setTicketInfo(roundTicket);
             }
         }
+
+        tryGetIsSavedFlight();
+    }
+
+    private void tryGetIsSavedFlight() {
+        FlightsDetailService flightsDetailService = new FlightsDetailService(this);
+        flightsDetailService.getIsSavedFlight(mTicket.getFlightId());
     }
 
     private void setTicketInfo(RoundTicket roundTicket) {
@@ -171,7 +179,11 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.flights_detail_relative_save:
-                tryPostAddSchedule();
+                if(isSaved){
+                    
+                }else{
+                    tryPostAddSchedule();
+                }
                 break;
         }
     }
@@ -183,12 +195,22 @@ public class FlightsDetailActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void postAddScheduleSuccess() {
-        showCustomToast("저장 완료");
         mIvSave.setImageDrawable(getDrawable(R.drawable.ic_heart_fill));
     }
 
     @Override
     public void postAddScheduleFailure(String message) {
         showCustomToast("저장 실패");
+    }
+
+    @Override
+    public void getIsSavedFlightSuccess() {
+        mIvSave.setImageDrawable(getDrawable(R.drawable.ic_heart_fill));
+        isSaved = true;
+    }
+
+    @Override
+    public void getIsSavedFlightFailure(String message) {
+        showCustomToast("저장 조회 실패");
     }
 }

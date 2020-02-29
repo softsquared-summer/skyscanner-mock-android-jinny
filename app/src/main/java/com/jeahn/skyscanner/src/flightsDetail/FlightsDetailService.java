@@ -4,6 +4,7 @@ import com.jeahn.skyscanner.src.ApplicationClass;
 import com.jeahn.skyscanner.src.flightsDetail.interfaces.FlightsDetailActivityView;
 import com.jeahn.skyscanner.src.flightsDetail.interfaces.FlightsDetailRetrofitInterface;
 import com.jeahn.skyscanner.src.flightsDetail.models.AddScheduleResponse;
+import com.jeahn.skyscanner.src.flightsDetail.models.IsSavedFlightResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,8 +25,6 @@ public class FlightsDetailService {
     public void postAddSchedule(int deFlightId) {
         final FlightsDetailRetrofitInterface flightsDetailRetrofitInterface =
                 ApplicationClass.getRetrofit().create(FlightsDetailRetrofitInterface.class);
-
-        String dd = ApplicationClass.sSharedPreferences.getString(ApplicationClass.X_ACCESS_TOKEN, null);
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -58,6 +57,33 @@ public class FlightsDetailService {
             @Override
             public void onFailure(Call<AddScheduleResponse> call, Throwable t) {
                 mFlightsDetailActivityView.postAddScheduleFailure(null);
+            }
+        });
+    }
+
+    public void getIsSavedFlight(int deFlightId) {
+        final FlightsDetailRetrofitInterface flightsDetailRetrofitInterface =
+                ApplicationClass.getRetrofit().create(FlightsDetailRetrofitInterface.class);
+
+        flightsDetailRetrofitInterface.getIsSavedFlight(deFlightId).enqueue(new Callback<IsSavedFlightResponse>() {
+            @Override
+            public void onResponse(Call<IsSavedFlightResponse> call, Response<IsSavedFlightResponse> response) {
+                IsSavedFlightResponse isSavedFlightResponse = response.body();
+                if (isSavedFlightResponse == null) {
+                    mFlightsDetailActivityView.getIsSavedFlightFailure(null);
+                    return;
+                }
+                if(isSavedFlightResponse.getCode() == 100){
+                    mFlightsDetailActivityView.getIsSavedFlightSuccess();
+                }else{
+                    mFlightsDetailActivityView.getIsSavedFlightFailure(null);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<IsSavedFlightResponse> call, Throwable t) {
+                mFlightsDetailActivityView.getIsSavedFlightFailure(null);
             }
         });
     }
