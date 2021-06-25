@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jeahn.skyscanner">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_skyscanner"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_skyscanner_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".src.SplashActivity"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:name=".src.ApplicationClass">
+        <activity android:name=".src.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +19,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".src.main.MainActivity"/>
-        <activity android:name=".src.flights.SearchFlightsResultActivity"/>
-        <activity android:name=".src.flights.SearchFlightsActivity"
+        <activity android:name=".src.flights.FlightsActivity"/>
+        <activity android:name=".src.flightsSearch.FlightsSearchActivity"
             android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".src.flightsDetail.FlightsDetailActivity"/>
+        <activity android:name=".src.login.LoginMainActivity"/>
+        <activity android:name=".src.login.LoginActivity"/>
+        <activity android:name=".src.login.LoginSuccessActivity"/>
+        <activity android:name=".src.preferences.PreferencesActivity"/>
+        <activity android:name=".src.selectDate.SelectDateActivity"/>
     </application>
 
 </manifest>

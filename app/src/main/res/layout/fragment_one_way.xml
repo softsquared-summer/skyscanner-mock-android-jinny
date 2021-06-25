@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".src.flightsSearch.OneWayFragment"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/flightsMainColor">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/one_way_tv_origin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/search_flights_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_take_off"
+                android:paddingStart="15dp"
+                android:drawablePadding="15dp"
+                android:hint="@string/city_origin"
+                android:textSize="18sp"
+                android:textColor="@color/flightsMainColor"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/one_way_tv_destination"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_flights_tv"
+                app:layout_constraintTop_toBottomOf="@id/one_way_tv_origin"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_landing"
+                android:paddingStart="15dp"
+                android:drawablePadding="15dp"
+                android:hint="@string/city_destination"
+                android:textSize="18sp"
+                android:textColor="@color/flightsMainColor"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/one_way_tv_date_departure"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_flights_tv"
+                app:layout_constraintTop_toBottomOf="@id/one_way_tv_destination"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_calendar"
+                android:paddingStart="15dp"
+                android:drawablePadding="15dp"
+                android:text="2월 12일 (수)"
+                android:textSize="18sp"
+                android:textColor="@color/flightsMainColor"
+                android:gravity="center_vertical"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/one_way_seat_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_flights_seat_ripple"
+            android:clickable="true"
+            android:padding="15dp"
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/one_way_tv_adult_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="@color/flightsAccentColor"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_human"
+                android:tint="@color/flightsAccentColor"/>
+
+            <TextView
+                android:id="@+id/one_way_tv_infant_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/flightsAccentColor"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/ic_human"
+                android:tint="@color/flightsAccentColor"/>
+
+            <TextView
+                android:id="@+id/one_way_tv_child_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/flightsAccentColor"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/ic_human"
+                android:tint="@color/flightsAccentColor"/>
+
+            <TextView
+                android:id="@+id/one_way_tv_cabin_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="일반석"
+                android:textColor="@color/flightsAccentColor"
+                android:textSize="18sp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@android:drawable/arrow_down_float"
+                android:tint="@color/flightsAccentColor"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/one_way_fab_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        app:layout_anchor="@id/one_way_seat_setting"
+        app:layout_anchorGravity="bottom|end"
+        android:src="@drawable/ic_searching"
+        android:tint="@android:color/white"
+        android:clickable="true"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        app:layout_anchor="@id/one_way_tv_origin"
+        app:layout_anchorGravity="bottom|end"
+        android:src="@drawable/ic_swap"
+        android:tint="@android:color/white"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:clickable="true"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

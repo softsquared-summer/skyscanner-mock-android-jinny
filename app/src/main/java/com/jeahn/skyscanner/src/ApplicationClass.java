@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.jeahn.skyscanner.config.XAccessTokenInterceptor;
 
 import java.text.SimpleDateFormat;
@@ -20,7 +21,7 @@ public class ApplicationClass extends Application {
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
     // 테스트 서버 주소
-    public static String BASE_URL = "http://apis.newvement.com/";
+    public static String BASE_URL = "http://kt999.site/";
     // 실서버 주소
 //    public static String BASE_URL = "https://template.softsquared.com/";
 
@@ -45,6 +46,7 @@ public class ApplicationClass extends Application {
         if (sSharedPreferences == null) {
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         }
+        AndroidThreeTen.init(this);
     }
 
     public static Retrofit getRetrofit() {

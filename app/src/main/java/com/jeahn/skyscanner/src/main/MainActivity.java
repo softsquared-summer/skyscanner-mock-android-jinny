@@ -1,27 +1,27 @@
 package com.jeahn.skyscanner.src.main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jeahn.skyscanner.R;
-import com.jeahn.skyscanner.src.flights.SearchFlightsActivity;
-import com.jeahn.skyscanner.src.flights.SearchFlightsResultActivity;
+import com.jeahn.skyscanner.src.BaseActivity;
+import com.jeahn.skyscanner.src.main.explore.ExploreFragment;
+import com.jeahn.skyscanner.src.main.profile.ProfileFragment;
+import com.jeahn.skyscanner.src.main.search.SearchFragment;
+import com.jeahn.skyscanner.src.main.trips.TripsFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private BottomNavigationView mBottomNavigation;
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
 
     private SearchFragment mSearchFragment;
-    private LookFragment mLookFragment;
+    private ExploreFragment mExploreFragment;
+    private TripsFragment mTripsFragment;
+    private ProfileFragment mProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,35 +39,59 @@ public class MainActivity extends AppCompatActivity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
 
         mSearchFragment = new SearchFragment();
-        mLookFragment = new LookFragment();
+        mExploreFragment = new ExploreFragment();
+        mTripsFragment = new TripsFragment();
+        mProfileFragment = new ProfileFragment();
 
         mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
 
-        mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                mFragmentTransaction = mFragmentManager.beginTransaction();
+        mBottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
+            mFragmentTransaction = mFragmentManager.beginTransaction();
 
-                switch (menuItem.getItemId()){
-                    case R.id.action_search:
-                        mFragmentTransaction.replace(R.id.main_frame, mSearchFragment).commitAllowingStateLoss();
-                        break;
-                    case R.id.action_look:
-                        mFragmentTransaction.replace(R.id.main_frame, mLookFragment).commitAllowingStateLoss();
-                        break;
-                    case R.id.action_plan:
-                        break;
-                    case R.id.action_profile:
-                        break;
-                }
-
-                return true;
+            switch (menuItem.getItemId()) {
+                case R.id.action_search:
+                    if(mSearchFragment != null && mSearchFragment.isAdded()){
+                        mFragmentTransaction.detach(mSearchFragment);
+                        mFragmentTransaction.attach(mSearchFragment).commit();
+                    }else{
+                        mSearchFragment = new SearchFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mSearchFragment).addToBackStack(null).commit();
+                    }
+                    break;
+                case R.id.action_explore:
+                    if(mExploreFragment != null && mExploreFragment.isAdded()){
+                        mFragmentTransaction.detach(mExploreFragment);
+                        mFragmentTransaction.attach(mExploreFragment).commit();
+                    }else{
+                        mExploreFragment = new ExploreFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mExploreFragment).addToBackStack(null).commit();
+                    }
+                    break;
+                case R.id.action_trips:
+                    if(mTripsFragment != null && mTripsFragment.isAdded()){
+                        mFragmentTransaction.detach(mTripsFragment);
+                        mFragmentTransaction.attach(mTripsFragment).commit();
+                    }else{
+                        mTripsFragment = new TripsFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mTripsFragment).addToBackStack(null).commit();
+                    }
+                    break;
+                case R.id.action_profile:
+                    if(mProfileFragment != null && mProfileFragment.isAdded()){
+                        mFragmentTransaction.detach(mProfileFragment);
+                        mFragmentTransaction.attach(mProfileFragment).commit();
+                    }else{
+                        mProfileFragment = new ProfileFragment();
+                        mFragmentTransaction.add(R.id.main_frame, mProfileFragment).addToBackStack(null).commit();
+                    }
+                    break;
             }
+
+            return true;
         });
     }
 
-    public void iBtnFlightOnClick(View view) {
-        Intent intent = new Intent(MainActivity.this, SearchFlightsResultActivity.class);
-        startActivity(intent);
+    public void goExplore() {
+        mBottomNavigation.setSelectedItemId(R.id.action_explore);
     }
 }

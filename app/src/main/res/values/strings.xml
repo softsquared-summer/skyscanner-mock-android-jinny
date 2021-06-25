@@ -4,7 +4,7 @@
 
     <!--bottom navigation-->
     <string name="menu_search">검색하기</string>
-    <string name="menu_look">둘러보기</string>
+    <string name="menu_explore">둘러보기</string>
     <string name="menu_plan">여행 일정</string>
     <string name="menu_profile">프로필</string>
 
@@ -13,11 +13,125 @@
     <string name="search_flight">항공권</string>
     <string name="search_hotel">호텔</string>
     <string name="search_car_rental">렌터카</string>
+    <string name="search_prediction_title">스마트하게 여행하세요.</string>
+    <string name="search_prediction_content_1">가격 예측 받기</string>
+    <string name="search_prediction_content_2">똑똑한 가격 예측 기능으로 다음 항공편 가격을 절약하세요</string>
+    <string name="search_prediction_beta">베타</string>
+    <string name="search_title_explore">둘러보기</string>
+    <string name="search_go_explore">모두 탐색</string>
 
-    <!--look-->
-    <string name="look_title">둘러보기</string>
+    <!--explore-->
+    <string name="explore_title">둘러보기</string>
+    <string name="explore_find">다음 목적지 찾기</string>
+    <string name="explore_everywhere">Everywhere 검색</string>
+    <string name="explore_product_popular">인기 있는 목적지</string>
+    <string name="explore_product_quick">단기 휴가</string>
+    <string name="explore_product_long">장기 여행</string>
+    <string name="explore_product_last_minute">임박 상품</string>
+    <string name="explore_product_early_bird">얼리버드 상품</string>
+    <string name="explore_product_solo">나홀로 여행</string>
+    <string name="explore_product_couple">커플/우정 인기 여행지</string>
+    <string name="explore_product_next_weekend">다음 주말</string>
+    <string name="explore_product_this_weekend">이번 주말</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--flights-->
+    <string name="flights_title">항공권 검색</string>
+    <string name="flights_sort_filter">정렬 및 필터(조건)</string>
+    <string name="flights_count">%d개의 결과</string>
+    <string name="flights_daily_count">하루 %d편의 직항 항공편 제공</string>
+    <string name="flights_daily_count_more_10">하루 10편 이상의 직항 항공편 제공</string>
+    <string name="flights_daily_time_avg">평균 소요 시간:&#160;</string>
+    <string name="flights_daily_see_more">%d개의 항공사 더 보기</string>
+    <string name="flights_daily_hide">항공사 숨기기</string>
+    <string name="flights_hour">시간&#160;</string>
+    <string name="flights_minutes">분&#160;</string>
+
+    <!--flights search-->
+    <string name="city_origin">출발지</string>
+    <string name="city_destination">도착지</string>
+    <string name="flights_search_round_trip">왕복</string>
+    <string name="flights_search_one_way">편도</string>
+    <string name="flights_search_multi_city">다구간</string>
+
+    <!--seat dialog-->
+    <string name="seat_dialog_apply">적용</string>
+    <string name="seat_dialog_cancel">취소</string>
+    <string name="seat_dialog_cabin_class">좌석 등급</string>
+    <string name="seat_dialog_economy">일반석</string>
+    <string name="seat_dialog_premium_economy">프리미엄 일반석</string>
+    <string name="seat_dialog_business">비즈니스</string>
+    <string name="seat_dialog_first_class">일등석</string>
+
+    <!--flight detail-->
+    <string name="flight_detail_title">항공편 세부 정보</string>
+    <string name="flights_detail_info_1">표시되는 가격에는 예상되는 모든 필수 세금과 수수료가 포함되어 있지만, 예약 전 예약 사이트에서는 "<b>"모든 티켓 세부 정보, 최종 가격 및 이용 약관을 반드시 확인"</b>"하세요.</string>
+    <string name="flights_detail_info_title">중요 정보</string>
+
+    <!--trips-->
+    <string name="trips_past">지난 여행</string>
+    <string name="trips_upcoming">다가오는 여행</string>
+    <string name="trips_title">여행 일정</string>
+    <string name="trips_upcoming_text_1">다음 여행을 계획해 보세요!</string>
+    <string name="trips_upcoming_text_2">항공편 추가로 여행을 생성하거나 로그인하여 저장한 여행을 확인하세요.</string>
+    <string name="trips_past_text_1">이곳에서 지난날의 모험들을 떠올려 보세요!</string>
+    <string name="trips_past_text_2">먼저 다음 항공편을 추가해 보세요.</string>
+
+    <!--profile-->
+    <string name="profile_title">프로필</string>
+    <string name="profile_login_signup">로그인/회원가입</string>
+    <string name="profile_edit">프로필 편집</string>
+    <string name="profile_text">여행 증명서, 결제 카드, 데이터 설정을 관리하세요.</string>
+    <string name="profile_traveler_title">여행객</string>
+    <string name="profile_add_traveler">여행객 추가</string>
+    <string name="profile_setting_title">설정</string>
+    <string name="profile_preferences">선호도</string>
+    <string name="profile_payments">결제</string>
+    <string name="profile_alerts">알림</string>
+    <string name="profile_support">지원</string>
+    <string name="profile_about_title">스카이스캐너 소개</string>
+    <string name="profile_about_subtitle_1">지속 가능한 여행</string>
+    <string name="profile_about_contents1">긍정적인 영향을 주기 위한 스카이스캐너의 약속을 읽어보세요.</string>
+    <string name="profile_about_subtitle_2">스카이스캐너와 함께 해야 하는 이유</string>
+    <string name="profile_about_2">스카이스캐너는 든든한 여러분의 후원자입니다. 그 이유를 알려드리죠.</string>
+
+    <!--login main-->
+    <string name="login_tos_pattern_1">서비스 약관</string>
+    <string name="login_tos_pattern_2">개인정보처리방침</string>
+    <string name="login_content_1">모든 기능을 이용하세요</string>
+    <string name="login_content_2">가격을 추적하고, 여행을 더 쉽게 계획하고, 더 빠르게 예약해 보세요.</string>
+    <string name="login_google">GOOGLE</string>
+    <string name="login_facebook">FACEBOOK</string>
+    <string name="login_email">이메일</string>
+    <string name="login_tos">계속 진행하시면 스카이스캐너의 서비스 약관 및 개인정보처리방침에 동의하시게 됩니다.</string>
+
+    <!--login-->
+    <string name="login_button_next">다음</string>
+    <string name="login_register_success">등록이 완료되었습니다.</string>
+    <string name="login_email_content">이메일 주소를 알려주세요.</string>
+    <string name="login_email_title">이메일</string>
+    <string name="login_register_content_1">환영합니다!</string>
+    <string name="login_register_content_2">비밀번호를 만드세요.</string>
+    <string name="login_password_title">비밀번호</string>
+    <string name="login_button_register">등록</string>
+    <string name="login_register_error">비밀번호는 최소 8자 이상이어야 하며 영문, 숫자, 특수문자를 포함해야 합니다.</string>
+    <string name="login_password_content_1">다시 돌아오셨네요!</string>
+    <string name="login_password_content_2">비밀번호를 입력하세요.</string>
+    <string name="login_button_login">로그인</string>
+    <string name="login_password_forget">비밀번호를 잊으셨나요?</string>
+    <string name="login_password_error">죄송합니다. 입력하신 이메일과 비밀번호 조합을 인식하지 못했습니다.</string>
+    <string name="login_success">로그인이 완료되었습니다.</string>
+
+    <!--preferences-->
+    <string name="preferences_title">선호도</string>
+    <string name="preferences_logout">로그아웃</string>
+    <string name="preferences_delete_account">계정 삭제</string>
+    <string name="preferences_account_management">계정 관리</string>
+    <string name="preferences_ask_logout">스카이스캐너에서 로그아웃하시겠습니까?</string>
+    <string name="preferences_logout_button">로그아웃</string>
+    <string name="preferences_cancel_button">취소</string>
+    <string name="flights_detail_info_2">추가 수수료 확인</string>
+    <string name="flights_detail_info_3">일부 항공사/여행사에서는 수화물,보험 또는 신용 카드 사용에 별도의 수수료를 부과할 수 있습니다. 항공사 수수료를 확인하세요.</string>
+    <string name="flights_detail_info_4">만 12~16세 승객을 위한 이용 약관 확인</string>
+    <string name="flights_detail_info_5">어린이 승객이 혼자 여행하는 경우 제한 사항이 적용될 수 있습니다.</string>
 
 </resources>

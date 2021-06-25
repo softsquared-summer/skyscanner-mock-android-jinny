@@ -5,20 +5,64 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--아이콘-->
-    <color name="ic_skyscanner_background">#006EE8</color>
+    <color name="skyscannerColor">#006EE8</color>
 
     <!--splash-->
     <color name="splashBackground">#CDDFF8</color>
+
+    <!--main-->
+    <color name="mainTextColor">#111236</color>
 
     <!--search-->
     <color name="searchBtnForeground">#00a698</color>
     <color name="searchBtnBackground">#d0eeec</color>
 
-    <!--look-->
-    <color name="lookTitleColor">#ff9400</color>
+    <!--explore-->
+    <color name="exploreTitleColor">#ff9400</color>
 
     <!--flights-->
     <color name="flightsMainColor">#111236</color>
     <color name="flightsIconColor">#68697f</color>
     <color name="flightsAccentColor">#00a698</color>
+    <color name="flightsBackground">#F1F2F8</color>
+    <color name="flightsDividerColor">#E2E2E8</color>
+    <color name="flightsProgressColor">#ff9400</color>
+
+    <!--explore-->
+    <color name="exploreFind">#C0C0CB</color>
+    <color name="exploreEverywhereBackground">#99000000</color>
+
+    <!--trips-->
+    <color name="tripsIndicator">#5A489B</color>
+    <color name="tripsFabBackground">#00A698</color>
+    <color name="tripsTabTextColor">#BCBCC8</color>
+
+    <!--profile-->
+    <color name="profileToolbarDivider">#F3F4F9</color>
+    <color name="profileAboutBackgroundStroke">#EFEFF2</color>
+    <color name="profileLoginBackground">#00A698</color>
+    <color name="profilePreferencesBackground">#D0EEEC</color>
+    <color name="profilePaymentsBackground">#FFE7E0</color>
+    <color name="profileAlertsBackground">#FFEBD0</color>
+    <color name="profileSupportBackground">#E1DDEC</color>
+    <color name="profileSeparatorColor">#F4F5FA</color>
+
+    <!--login-->
+    <color name="loginSmallTextColor">#878395</color>
+    <color name="loginButtonColor">#00A698</color>
+    <color name="LoginButtonDisableColor">#DDDDE5</color>
+    <color name="loginDisableColor">#C4C4C4</color>
+    <color name="loginDisableLineColor">#ECECEC</color>
+    <color name="loginErrorColor">#D1435B</color>
+    <color name="loginErrorBackground">#F6DDE1</color>
+
+    <!--preferences-->
+    <color name="preferencesLogout">#00A698</color>
+    <color name="preferencesDeleteAccount">#D1435B</color>
+    <color name="preferencesSeparatorColor">#F4F5FA</color>
+
+    <!--flights detail-->
+    <color name="flightsDetailInfoText">#75768A</color>
+
+
 </resources>

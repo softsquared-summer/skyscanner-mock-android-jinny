@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.login.LoginEmailFragment">
+    <TextView
+        android:id="@+id/login_email_tv_Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login_email_content"
+        android:textSize="28sp"
+        android:textColor="@color/mainTextColor"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/login_email_tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/login_email_tv_Content"
+        android:text="@string/login_email_title"
+        android:textColor="@color/skyscannerColor"/>
+    <EditText
+        android:id="@+id/login_email_et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/login_email_tv_email"
+        android:inputType="textEmailAddress"
+        android:textCursorDrawable="@drawable/et_email_cursor"
+        android:backgroundTint="@color/skyscannerColor"/>
+
+</RelativeLayout>

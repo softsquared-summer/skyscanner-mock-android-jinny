@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/login_email_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"/>
+    <FrameLayout
+        android:id="@+id/login_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_email_toolbar"
+        android:layout_above="@id/login_email_btn_next"/>
+    <Button
+        android:id="@+id/login_email_btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="25dp"
+        android:text="@string/login_button_next"
+        android:textColor="@android:color/white"
+        android:background="@drawable/login_email_btn_next"
+        android:enabled="false"
+        android:stateListAnimator="@null"/>
+</RelativeLayout>
